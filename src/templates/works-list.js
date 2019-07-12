@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 
-class BlogIndex extends React.Component {
+class WorksIndex extends React.Component {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
@@ -14,13 +14,13 @@ class BlogIndex extends React.Component {
     const isLast = currentPage === numPages;
     const prevPage =
       currentPage - 1 === 1
-        ? "/blog"
-        : "/blog/page/" + (currentPage - 1).toString();
-    const nextPage = "/blog/page/" + (currentPage + 1).toString();
+        ? "/works"
+        : "/works/page/" + (currentPage - 1).toString();
+    const nextPage = "/works/page/" + (currentPage + 1).toString();
 
     return (
       <Layout title={siteTitle}>
-        <SEO title="Blog" />
+        <SEO title="Works" />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;
           return (
@@ -43,7 +43,7 @@ class BlogIndex extends React.Component {
           )}
           {Array.from({ length: numPages }).map((item, i) => {
             const index = i + 1;
-            const link = index === 1 ? "/blog" : `/blog/page/${index}`;
+            const link = index === 1 ? "/works" : `/works/page/${index}`;
             return (
               <li key={`pagination-number-${index}`}>
                 <Link to={link}>{index}</Link>
@@ -61,10 +61,10 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex;
+export default WorksIndex;
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
+  query worksPageQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -74,7 +74,6 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      filter: { fields: { collection: { eq: "blog" } } }
     ) {
       edges {
         node {

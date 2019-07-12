@@ -5,6 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`);
+  const worksPost = path.resolve(`./src/templates/works-post.js`);
   return graphql(
     `
       {
@@ -16,6 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               fields {
                 slug
+                collection
               }
               frontmatter {
                 title
@@ -38,9 +40,13 @@ exports.createPages = ({ graphql, actions }) => {
         index === posts.length - 1 ? null : posts[index + 1].node;
       const next = index === 0 ? null : posts[index - 1].node;
 
+      const { collection } = post.node.fields;
+      console.log(collection);
+
       createPage({
         path: post.node.fields.slug,
-        component: blogPost,
+        component:
+          post.node.fields.collection === "blog" ? blogPost : worksPost,
         context: {
           slug: post.node.fields.slug,
           previous,
@@ -73,6 +79,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
+    // Get the parent node
+    const parent = getNode(node.parent);
+
     const [month, day, year] = new Date(node.frontmatter.date)
       .toLocaleDateString("en-EN", {
         year: "numeric",
@@ -81,12 +90,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })
       .split("/");
 
-    const url = `/blog/${year}/${month}/${day}${value}`;
+    const url = `/${parent.sourceInstanceName}/${year}/${month}/${day}${value}`;
 
     createNodeField({
       name: `slug`,
       node,
       value: url,
+    });
+
+    // Create a field on this node for the "collection" of the parent
+    // NOTE: This is necessary so we can filter `allMarkdownRemark` by
+    // `collection` otherwise there is no way to filter for only markdown
+    // documents of type `post`.
+    createNodeField({
+      node,
+      name: "collection",
+      value: parent.sourceInstanceName,
     });
   }
 };

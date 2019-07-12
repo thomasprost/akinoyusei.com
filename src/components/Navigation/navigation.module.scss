@@ -1,0 +1,11 @@
+.nav {
+  ul {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  li {
+    display: block;
+    margin-left: 10px;
+  }
+}
