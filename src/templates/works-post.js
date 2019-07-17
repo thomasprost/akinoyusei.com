@@ -2,6 +2,7 @@ import React from "react";
 // import Helmet from 'react-helmet';
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 export default function WorksPost({ data }) {
   const { markdownRemark } = data;
@@ -10,6 +11,7 @@ export default function WorksPost({ data }) {
 
   return (
     <Layout title={`Works`}>
+      <SEO title="Works" />
       <img src={imageSource} alt={markdownRemark.frontmatter.title} />
       <h1>{markdownRemark.frontmatter.title}</h1>
       <p>{markdownRemark.frontmatter.date}</p>

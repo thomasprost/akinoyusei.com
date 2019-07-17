@@ -4,8 +4,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`);
-  const worksPost = path.resolve(`./src/templates/works-post.js`);
   return graphql(
     `
       {
@@ -24,6 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          distinct(field: fields___collection)
         }
       }
     `
@@ -32,44 +31,57 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
-    // Create blog posts pages.
+    // Get all markdown posts.
     const posts = result.data.allMarkdownRemark.edges;
 
-    posts.forEach((post, index) => {
-      const previous =
-        index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+    // We created a new field for the collection type and will use them to create pages.
+    // Get the different types of markdown posts
+    const types = result.data.allMarkdownRemark.distinct;
 
-      const { collection } = post.node.fields;
-      console.log(collection);
+    types.map(type => {
+      posts
+        .filter(post => post.node.fields.collection === type)
+        .forEach((post, index, currentArray) => {
+          const previous =
+            index === currentArray.length - 1
+              ? null
+              : currentArray[index + 1].node;
+          const next = index === 0 ? null : currentArray[index - 1].node;
 
-      createPage({
-        path: post.node.fields.slug,
-        component:
-          post.node.fields.collection === "blog" ? blogPost : worksPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
-      });
-    });
+          const { collection } = post.node.fields;
 
-    // Create blog post list pages
-    const postsPerPage = 1;
-    const numPages = Math.ceil(posts.length / postsPerPage);
+          createPage({
+            path: post.node.fields.slug,
+            component: path.resolve(`./src/templates/${collection}-post.js`),
+            context: {
+              slug: post.node.fields.slug,
+              previous,
+              next,
+            },
+          });
 
-    Array.from({ length: numPages }).forEach((_, i) => {
-      createPage({
-        path: i === 0 ? `/blog` : `/blog/page/${i + 1}`,
-        component: path.resolve("./src/templates/blog-list.js"),
-        context: {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numPages,
-          currentPage: i + 1,
-        },
-      });
+          // Only create category pages once, not for every posts of the same type
+          if (index === 0) {
+            const postsPerPage = 1;
+            const numPages = Math.ceil(currentArray.length / postsPerPage);
+
+            Array.from({ length: numPages }).forEach((_, i) => {
+              createPage({
+                path:
+                  i === 0 ? `/${collection}` : `/${collection}/page/${i + 1}`,
+                component: path.resolve(
+                  `./src/templates/${collection}-list.js`
+                ),
+                context: {
+                  limit: postsPerPage,
+                  skip: i * postsPerPage,
+                  numPages,
+                  currentPage: i + 1,
+                },
+              });
+            });
+          }
+        });
     });
   });
 };
@@ -82,15 +94,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // Get the parent node
     const parent = getNode(node.parent);
 
-    const [month, day, year] = new Date(node.frontmatter.date)
-      .toLocaleDateString("en-EN", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .split("/");
-
-    const url = `/${parent.sourceInstanceName}/${year}/${month}/${day}${value}`;
+    const url = `/${parent.sourceInstanceName}${value}`;
 
     createNodeField({
       name: `slug`,

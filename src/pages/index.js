@@ -19,11 +19,18 @@ const IndexPage = ({ data }) => (
     <br />
     <Link to="/blog/">Blog</Link>
     <br />
+    <Link to="/works/">Works</Link>
+    <br />
+    All posts
     {data.allMarkdownRemark.edges.map(post => {
       return (
-        <Link key={post.node.id} to={post.node.fields.slug}>
-          {post.node.frontmatter.title}
-        </Link>
+        <ul>
+          <li>
+            <Link key={post.node.id} to={post.node.fields.slug}>
+              {post.node.frontmatter.title}
+            </Link>
+          </li>
+        </ul>
       );
     })}
   </Layout>
