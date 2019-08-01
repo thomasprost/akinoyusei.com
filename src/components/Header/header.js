@@ -25,7 +25,8 @@ const Header = ({ siteTitle }) => {
               textDecoration: `none`,
             }}
           >
-            {siteTitle !== "" ? siteTitle : "Site"}
+            {/* {siteTitle !== "" ? siteTitle : "Site"} */}
+            Test
           </Link>
         </h1>
         <Navigation />

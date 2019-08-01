@@ -9,14 +9,16 @@ class WorksIndex extends React.Component {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
-    const { currentPage, numPages } = this.props.pageContext;
+    const { currentPage, numPages, locale } = this.props.pageContext;
+    const baseUrl = locale === "en" ? "/works" : `/${locale}/works`;
+
     const isFirst = currentPage === 1;
     const isLast = currentPage === numPages;
     const prevPage =
       currentPage - 1 === 1
-        ? "/works"
-        : "/works/page/" + (currentPage - 1).toString();
-    const nextPage = "/works/page/" + (currentPage + 1).toString();
+        ? baseUrl
+        : `${baseUrl}/page/` + (currentPage - 1).toString();
+    const nextPage = `${baseUrl}/page/` + (currentPage + 1).toString();
 
     return (
       <Layout title={siteTitle}>
@@ -25,6 +27,7 @@ class WorksIndex extends React.Component {
           const title = node.frontmatter.title || node.fields.slug;
           return (
             <div key={node.fields.slug}>
+              {locale}
               <h3>
                 <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
                   {title}
@@ -43,7 +46,7 @@ class WorksIndex extends React.Component {
           )}
           {Array.from({ length: numPages }).map((item, i) => {
             const index = i + 1;
-            const link = index === 1 ? "/works" : `/works/page/${index}`;
+            const link = index === 1 ? baseUrl : `${baseUrl}/page/${index}`;
             return (
               <li key={`pagination-number-${index}`}>
                 <Link to={link}>{index}</Link>
@@ -64,7 +67,7 @@ class WorksIndex extends React.Component {
 export default WorksIndex;
 
 export const pageQuery = graphql`
-  query worksPageQuery($skip: Int!, $limit: Int!) {
+  query worksPageQuery($skip: Int!, $limit: Int!, $locale: String!) {
     site {
       siteMetadata {
         title
@@ -74,7 +77,9 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      filter: { fields: { collection: { eq: "works" } } }
+      filter: {
+        fields: { collection: { eq: "works" }, locale: { eq: $locale } }
+      }
     ) {
       edges {
         node {

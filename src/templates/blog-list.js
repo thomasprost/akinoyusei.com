@@ -9,14 +9,15 @@ class BlogIndex extends React.Component {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
-    const { currentPage, numPages } = this.props.pageContext;
+    const { currentPage, numPages, locale } = this.props.pageContext;
+    const baseUrl = locale === "en" ? "/blog" : `/${locale}/blog`;
     const isFirst = currentPage === 1;
     const isLast = currentPage === numPages;
     const prevPage =
       currentPage - 1 === 1
-        ? "/blog"
-        : "/blog/page/" + (currentPage - 1).toString();
-    const nextPage = "/blog/page/" + (currentPage + 1).toString();
+        ? baseUrl
+        : `${baseUrl}/page/` + (currentPage - 1).toString();
+    const nextPage = `${baseUrl}/page/` + (currentPage + 1).toString();
 
     return (
       <Layout title={siteTitle}>
@@ -41,9 +42,9 @@ class BlogIndex extends React.Component {
               ← Previous Page
             </Link>
           )}
-          {Array.from({ length: numPages }).map((item, i) => {
+          {Array.from({ length: numPages }).map((_item, i) => {
             const index = i + 1;
-            const link = index === 1 ? "/blog" : `/blog/page/${index}`;
+            const link = index === 1 ? baseUrl : `${baseUrl}/page/${index}`;
             return (
               <li key={`pagination-number-${index}`}>
                 <Link to={link}>{index}</Link>
@@ -64,7 +65,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
+  query blogPageQuery($skip: Int!, $limit: Int!, $locale: String!) {
     site {
       siteMetadata {
         title
@@ -74,7 +75,9 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      filter: { fields: { collection: { eq: "blog" } } }
+      filter: {
+        fields: { collection: { eq: "blog" }, locale: { eq: $locale } }
+      }
     ) {
       edges {
         node {

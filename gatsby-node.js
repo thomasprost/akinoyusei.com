@@ -1,5 +1,6 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const siteLocales = require("./src/constants/locales");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -16,6 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
               fields {
                 slug
                 collection
+                locale
               }
               frontmatter {
                 title
@@ -31,6 +33,8 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
+    const allLocales = ["en", "fr"];
+
     // Get all markdown posts.
     const posts = result.data.allMarkdownRemark.edges;
 
@@ -39,49 +43,57 @@ exports.createPages = ({ graphql, actions }) => {
     const types = result.data.allMarkdownRemark.distinct;
 
     types.map(type => {
-      posts
-        .filter(post => post.node.fields.collection === type)
-        .forEach((post, index, currentArray) => {
-          const previous =
-            index === currentArray.length - 1
-              ? null
-              : currentArray[index + 1].node;
-          const next = index === 0 ? null : currentArray[index - 1].node;
+      allLocales.map(lang => {
+        posts
+          .filter(post => post.node.fields.collection === type)
+          .filter(post => post.node.fields.locale === lang)
+          .forEach((post, index, currentArray) => {
+            const previous =
+              index === currentArray.length - 1
+                ? null
+                : currentArray[index + 1].node;
+            const next = index === 0 ? null : currentArray[index - 1].node;
 
-          const { collection } = post.node.fields;
+            const { collection, locale } = post.node.fields;
 
-          createPage({
-            path: post.node.fields.slug,
-            component: path.resolve(`./src/templates/${collection}-post.js`),
-            context: {
-              slug: post.node.fields.slug,
-              previous,
-              next,
-            },
-          });
-
-          // Only create category pages once, not for every posts of the same type
-          if (index === 0) {
-            const postsPerPage = 1;
-            const numPages = Math.ceil(currentArray.length / postsPerPage);
-
-            Array.from({ length: numPages }).forEach((_, i) => {
-              createPage({
-                path:
-                  i === 0 ? `/${collection}` : `/${collection}/page/${i + 1}`,
-                component: path.resolve(
-                  `./src/templates/${collection}-list.js`
-                ),
-                context: {
-                  limit: postsPerPage,
-                  skip: i * postsPerPage,
-                  numPages,
-                  currentPage: i + 1,
-                },
-              });
+            createPage({
+              path: post.node.fields.slug,
+              component: path.resolve(`./src/templates/${collection}-post.js`),
+              context: {
+                slug: post.node.fields.slug,
+                locale,
+                previous,
+                next,
+              },
             });
-          }
-        });
+
+            // Only create category pages once, not for every posts of the same type
+            if (index === 0) {
+              const postsPerPage = 1;
+              const numPages = Math.ceil(currentArray.length / postsPerPage);
+
+              Array.from({ length: numPages }).forEach((_, i) => {
+                const baseUrl =
+                  locale === "en"
+                    ? `/${collection}`
+                    : `/${locale}/${collection}`;
+                createPage({
+                  path: i === 0 ? baseUrl : `${baseUrl}/page/${i + 1}`,
+                  component: path.resolve(
+                    `./src/templates/${collection}-list.js`
+                  ),
+                  context: {
+                    limit: postsPerPage,
+                    skip: i * postsPerPage,
+                    numPages,
+                    locale,
+                    currentPage: i + 1,
+                  },
+                });
+              });
+            }
+          });
+      });
     });
   });
 };
@@ -94,8 +106,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // Get the parent node
     const parent = getNode(node.parent);
 
-    const url = `/${parent.sourceInstanceName}${value}`;
+    // Blogs and works can have multiple markdown files in each folder to manage translations
+    // We need to grab the locale (usually index.fr.md or any other locale) and generate an url from it : /fr/type/folder-name/
+    // If no locale, just create /type/folder-name/ it will use the english file
+    const [, locale] = parent.name.split(".");
 
+    const url = `${locale !== undefined ? `/${locale}` : ""}/${
+      parent.sourceInstanceName
+    }/${parent.relativeDirectory}`;
+
+    createNodeField({
+      name: "locale",
+      node,
+      value: locale !== undefined ? locale : "en",
+    });
+
+    // Crate a new field for the locale. Default value is english
     createNodeField({
       name: `slug`,
       node,
@@ -112,4 +138,26 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: parent.sourceInstanceName,
     });
   }
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+  deletePage(page);
+
+  Object.keys(siteLocales).map(lang => {
+    const localizedPath = siteLocales[lang].default
+      ? page.path
+      : siteLocales[lang].path + page.path;
+
+    console.log(localizedPath);
+    console.log(siteLocales[lang].locale);
+
+    return createPage({
+      ...page,
+      path: localizedPath,
+      context: {
+        locale: siteLocales[lang].locale,
+      },
+    });
+  });
 };
