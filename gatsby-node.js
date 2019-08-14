@@ -149,14 +149,13 @@ exports.onCreatePage = ({ page, actions }) => {
       ? page.path
       : siteLocales[lang].path + page.path;
 
-    console.log(localizedPath);
-    console.log(siteLocales[lang].locale);
 
     return createPage({
       ...page,
       path: localizedPath,
       context: {
         locale: siteLocales[lang].locale,
+        rawPath: page.path
       },
     });
   });

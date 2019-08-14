@@ -1,3 +1,16 @@
 :root {
   --base-color: #910013;
 }
+
+.wrapper {
+  transition: all 0.6s ease;
+
+  &.dark {
+    background-color: #2a2b2d;
+    color: #fff;
+  }
+
+  &.light {
+    background-color: white;
+  }
+}

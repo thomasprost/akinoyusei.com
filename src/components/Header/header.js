@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./header.module.scss";
 import Navigation from "../Navigation/navigation";
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, locale, rawPath }) => {
   // console.log(siteTitle)
 
   return (
@@ -29,7 +29,7 @@ const Header = ({ siteTitle }) => {
             Test
           </Link>
         </h1>
-        <Navigation />
+        <Navigation locale={locale} rawPath={rawPath} />
       </div>
     </header>
   );
