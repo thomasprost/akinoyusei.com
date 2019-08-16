@@ -1,5 +1,13 @@
 :root {
-  --base-color: #910013;
+  --base-color: #9c0039;
+  --base-blue: #235789;
+  --base-white: #fdfffc;
+  --base-black: #161925;
+  --base-yellow: #f1d302;
+}
+
+a{
+  color: var(--base-color);
 }
 
 .wrapper {
