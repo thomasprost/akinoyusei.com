@@ -2,8 +2,10 @@
   background: var(--base-color);
 
   a{
-    color: white;
+    color: var(--base-white);
     text-decoration: none;
+    text-transform:capitalize;
+
   }
 }
 

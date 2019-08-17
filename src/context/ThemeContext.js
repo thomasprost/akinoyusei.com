@@ -1,7 +1,9 @@
 import React from "react";
+const siteLocales = require("../constants/locales");
 
 const defaultState = {
   dark: false,
+  currentLocale: null,
   toggleDark: () => {},
 };
 

@@ -7,5 +7,6 @@ module.exports = {
   fr: {
     path: "/fr",
     locale: "fr",
+    default: false,
   },
 };

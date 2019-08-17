@@ -9,7 +9,23 @@ class Navigation extends React.Component {
     const { locale, rawPath = "" } = this.props;
     const basePath = locale === "en" ? "" : locale;
     const languageMenu = Object.keys(siteLocales).map(lang => {
-      return <li>{siteLocales[lang].locale}</li>;
+      return (
+        <li
+          className={
+            locale === siteLocales[lang].locale ? styles.selectedLanguage : ""
+          }
+        >
+          <Link
+            to={
+              !siteLocales[lang].default
+                ? siteLocales[lang].locale + rawPath
+                : rawPath
+            }
+          >
+            {siteLocales[lang].locale}
+          </Link>
+        </li>
+      );
     });
 
     return (
@@ -18,12 +34,6 @@ class Navigation extends React.Component {
           <nav className={styles.nav}>
             <ul>
               {languageMenu}
-              <li className={locale === "en" ? styles.selectedLanguage : ""}>
-                <Link to={rawPath}>En</Link>
-              </li>
-              <li className={locale === "fr" ? styles.selectedLanguage : ""}>
-                <Link to={`/fr${rawPath}`}>Fr</Link>
-              </li>
               <li>
                 <Link to={`${basePath}/about`}>About</Link>
               </li>
