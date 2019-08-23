@@ -1,9 +1,9 @@
 import React from "react";
-const siteLocales = require("../constants/locales");
+// const siteLocales = require("../constants/locales");
 
 const defaultState = {
   dark: false,
-  currentLocale: null,
+  // currentLocale: null,
   toggleDark: () => {},
 };
 
@@ -22,9 +22,11 @@ class ThemeProvider extends React.Component {
     this.setState({ dark });
   };
   componentDidMount() {
-    // Getting dark mode value from localStorage!
+    // Getting dark mode value from localStorage
     const lsDark = JSON.parse(localStorage.getItem("dark"));
-    if (lsDark) {
+
+    // Check if the dark value exists
+    if (lsDark !== null) {
       this.setState({ dark: lsDark });
     } else if (supportsDarkMode()) {
       this.setState({ dark: true });

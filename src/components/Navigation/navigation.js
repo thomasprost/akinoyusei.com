@@ -14,6 +14,7 @@ class Navigation extends React.Component {
           className={
             locale === siteLocales[lang].locale ? styles.selectedLanguage : ""
           }
+          key={lang}
         >
           <Link
             to={
@@ -34,13 +35,13 @@ class Navigation extends React.Component {
           <nav className={styles.nav}>
             <ul>
               {languageMenu}
-              <li>
+              <li key="about" className={styles.hasSeparator}>
                 <Link to={`${basePath}/about`}>About</Link>
               </li>
-              <li>
+              <li key="works">
                 <Link to={`${basePath}/works`}>Works</Link>
               </li>
-              <li>
+              <li key="blog">
                 <Link to={`${basePath}/blog`}>Blog</Link>
               </li>
               <button

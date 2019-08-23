@@ -22,17 +22,17 @@ const IndexPage = ({ data, pageContext }) => (
     <Link to="/works/">Works</Link>
     <br />
     All posts
-    {data.allMarkdownRemark.edges.map(post => {
-      return (
-        <ul>
-          <li>
-            <Link key={post.node.id} to={post.node.fields.slug}>
+    <ul>
+      {data.allMarkdownRemark.edges.map(post => {
+        return (
+          <li key={post.node.id}>
+            <Link to={post.node.fields.slug}>
               {post.node.frontmatter.title}
             </Link>
           </li>
-        </ul>
-      );
-    })}
+        );
+      })}
+    </ul>
   </Layout>
 );
 

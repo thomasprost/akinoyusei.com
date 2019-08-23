@@ -8,6 +8,11 @@
     display: block;
     margin-left: 10px;
   }
+
+  .hasSeparator {
+    border-left: 1px solid white;
+    padding-left: 10px;
+  }
 }
 
 .selected-language a {
