@@ -6,12 +6,13 @@
   --base-yellow: #f1d302;
 }
 
-a{
+a {
   color: var(--base-color);
 }
 
 .wrapper {
   transition: all 0.6s ease;
+  height: 100vh;
 
   &.dark {
     background-color: #2a2b2d;

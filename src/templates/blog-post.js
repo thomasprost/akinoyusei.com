@@ -3,13 +3,17 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 
-export default function BlogPost({ data }) {
+export default function BlogPost({ data, pageContext }) {
   const { markdownRemark } = data;
   const imageSource =
     markdownRemark.frontmatter.image.childImageSharp.fluid.src;
 
   return (
-    <Layout title={`Blog`}>
+    <Layout
+      title={`Blog`}
+      locale={pageContext.locale}
+      rawPath={pageContext.rawPath}
+    >
       <img src={imageSource} alt={markdownRemark.frontmatter.title} />
       <h1>{markdownRemark.frontmatter.title}</h1>
       <p>{markdownRemark.frontmatter.date}</p>

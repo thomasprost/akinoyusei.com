@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, pageContext } = this.props;
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
     const { currentPage, numPages, locale } = this.props.pageContext;
@@ -20,7 +20,11 @@ class BlogIndex extends React.Component {
     const nextPage = `${baseUrl}/page/` + (currentPage + 1).toString();
 
     return (
-      <Layout title={siteTitle}>
+      <Layout
+        title={siteTitle}
+        locale={pageContext.locale}
+        rawPath={pageContext.rawPath}
+      >
         <SEO title="Blog" />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;

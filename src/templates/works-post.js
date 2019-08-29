@@ -4,13 +4,17 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-export default function WorksPost({ data }) {
+export default function WorksPost({ data, pageContext }) {
   const { markdownRemark } = data;
   const imageSource =
     markdownRemark.frontmatter.image.childImageSharp.fluid.src;
 
   return (
-    <Layout title={`Works`}>
+    <Layout
+      title={`Works`}
+      locale={pageContext.locale}
+      rawPath={pageContext.rawPath}
+    >
       <SEO title="Works" />
       <img src={imageSource} alt={markdownRemark.frontmatter.title} />
       <h1>{markdownRemark.frontmatter.title}</h1>

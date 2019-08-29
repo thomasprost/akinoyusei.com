@@ -1,9 +1,13 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const siteLocales = require("./src/constants/locales");
+const config = require("./src/constants/siteConfig");
+const i18n = require("./src/constants/i18n");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
+  const categoryTemplate = path.resolve(`./src/templates/categories.js`);
+  const tagsTemplate = path.resolve(`./src/templates/tags.js`);
 
   return graphql(
     `
@@ -21,6 +25,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                category
+                tags
               }
             }
           }
@@ -33,28 +39,75 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
-    const allLocales = ["en", "fr"];
-
     // Get all markdown posts.
     const posts = result.data.allMarkdownRemark.edges;
 
     // We created a new field for the collection type and will use them to create pages.
     // Get the different types of markdown posts
     const types = result.data.allMarkdownRemark.distinct;
+    // Array to store categories
+    let categories = [];
+    let tags = [];
 
     types.map(type => {
-      allLocales.map(lang => {
+      Object.keys(siteLocales).map(lang => {
+        let currentCategArray = [];
+        let currentTagsArray = [];
+
         posts
           .filter(post => post.node.fields.collection === type)
           .filter(post => post.node.fields.locale === lang)
-          .forEach((post, index, currentArray) => {
+          .forEach((post, index, currentCategArray) => {
             const previous =
-              index === currentArray.length - 1
+              index === currentCategArray.length - 1
                 ? null
-                : currentArray[index + 1].node;
-            const next = index === 0 ? null : currentArray[index - 1].node;
+                : currentCategArray[index + 1].node;
+            const next = index === 0 ? null : currentCategArray[index - 1].node;
 
             const { collection, locale } = post.node.fields;
+
+            // Loop through categories of a blog/works post
+            // Create page for each language and each category
+            // Category array used to avoid creating same page multiple time
+            post.node.frontmatter.category.forEach(categ => {
+              const currentUrl = `${
+                locale === config.defaultLocale ? "" : `/${locale}`
+              }/${collection}/categories/${categ}`;
+
+              if (currentCategArray.indexOf(currentUrl) === -1) {
+                currentCategArray.push(currentUrl);
+                createPage({
+                  path: currentUrl,
+                  component: categoryTemplate,
+                  context: {
+                    locale,
+                    rawPath: currentUrl,
+                    category: categ,
+                    type,
+                  },
+                });
+              }
+            });
+
+            // Same as Categories for tags
+            post.node.frontmatter.tags.forEach(tag => {
+              const currentUrl = `${
+                locale === config.defaultLocale ? "" : `/${locale}`
+              }/${collection}/tags/${tag}`;
+              if (currentTagsArray.indexOf(currentUrl) === -1) {
+                currentTagsArray.push(currentUrl);
+                createPage({
+                  path: currentUrl,
+                  component: tagsTemplate,
+                  context: {
+                    locale,
+                    rawPath: currentUrl,
+                    tag,
+                    type,
+                  },
+                });
+              }
+            });
 
             createPage({
               path: post.node.fields.slug,
@@ -62,6 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
               context: {
                 slug: post.node.fields.slug,
                 locale,
+                rawPath: `/${collection}`,
                 previous,
                 next,
               },
@@ -69,12 +123,14 @@ exports.createPages = ({ graphql, actions }) => {
 
             // Only create category pages once, not for every posts of the same type
             if (index === 0) {
-              const postsPerPage = 1;
-              const numPages = Math.ceil(currentArray.length / postsPerPage);
+              const postsPerPage = 6;
+              const numPages = Math.ceil(
+                currentCategArray.length / postsPerPage
+              );
 
               Array.from({ length: numPages }).forEach((_, i) => {
                 const baseUrl =
-                  locale === "en"
+                  locale === config.defaultLocale
                     ? `/${collection}`
                     : `/${locale}/${collection}`;
                 createPage({
@@ -87,6 +143,7 @@ exports.createPages = ({ graphql, actions }) => {
                     skip: i * postsPerPage,
                     numPages,
                     locale,
+                    rawPath: `/${collection}`,
                     currentPage: i + 1,
                   },
                 });
@@ -140,6 +197,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
+// Override automatic page creation (Pages in the pages folder) to add languages routes
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
   deletePage(page);
@@ -149,13 +207,18 @@ exports.onCreatePage = ({ page, actions }) => {
       ? page.path
       : siteLocales[lang].path + page.path;
 
+    const pageName = page.path.replace(/[/]/g, "").replace(".html", "");
+
+    const pagei18n =
+      pageName === "" ? i18n[lang]["index"] : i18n[lang][pageName];
 
     return createPage({
       ...page,
       path: localizedPath,
       context: {
         locale: siteLocales[lang].locale,
-        rawPath: page.path
+        rawPath: page.path,
+        i18n: pagei18n,
       },
     });
   });
