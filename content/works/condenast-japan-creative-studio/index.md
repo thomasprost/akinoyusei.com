@@ -2,7 +2,7 @@
 title: CondéNast
 date: 2017-10-12
 company: CondéNast Studio Japan
-image:
+image: ../../../src/images/works/condenast-main.jpg
 category:
   - PHP
   - Symfony

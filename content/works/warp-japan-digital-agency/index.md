@@ -2,7 +2,7 @@
 title: Warp Japan
 date: 2019-01-25
 company: Warp Japan K.K.
-image:
+image: ../../../src/images/works/warp-main.jpg
 category:
   - PHP
   - Symfony

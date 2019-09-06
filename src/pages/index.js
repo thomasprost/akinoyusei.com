@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import { Link } from "gatsby";
 
 import Layout from "../components/layout";
@@ -7,21 +8,30 @@ import SEO from "../components/seo";
 import { graphql } from "gatsby";
 
 const IndexPage = ({ data, pageContext }) => (
-  <Layout title="Home" locale={pageContext.locale}>
+  <Layout title="Home" pageName="home" locale={pageContext.locale}>
+    <Helmet
+      bodyAttributes={{
+        class: "home",
+      }}
+      htmlAttributes={{
+        class: "home",
+      }}
+    ></Helmet>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    <h1>こんにちは、</h1>
+    <p>I'm Thomas Prost</p>
+    <p>a freelance web developer</p>
+    <p>living in 東京。</p>
+    {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    </div> */}
+    {/* <Link to="/page-2/">Go to page 2</Link>
     <br />
     <Link to="/blog/">Blog</Link>
     <br />
     <Link to="/works/">Works</Link>
-    <br />
-    All posts
+    <br /> */}
+    {/* All posts
     <ul>
       {data.allMarkdownRemark.edges.map(post => {
         return (
@@ -32,7 +42,7 @@ const IndexPage = ({ data, pageContext }) => (
           </li>
         );
       })}
-    </ul>
+    </ul> */}
   </Layout>
 );
 

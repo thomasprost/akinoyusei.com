@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby";
 
 import SEO from "../components/seo";
 import Layout from "../components/layout";
+import Work from "../components/Work/work";
 
 class WorksIndex extends React.Component {
   render() {
@@ -27,21 +28,18 @@ class WorksIndex extends React.Component {
         rawPath={pageContext.rawPath}
       >
         <SEO title="Works" />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug;
-          return (
-            <div key={node.fields.slug}>
-              {locale}
-              <h3>
-                <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          );
-        })}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug;
+            return <Work key={node.fields.slug} data={node} />;
+          })}
+        </div>
         <ul>
           {!isFirst && (
             <Link to={prevPage} rel="prev">
@@ -94,6 +92,14 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+            category
+            image {
+              childImageSharp {
+                fluid {
+                  src
+                }
+              }
+            }
           }
         }
       }

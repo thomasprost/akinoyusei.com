@@ -12,7 +12,7 @@ const Header = ({ siteTitle, locale, rawPath }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1120,
           display: "flex",
           justifyContent: "space-between",
         }}

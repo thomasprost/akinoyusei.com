@@ -3,7 +3,7 @@ title: Oishikatta
 date: 2018-05-10
 company: Aki no Yusei
 featured: false
-image: ./what.png
+image: ../../../src/images/works/oishikatta-main.jpg
 category:
   - PHP
   - Symfony

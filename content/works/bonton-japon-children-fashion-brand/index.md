@@ -3,7 +3,7 @@ title: Bonton Japon
 date: 2019-01-25
 company: Bonton
 featured: false
-image: ../../images/logo/bonton-logo.png
+image: ../../../src/images/works/bonton-main.jpg
 category:
   - PHP
   - Symfony

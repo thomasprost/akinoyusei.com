@@ -25,28 +25,36 @@ class Layout extends React.Component {
   //   }
   // `);
   render() {
-    const { title, children, locale = "en", rawPath } = this.props;
+    const {
+      title,
+      children,
+      locale = "en",
+      rawPath,
+      pageName = "",
+    } = this.props;
 
     return (
       <ThemeContext.Consumer>
         {theme => {
           return (
-            <div className={`wrapper ${theme.dark ? "dark" : "light"}`}>
+            <div
+              className={`wrapper ${theme.dark ? "dark" : "light"} ${pageName}`}
+            >
               <Header siteTitle={title} locale={locale} rawPath={rawPath} />
               <div
                 style={{
                   margin: `0 auto`,
-                  maxWidth: 960,
+                  maxWidth: 1120,
                   padding: `0px 1.0875rem 1.45rem`,
                   paddingTop: 0,
                 }}
               >
                 <main>{children}</main>
-                <footer>
+                {/* <footer>
                   © {new Date().getFullYear()}, Built with
                   {` `}
                   <a href="https://www.gatsbyjs.org">Gatsby</a>
-                </footer>
+                </footer> */}
               </div>
             </div>
           );

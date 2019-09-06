@@ -7,7 +7,9 @@ import SEO from "../components/seo";
 export default function WorksPost({ data, pageContext }) {
   const { markdownRemark } = data;
   const imageSource =
-    markdownRemark.frontmatter.image.childImageSharp.fluid.src;
+    markdownRemark.frontmatter.image !== null
+      ? markdownRemark.frontmatter.image.childImageSharp.fluid.src
+      : void 0;
 
   return (
     <Layout
@@ -15,7 +17,7 @@ export default function WorksPost({ data, pageContext }) {
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
-      <SEO title="Works" />
+      <SEO title={markdownRemark.frontmatter.title} />
       <img src={imageSource} alt={markdownRemark.frontmatter.title} />
       <h1>{markdownRemark.frontmatter.title}</h1>
       <p>{markdownRemark.frontmatter.date}</p>

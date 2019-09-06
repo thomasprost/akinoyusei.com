@@ -17,8 +17,8 @@ export default function BlogPost({ data, pageContext }) {
       <img src={imageSource} alt={markdownRemark.frontmatter.title} />
       <h1>{markdownRemark.frontmatter.title}</h1>
       <p>{markdownRemark.frontmatter.date}</p>
-      <p>By {markdownRemark.frontmatter.author}</p>
-      <p>In: {markdownRemark.frontmatter.category.join()}</p>
+
+      <p>{markdownRemark.frontmatter.category.join()}</p>
       <p>Tags: {markdownRemark.frontmatter.tags.join()}</p>
       <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
     </Layout>

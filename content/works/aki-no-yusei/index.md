@@ -3,7 +3,7 @@ title: Aki no yusei
 date: 2019-01-25
 company: Aki No Yusei
 featured: false
-image: ../../images/logo/bonton-logo.png
+image: ../../../src/images/works/akino-main.jpg
 category:
   - JavaScript
   - Gatsby

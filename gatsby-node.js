@@ -207,6 +207,7 @@ exports.onCreatePage = ({ page, actions }) => {
       ? page.path
       : siteLocales[lang].path + page.path;
 
+    // TODO : Improve it with Regex
     const pageName = page.path.replace(/[/]/g, "").replace(".html", "");
 
     const pagei18n =
