@@ -44,6 +44,9 @@ class Navigation extends React.Component {
               <li key="blog">
                 <Link to={`${basePath}/blog`}>Blog</Link>
               </li>
+              <li key="contact">
+                <Link to={`${basePath}/contact`}>Contact</Link>
+              </li>
               <button
                 className={styles.darkSwitcher}
                 onClick={theme.toggleDark}
