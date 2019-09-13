@@ -9,7 +9,12 @@ const About = ({ pageContext }) => (
     <SEO title="About" />
     <h1>{pageContext.i18n.title}</h1>
     <p>{pageContext.i18n.description}</p>
-    <Link to="/">Go back to the homepage</Link>
+    <p>
+      You can go back to the{" "}
+      <Link to="/" data-hover="homepage">
+        homepage
+      </Link>
+    </p>
   </Layout>
 );
 

@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./header.module.scss";
 import Navigation from "../Navigation/navigation";
 import Img from "gatsby-image";
+const siteLocales = require("../../constants/locales");
 
 const Header = ({ data, locale, rawPath }) => {
   return (
@@ -17,11 +18,8 @@ const Header = ({ data, locale, rawPath }) => {
         }}
       >
         <Link
-          style={{
-            width: "150px",
-            height: "63px",
-          }}
-          to="/"
+          className={styles.logo}
+          to={`/${!siteLocales[locale].default ? locale : ""}`}
         >
           <Img fluid={data.placeholderImage.childImageSharp.fluid} />
         </Link>

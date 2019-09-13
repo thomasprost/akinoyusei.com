@@ -22,7 +22,7 @@ class NotFoundPage extends React.Component {
         <h2>{pageContext.i18n.title}</h2>
         <p>{pageContext.i18n.description}</p>
         <p>{haiku.jp}</p>
-        <p>{haiku.en}</p>
+        <p>{haiku[pageContext.locale]}</p>
         <Link to="/">Go back to the homepage</Link>
       </Layout>
     );
