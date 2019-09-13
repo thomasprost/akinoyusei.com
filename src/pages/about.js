@@ -8,8 +8,9 @@ const About = ({ pageContext }) => (
   <Layout locale={pageContext.locale} rawPath={pageContext.rawPath}>
     <SEO title="About" />
     <h1>{pageContext.i18n.title}</h1>
-    <p>{pageContext.i18n.description}</p>
-    <Link to="/">Go back to the homepage</Link>
+    <div dangerouslySetInnerHTML={{ __html:pageContext.i18n.tldr}}></div>
+    <div dangerouslySetInnerHTML={{ __html:pageContext.i18n.indepth}}></div>
+    
   </Layout>
 );
 
