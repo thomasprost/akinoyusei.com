@@ -6,10 +6,6 @@
   --base-yellow: #f1d302;
 }
 
-a {
-  color: var(--base-color);
-}
-
 html {
   &.home {
     overflow: hidden;
@@ -24,8 +20,51 @@ body {
   }
 }
 
+a {
+  color: var(--base-color);
+  text-shadow: none;
+}
+
 main {
   margin-top: 20px;
+
+  a {
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.5s;
+
+    &:before,
+    &:after {
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      content: "";
+      height: 1px;
+      width: 0;
+      background-color: var(--base-blue);
+      transition: width 0.5s;
+    }
+
+    &:before {
+      z-index: 0;
+      width: 100%;
+      background-color: var(--base-color);
+    }
+
+    &:hover {
+      outline: none;
+      color: var(--base-blue);
+
+      // &:before {
+      //   // max-width: 100%;
+      // }
+
+      &:after {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .wrapper {

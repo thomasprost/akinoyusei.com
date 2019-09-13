@@ -1,12 +1,12 @@
-import { Link } from "gatsby";
+import { Link, graphql, StaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./header.module.scss";
 import Navigation from "../Navigation/navigation";
+import Img from "gatsby-image";
+const siteLocales = require("../../constants/locales");
 
-const Header = ({ siteTitle, locale, rawPath }) => {
-  // console.log(siteTitle)
-
+const Header = ({ data, locale, rawPath }) => {
   return (
     <header className={styles.header}>
       <div
@@ -17,18 +17,13 @@ const Header = ({ siteTitle, locale, rawPath }) => {
           justifyContent: "space-between",
         }}
       >
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {/* {siteTitle !== "" ? siteTitle : "Site"} */}
-            Test
-          </Link>
-        </h1>
+        <Link
+          className={styles.logo}
+          to={`/${!siteLocales[locale].default ? locale : ""}`}
+        >
+          <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+        </Link>
+
         <Navigation locale={locale} rawPath={rawPath} />
       </div>
     </header>
@@ -43,4 +38,21 @@ Header.defaultProps = {
   siteTitle: ``,
 };
 
-export default Header;
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        placeholderImage: file(
+          relativePath: { eq: "common/aki-no-logo-5.png" }
+        ) {
+          childImageSharp {
+            fluid(maxWidth: 300) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    `}
+    render={data => <Header data={data} {...props} />}
+  />
+);

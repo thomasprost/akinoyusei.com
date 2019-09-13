@@ -10,7 +10,6 @@ const About = ({ pageContext }) => (
     <h1>{pageContext.i18n.title}</h1>
     <div dangerouslySetInnerHTML={{ __html:pageContext.i18n.tldr}}></div>
     <div dangerouslySetInnerHTML={{ __html:pageContext.i18n.indepth}}></div>
-    
   </Layout>
 );
 
