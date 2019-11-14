@@ -1,0 +1,61 @@
+.postWrapper {
+}
+
+.postTop {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+.postImage {
+  width: 40%;
+}
+
+.postFront {
+  width: 60%;
+  padding-left: 20px;
+}
+
+.postContent {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+
+  h3 {
+    color: var(--base-color);
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+}
+
+.postIngredients {
+  width: 45%;
+  padding-right: 30px;
+  position: relative;
+  ul {
+    list-style: decimal;
+  }
+
+  &:after {
+    height: 100%;
+    width: 1px;
+    background-color: var(--base-color);
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 0;
+  }
+}
+
+.postHtml {
+  flex: 1;
+}

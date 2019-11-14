@@ -2,6 +2,7 @@ import React from "react";
 // import Helmet from 'react-helmet';
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
+import BlogPostDetails from "../components/Blog/blogPostDetails";
 
 export default function BlogPost({ data, pageContext }) {
   const { markdownRemark } = data;
@@ -14,13 +15,7 @@ export default function BlogPost({ data, pageContext }) {
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
-      <img src={imageSource} alt={markdownRemark.frontmatter.title} />
-      <h1>{markdownRemark.frontmatter.title}</h1>
-      <p>{markdownRemark.frontmatter.date}</p>
-
-      <p>{markdownRemark.frontmatter.category.join()}</p>
-      <p>Tags: {markdownRemark.frontmatter.tags.join()}</p>
-      <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+      <BlogPostDetails data={data} />
     </Layout>
   );
 }
@@ -35,6 +30,7 @@ export const query = graphql`
         author
         category
         tags
+        ingredients
         image {
           childImageSharp {
             fluid {
