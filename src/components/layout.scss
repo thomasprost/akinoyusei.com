@@ -4,6 +4,7 @@
   --base-white: #fdfffc;
   --base-black: #161925;
   --base-yellow: #f1d302;
+  --base-grey: #3c2d2e;
 }
 
 html {
@@ -15,6 +16,7 @@ html {
 body {
   width: 100%;
   height: 100%;
+  color: #3c2d2e;
   &.home {
     overflow: hidden;
   }
@@ -87,4 +89,27 @@ main {
   &.light {
     background-color: white;
   }
+}
+
+.categories,
+.tags {
+  position: relative;
+  padding-left: 30px;
+  color: (var(--base-color));
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background: url("../images/common/list.png");
+    background-size: 25px 25px;
+    left: 0;
+    top: 2px;
+  }
+}
+
+.tags::before {
+  background: url("../images/common/tag.png");
+  background-size: 25px 25px;
 }

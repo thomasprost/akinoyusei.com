@@ -3,18 +3,17 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import BlogPostDetails from "../components/Blog/blogPostDetails";
+import SEO from "../components/seo";
 
 export default function BlogPost({ data, pageContext }) {
   const { markdownRemark } = data;
-  const imageSource =
-    markdownRemark.frontmatter.image.childImageSharp.fluid.src;
-
   return (
     <Layout
       title={`Blog`}
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
+      <SEO title={markdownRemark.frontmatter.title} />
       <BlogPostDetails data={data} />
     </Layout>
   );

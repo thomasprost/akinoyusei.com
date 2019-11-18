@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./blogPost.module.scss";
+import styles from "./blogPostDetails.module.scss";
 
 class BlogPostDetails extends React.Component {
   render() {
@@ -19,8 +19,10 @@ class BlogPostDetails extends React.Component {
           <div className={styles.postFront}>
             <h1>{markdownRemark.frontmatter.title}</h1>
             <p>Posted on {markdownRemark.frontmatter.date}</p>
-            <p>{markdownRemark.frontmatter.category.join()}</p>
-            <p>Tags: {markdownRemark.frontmatter.tags.join(", ")}</p>
+            <p className={"categories"}>
+              {markdownRemark.frontmatter.category.join(" / s")}
+            </p>
+            <p class={"tags"}>{markdownRemark.frontmatter.tags.join(" / ")}</p>
           </div>
         </div>
         <div className={styles.postContent}>

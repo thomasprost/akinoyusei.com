@@ -3,6 +3,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import styles from "./works-post.module.scss";
 
 export default function WorksPost({ data, pageContext }) {
   const { markdownRemark } = data;
@@ -18,11 +19,19 @@ export default function WorksPost({ data, pageContext }) {
       rawPath={pageContext.rawPath}
     >
       <SEO title={markdownRemark.frontmatter.title} />
-      <img src={imageSource} alt={markdownRemark.frontmatter.title} />
-      <h1>{markdownRemark.frontmatter.title}</h1>
+      <h1 className={styles.workTitle}>{markdownRemark.frontmatter.title}</h1>
+      <img
+        className={styles.workMainImage}
+        src={imageSource}
+        alt={markdownRemark.frontmatter.title}
+      />
+
       <p>{markdownRemark.frontmatter.date}</p>
-      <p>In: {markdownRemark.frontmatter.category.join()}</p>
-      <p>Tags: {markdownRemark.frontmatter.tags.join()}</p>
+      <p className={"categories"}>
+        {markdownRemark.frontmatter.category.join(" / ")}
+      </p>
+      <p className={"tags"}>{markdownRemark.frontmatter.tags.join(" / ")}</p>
+      <h2>My work on the project</h2>
       <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
     </Layout>
   );

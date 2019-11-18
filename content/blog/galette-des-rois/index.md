@@ -46,5 +46,5 @@ ingredients:
 - Cooking in japan can be tricky (even more for cakes) because some ingredients are difficult to
   find or crazy expensive. For example, all-purpose flour isn’t common or very expensive so try
   different kinds and adjust. (https://illmakeitmyself.net/resources/guide-to-flour/)
-- Experimenting with other ingredients is always fun (but not always oishii  )
+- Experimenting with other ingredients is always fun (but not always oishii)
 - This galette is great with macha or Yuzu.

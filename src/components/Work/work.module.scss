@@ -6,6 +6,11 @@
   overflow: hidden;
   text-align: center;
 
+  &:before,
+  &:after {
+    content: none;
+  }
+
   img {
     object-fit: cover;
     height: 100%;
