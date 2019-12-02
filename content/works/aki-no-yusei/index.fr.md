@@ -2,7 +2,6 @@
 title: Aki no yusei
 date: 2019-01-25
 company: Aki No Yusei
-featured: false
 image: ../../images/logo/bonton-logo.png
 category:
   - JavaScript

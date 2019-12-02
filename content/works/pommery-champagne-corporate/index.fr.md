@@ -2,7 +2,7 @@
 title: Pommery Corporate
 date: 2016-06-28
 company: Pommery
-image:
+image: ../../../src/images/works/pommery-main.jpg
 category:
   - PHP
   - Symfony

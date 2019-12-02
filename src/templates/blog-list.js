@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-
 import SEO from "../components/seo";
 import Layout from "../components/layout";
+import styles from "./blog-list.module.scss";
 
 class BlogIndex extends React.Component {
   render() {
@@ -11,13 +11,6 @@ class BlogIndex extends React.Component {
     const posts = data.allMarkdownRemark.edges;
     const { currentPage, numPages, locale } = this.props.pageContext;
     const baseUrl = locale === "en" ? "/blog" : `/${locale}/blog`;
-    const isFirst = currentPage === 1;
-    const isLast = currentPage === numPages;
-    const prevPage =
-      currentPage - 1 === 1
-        ? baseUrl
-        : `${baseUrl}/page/` + (currentPage - 1).toString();
-    const nextPage = `${baseUrl}/page/` + (currentPage + 1).toString();
 
     return (
       <Layout
@@ -26,41 +19,42 @@ class BlogIndex extends React.Component {
         rawPath={pageContext.rawPath}
       >
         <SEO title="Blog" />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug;
-          return (
-            <div key={node.fields.slug}>
-              <h3>
-                <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          );
-        })}
-        <ul>
-          {!isFirst && (
-            <Link to={prevPage} rel="prev">
-              ← Previous Page
-            </Link>
-          )}
-          {Array.from({ length: numPages }).map((_item, i) => {
-            const index = i + 1;
-            const link = index === 1 ? baseUrl : `${baseUrl}/page/${index}`;
+        <h1>Blog / Tutorials</h1>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          vitae veritatis qui laudantium distinctio labore deleniti facere sit
+          doloremque rerum! Illum saepe cumque reiciendis quidem sint et
+          sapiente vel excepturi!
+        </p>
+        <div className={styles.mainWrapper}>
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug;
+            const iconSource =
+              node.frontmatter.icon !== null
+                ? node.frontmatter.icon.childImageSharp.fluid.src
+                : void 0;
             return (
-              <li key={`pagination-number-${index}`}>
-                <Link to={link}>{index}</Link>
-              </li>
+              <Link
+                className={`${styles.wrapper} no-anim`}
+                to={node.fields.slug}
+                key={node.fields.slug}
+              >
+                <h2>{title}</h2>
+                <small>{node.frontmatter.date}</small>
+                <div className={styles.info}>
+                  <p>{node.frontmatter.description}</p>
+                  <div
+                    className={styles.icon}
+                    style={{ backgroundImage: `url(${iconSource})` }}
+                  ></div>
+                </div>
+              </Link>
             );
           })}
-        </ul>
-        {!isLast && (
-          <Link to={nextPage} rel="next">
-            Next Page →
-          </Link>
-        )}
+        </div>
+        <div className={styles.side}>
+          <div className="sideElement"></div>
+        </div>
       </Layout>
     );
   }
@@ -92,6 +86,14 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+            description
+            icon {
+              childImageSharp {
+                fluid {
+                  src
+                }
+              }
+            }
           }
         }
       }

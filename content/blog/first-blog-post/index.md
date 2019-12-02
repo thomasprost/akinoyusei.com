@@ -2,8 +2,9 @@
 title: first post
 date: 2019-07-10
 author: Thomas Prost
-featured: true
+description: this si the first blog post
 image: ./first.png
+icon: ../../../src/images/icons/react.png
 category:
   - Tutorial
   - Stuff

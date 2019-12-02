@@ -2,8 +2,9 @@
 title: Wait What ?
 date: 2019-05-21
 author: Thomas Prost
-featured: true
 image: ./what.png
+description: What is going on here
+icon: ../../../src/images/icons/js.png
 category:
   - Recipe
 tags:

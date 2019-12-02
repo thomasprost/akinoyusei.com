@@ -5,6 +5,8 @@
   --base-black: #161925;
   --base-yellow: #f1d302;
   --base-grey: #3c2d2e;
+  --base-light-grey: #f5f5f5;
+  --base-sm-wrapper: 720px;
 }
 
 html {
@@ -36,34 +38,36 @@ main {
     padding-bottom: 3px;
     transition: color 0.5s;
 
-    &:before,
-    &:after {
-      position: absolute;
-      bottom: 1px;
-      left: 0;
-      content: "";
-      height: 1px;
-      width: 0;
-      background-color: var(--base-blue);
-      transition: width 0.5s;
-    }
-
-    &:before {
-      z-index: 0;
-      width: 100%;
-      background-color: var(--base-color);
-    }
-
-    &:hover {
-      outline: none;
-      color: var(--base-blue);
-
-      // &:before {
-      //   // max-width: 100%;
-      // }
-
+    &:not(.no-anim) {
+      &:before,
       &:after {
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        content: "";
+        height: 1px;
+        width: 0;
+        background-color: var(--base-blue);
+        transition: width 0.5s;
+      }
+
+      &:before {
+        z-index: 0;
         width: 100%;
+        background-color: var(--base-color);
+      }
+
+      &:hover {
+        outline: none;
+        color: var(--base-blue);
+
+        // &:before {
+        //   // max-width: 100%;
+        // }
+
+        &:after {
+          width: 100%;
+        }
       }
     }
   }

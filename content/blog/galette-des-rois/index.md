@@ -3,6 +3,7 @@ title: Galette des rois - King Cake
 date: 2019-11-14
 description: A famous cake we eat ~ a week after new year
 image: ./galette-des-rois.jpg
+icon: ../../../src/images/icons/noodles.png
 category:
   - Recipe
 tags:

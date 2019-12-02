@@ -3,7 +3,6 @@ title: Aki no yusei
 date: 2019-01-25
 company: Aki No Yusei
 description: This website
-featured: false
 image: ../../../src/images/works/akino-main.jpg
 category:
   - JavaScript

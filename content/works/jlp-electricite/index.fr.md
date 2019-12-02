@@ -2,7 +2,7 @@
 title: JLP Electricité
 date: 2015-06-20
 company: JLP Electricité
-image:
+image: ../../../src/images/works/jlp-main.jpg
 category:
   - C#
   - Asp.Net

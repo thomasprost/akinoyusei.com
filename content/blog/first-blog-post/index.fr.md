@@ -2,8 +2,8 @@
 title: premier post
 date: 2019-07-10
 author: Thomas Prost
-featured: true
 image: ./first.png
+icon: ../../../src/images/icons/js.png
 category:
   - Tutorial
   - Stuff

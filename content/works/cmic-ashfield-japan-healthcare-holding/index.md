@@ -2,7 +2,7 @@
 title: Cmic Ashfield Japan
 date: 2017-05-12
 company: Cmic Ashfield Inc.
-image:
+image: ../../../src/images/works/condenast-main.jpg
 category:
   - PHP
   - Wordpress
