@@ -6,7 +6,7 @@ image: ./what.png
 description: What is going on here
 icon: ../../../src/images/icons/js.png
 category:
-  - Recipe
+  - Development
 tags:
   - Cooking
   - Japan

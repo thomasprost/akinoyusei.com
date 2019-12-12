@@ -80,7 +80,7 @@ main {
   min-height: 100vh;
 
   &.home {
-    background: url("../images/common/top-main.jpg") no-repeat center center
+    background: url("../images/common/top-main-2.jpg") no-repeat center center
       fixed;
     background-size: cover;
   }
@@ -116,4 +116,21 @@ main {
 .tags::before {
   background: url("../images/common/tag.png");
   background-size: 25px 25px;
+}
+
+.top-present {
+  display: inline-block;
+  padding: 30px;
+  background: rgba(245, 245, 245, 0.3);
+  p,
+  h2 {
+    font-size: 3.6rem;
+    font-weight: 400;
+  }
+
+  p,
+  h2,
+  h1 {
+    margin: 0;
+  }
 }

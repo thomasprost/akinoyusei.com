@@ -6,10 +6,9 @@ description: this si the first blog post
 image: ./first.png
 icon: ../../../src/images/icons/react.png
 category:
-  - Tutorial
-  - Stuff
+  - Development
 tags:
-  - Developement
+  - Tutorial
   - React
 ingredients:
 ---

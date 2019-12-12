@@ -1,50 +1,58 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { Link } from "gatsby";
-
 import Layout from "../components/layout";
-import Image from "../components/image";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
+const config = require("../constants/siteConfig");
 
-const IndexPage = ({ data, pageContext }) => (
-  <Layout title="Home" pageName="home" locale={pageContext.locale}>
-    <Helmet
-      bodyAttributes={{
-        class: "home",
-      }}
-      htmlAttributes={{
-        class: "home",
-      }}
-    ></Helmet>
-    <SEO title="Home" />
-    <h1>こんにちは、</h1>
-    <p>I'm Thomas Prost</p>
-    <p>a freelance web developer</p>
-    <p>living in 東京。</p>
-    {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div> */}
-    {/* <Link to="/page-2/">Go to page 2</Link>
-    <br />
-    <Link to="/blog/">Blog</Link>
-    <br />
-    <Link to="/works/">Works</Link>
-    <br /> */}
-    {/* All posts
-    <ul>
-      {data.allMarkdownRemark.edges.map(post => {
-        return (
-          <li key={post.node.id}>
-            <Link to={post.node.fields.slug}>
-              {post.node.frontmatter.title}
-            </Link>
-          </li>
-        );
-      })}
-    </ul> */}
-  </Layout>
-);
+class IndexPage extends React.Component {
+  getRandomCity = () => {
+    const randomValue = Math.floor(
+      Math.random() * Math.floor(this.state.city.length)
+    );
+
+    return this.state.city[randomValue];
+  };
+
+  updateCity = () => {
+    this.setState({
+      currentCity: this.getRandomCity(),
+    });
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = { city: config.topCity, currentCity: "" };
+  }
+
+  componentDidMount = () => {
+    this.updateCity();
+  };
+
+  render() {
+    const { pageContext } = this.props;
+
+    return (
+      <Layout title="Home" pageName="home" locale={pageContext.locale}>
+        <Helmet
+          bodyAttributes={{
+            class: "home",
+          }}
+          htmlAttributes={{
+            class: "home",
+          }}
+        ></Helmet>
+        <SEO title="Home" />
+        <div className="top-present" onMouseEnter={this.updateCity}>
+          <p>こんにちは、</p>
+          <h2>I'm Thomas Prost</h2>
+          <h1>A freelance web developer</h1>
+          <p>living in {this.state.currentCity}。</p>
+        </div>
+      </Layout>
+    );
+  }
+}
 
 export const pageQuery = graphql`
   query IndexQuery {
