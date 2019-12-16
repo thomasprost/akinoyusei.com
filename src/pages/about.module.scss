@@ -1,0 +1,22 @@
+.tldr {
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    width: 50%;
+    text-align: justify;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .aboutme {
+    width: 400px;
+    height: 246px;
+  }
+}
+
+.depth {
+  text-align: justify;
+}

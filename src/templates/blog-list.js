@@ -9,6 +9,10 @@ class BlogIndex extends React.Component {
     searchValue: "",
     blogs: this.props.data.allMarkdownRemark.edges,
     filteredBlogs: this.props.data.allMarkdownRemark.edges,
+    categories: Array.from(
+      this.props.data.categories.group.map(key => key.fieldValue)
+    ),
+    currentCategory: "",
   };
 
   handleChange = async event => {
@@ -20,34 +24,44 @@ class BlogIndex extends React.Component {
   };
 
   filterBlogs = () => {
-    const { blogs, searchValue } = this.state;
+    const { blogs, searchValue, currentCategory } = this.state;
+    console.log("ctaaeg", currentCategory);
 
-    let filteredBlogs = blogs.filter(blog =>
-      blog.node.frontmatter.title
-        .toLowerCase()
-        .includes(searchValue.toLowerCase())
-    );
+    let filteredBlogs = blogs
+      .filter(blog => {
+        if (currentCategory !== "") {
+          console.log(blog.node.frontmatter.category);
+
+          return blog.node.frontmatter.category.includes(currentCategory);
+        } else {
+          return blog;
+        }
+      })
+      .filter(blog => {
+        return blog.node.frontmatter.title
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      });
 
     this.setState({ filteredBlogs });
   };
 
-  getDistinctCategories = blogs => {
-    const categories = [];
-    blogs.map(blog => {
-      // Loop through blogs and add the category to array if not already in Categories
-      categories.find(categ => blog.node.frontmatter.category[0] === categ) ===
-        undefined && categories.push(blog.node.frontmatter.category[0]);
+  updateCategory = category => {
+    this.setState({
+      currentCategory: category === this.state.currentCategory ? "" : category,
     });
-
-    return categories;
   };
 
   render() {
     const { data, pageContext } = this.props;
     const siteTitle = data.site.siteMetadata.title;
-    const { filteredBlogs, searchValue } = this.state;
-    // Get all categories of the blog posts
-    const categories = this.getDistinctCategories(data.allMarkdownRemark.edges);
+    const {
+      filteredBlogs,
+      searchValue,
+      categories,
+      currentCategory,
+    } = this.state;
+
     return (
       <Layout
         title={siteTitle}
@@ -70,9 +84,21 @@ class BlogIndex extends React.Component {
                 onChange={this.handleChange}
               />
               <ul className={styles.categories}>
-                {categories.map(category => (
-                  <li>{category}</li>
-                ))}
+                {categories.map(category => {
+                  const active = currentCategory === category;
+                  return (
+                    <li
+                      className={`${active ? styles.active : ""}`}
+                      key={category}
+                      onClick={async () => {
+                        await this.updateCategory(category);
+                        await this.filterBlogs();
+                      }}
+                    >
+                      {category}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             {filteredBlogs.map(({ node }) => {
@@ -157,6 +183,14 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    categories: allMarkdownRemark(
+      limit: 2000
+      filter: { fields: { collection: { eq: "blog" }, locale: { eq: "en" } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
       }
     }
   }

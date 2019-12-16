@@ -4,7 +4,7 @@ date: 2015-06-20
 company: JLP Electricité
 image: ../../../src/images/works/jlp-main.jpg
 category:
-  - C#
+  - Csharp
   - Asp.Net
   - JavaScript
 tags:

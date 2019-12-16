@@ -36,6 +36,10 @@
     margin-right: 10px;
     cursor: pointer;
   }
+
+  .active {
+    color: var(--base-green);
+  }
 }
 
 .blogEl {
