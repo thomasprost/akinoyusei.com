@@ -2,7 +2,7 @@
   --base-color: #9c0039;
   --base-blue: #235789;
   --base-white: #fdfffc;
-  --base-black: #1940dd;
+  --base-black: #161925;
   --base-yellow: #f1d302;
   --base-green: #006102;
   --base-grey: #3c2d2e;
@@ -122,7 +122,7 @@ main {
 .top-present {
   display: inline-block;
   padding: 30px;
-  background: rgba(245, 245, 245, 0.3);
+  background: var(--base-black);
   p,
   h2 {
     font-size: 3.6rem;
@@ -133,5 +133,6 @@ main {
   h2,
   h1 {
     margin: 0;
+    color: var(--base-white);
   }
 }
