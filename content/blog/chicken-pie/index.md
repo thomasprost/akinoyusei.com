@@ -1,7 +1,7 @@
 ---
 title: Chicken Pie
 date: 2019-12-02
-image: ./chicken.jpg
+image: ./what.png
 description: An easy chicken pie, adapted to ingredients you can find in Japan.
 icon: ../../../src/images/icons/noodles.png
 category:
