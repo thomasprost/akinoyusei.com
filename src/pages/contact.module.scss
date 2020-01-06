@@ -1,0 +1,15 @@
+.contactWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.side {
+  width: 45%;
+}
+
+@media only screen and (max-width: 720px) {
+  .side {
+    width: 100%;
+  }
+}

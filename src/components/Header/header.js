@@ -6,29 +6,45 @@ import Navigation from "../Navigation/navigation";
 import Img from "gatsby-image";
 const siteLocales = require("../../constants/locales");
 
-const Header = ({ data, locale, rawPath }) => {
-  return (
-    <header className={styles.header}>
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 1120,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Link
-          className={styles.logo}
-          to={`/${!siteLocales[locale].default ? locale : ""}`}
-        >
-          <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-        </Link>
+class Header extends React.Component {
+  state = {
+    opened: false,
+  };
 
-        <Navigation locale={locale} rawPath={rawPath} />
-      </div>
-    </header>
-  );
-};
+  handleMenu = () => {
+    this.setState({
+      opened: !this.state.opened,
+    });
+  };
+
+  render() {
+    const { data, locale, rawPath } = this.props;
+    return (
+      <header className={styles.header}>
+        <div className={styles.headerWrapper}>
+          <Link
+            className={styles.logo}
+            to={`/${!siteLocales[locale].default ? locale : ""}`}
+          >
+            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+          </Link>
+
+          <Navigation
+            locale={locale}
+            rawPath={rawPath}
+            opened={this.state.opened}
+          />
+          <div
+            className={`${styles.hbg} ${this.state.opened ? styles.on : ""}`}
+            onClick={this.handleMenu}
+          >
+            <i className={styles.hbgIcon}></i>
+          </div>
+        </div>
+      </header>
+    );
+  }
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

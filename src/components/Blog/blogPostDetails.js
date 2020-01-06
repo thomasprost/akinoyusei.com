@@ -22,7 +22,9 @@ class BlogPostDetails extends React.Component {
             <p className={"categories"}>
               {markdownRemark.frontmatter.category.join(" / s")}
             </p>
-            <p class={"tags"}>{markdownRemark.frontmatter.tags.join(" / ")}</p>
+            <p className={"tags"}>
+              {markdownRemark.frontmatter.tags.join(" / ")}
+            </p>
           </div>
         </div>
         <div className={styles.postContent}>
@@ -31,7 +33,7 @@ class BlogPostDetails extends React.Component {
               <h3>Ingredients</h3>
               <ul>
                 {markdownRemark.frontmatter.ingredients.map(ingredient => {
-                  return <li>{ingredient}</li>;
+                  return <li key={ingredient}>{ingredient}</li>;
                 })}
               </ul>
             </div>

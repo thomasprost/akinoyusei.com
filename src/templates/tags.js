@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 
 class Tags extends React.Component {
   render() {
-    const { data, pageContext } = this.props;
+    const { data } = this.props;
     const posts = data.allMarkdownRemark.edges;
     const { tag, locale } = this.props.pageContext;
 

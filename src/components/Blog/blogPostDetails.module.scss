@@ -1,6 +1,3 @@
-.postWrapper {
-}
-
 .postTop {
   margin-bottom: 20px;
   display: flex;
@@ -58,4 +55,28 @@
 
 .postHtml {
   flex: 1;
+}
+
+@media only screen and (max-width: 720px) {
+  .postImage {
+    width: 100%;
+  }
+
+  .postFront {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .postContent {
+    flex-wrap: wrap;
+  }
+
+  .postIngredients {
+    width: 100%;
+    padding-right: 0;
+    border-top: 2px var(--base-color) solid;
+    &:after {
+      content: none;
+    }
+  }
 }

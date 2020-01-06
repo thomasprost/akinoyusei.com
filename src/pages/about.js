@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql, StaticQuery } from "gatsby";
+import { graphql, StaticQuery } from "gatsby";
 import Img from "gatsby-image";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -12,7 +12,7 @@ const About = ({ pageContext, data }) => {
       rawPath={pageContext.rawPath}
       className={styles.about}
     >
-      <SEO title="About" />
+      <SEO title={pageContext.i18n.title} />
       <h1>{pageContext.i18n.title}</h1>
       <div className={styles.tldr}>
         <div dangerouslySetInnerHTML={{ __html: pageContext.i18n.tldr }}></div>

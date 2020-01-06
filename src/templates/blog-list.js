@@ -25,13 +25,10 @@ class BlogIndex extends React.Component {
 
   filterBlogs = () => {
     const { blogs, searchValue, currentCategory } = this.state;
-    console.log("ctaaeg", currentCategory);
 
     let filteredBlogs = blogs
       .filter(blog => {
         if (currentCategory !== "") {
-          console.log(blog.node.frontmatter.category);
-
           return blog.node.frontmatter.category.includes(currentCategory);
         } else {
           return blog;

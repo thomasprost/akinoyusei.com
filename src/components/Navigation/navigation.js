@@ -6,7 +6,7 @@ const siteLocales = require("../../constants/locales");
 
 class Navigation extends React.Component {
   render() {
-    const { locale, rawPath = "" } = this.props;
+    const { locale, rawPath = "", opened = false } = this.props;
     const basePath = locale === "en" ? "" : locale;
     const languageMenu = Object.keys(siteLocales).map(lang => {
       return (
@@ -32,7 +32,10 @@ class Navigation extends React.Component {
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <nav className={styles.nav}>
+          <nav
+            className={styles.nav}
+            style={opened ? { transform: "translateX(0)" } : {}}
+          >
             <ul>
               {languageMenu}
               <li key="about" className={styles.hasSeparator}>

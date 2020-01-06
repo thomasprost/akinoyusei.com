@@ -36,7 +36,6 @@ class WorksIndex extends React.Component {
           }}
         >
           {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug;
             return <Work key={node.fields.slug} data={node} />;
           })}
         </div>

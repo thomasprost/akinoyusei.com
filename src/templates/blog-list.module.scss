@@ -5,7 +5,7 @@
 }
 
 .blogs {
-  width: var(--base-sm-wrapper);
+  width: var(--base-middle);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -91,7 +91,7 @@
 }
 
 .side {
-  width: calc(100% - var(--base-sm-wrapper));
+  width: calc(100% - var(--base-middle));
   padding-left: 75px;
   h2 {
     color: var(--base-color);
@@ -105,4 +105,26 @@
   padding: 15px;
   border-left: var(--base-grey) 2px solid;
   color: var(--base-grey);
+}
+
+@media only screen and (max-width: 720px) {
+  .blogEl {
+    width: 100%;
+  }
+  .side {
+    padding-left: 0;
+    width: 100%;
+    margin-top: 30px;
+
+    h2 {
+      border-left: none;
+      border-top: var(--base-grey) 2px solid;
+      margin-bottom: 0;
+      padding-top: 20px;
+    }
+  }
+
+  .sideBox {
+    border-left: none;
+  }
 }

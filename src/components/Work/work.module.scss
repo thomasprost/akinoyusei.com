@@ -87,3 +87,11 @@
     transition: all 0.35s;
   }
 }
+
+@media only screen and (max-width: 720px) {
+  .work {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 30px;
+  }
+}

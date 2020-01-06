@@ -1,6 +1,7 @@
 .tldr {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   div {
     width: 50%;
@@ -19,4 +20,22 @@
 
 .depth {
   text-align: justify;
+}
+
+@media only screen and (max-width: 720px) {
+  .tldr {
+    div {
+      width: 100%;
+
+      &:first-child {
+        order: 1;
+        margin-top: 10px;
+      }
+    }
+
+    .aboutme {
+      width: 100%;
+      order: 0;
+    }
+  }
 }
