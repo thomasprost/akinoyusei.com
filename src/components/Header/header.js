@@ -59,7 +59,7 @@ export default props => (
     query={graphql`
       query {
         placeholderImage: file(
-          relativePath: { eq: "common/aki-no-logo-5.png" }
+          relativePath: { eq: "common/aki-no-logo-2.png" }
         ) {
           childImageSharp {
             fluid(maxWidth: 300) {
