@@ -57,6 +57,16 @@
   flex: 1;
 }
 
+:global(.wrapper.dark) {
+  .postContent h3 {
+    color: var(--base-dark-pink);
+  }
+
+  .postIngredients::after {
+    background-color: var(--base-dark-pink);
+  }
+}
+
 @media only screen and (max-width: 720px) {
   .postImage {
     width: 100%;

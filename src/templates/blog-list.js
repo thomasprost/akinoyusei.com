@@ -76,7 +76,7 @@ class BlogIndex extends React.Component {
                 name="searchValue"
                 className={styles.searchBox}
                 id="searchValue"
-                placeholder="type to filter"
+                placeholder="Type to filter"
                 value={searchValue}
                 onChange={this.handleChange}
               />

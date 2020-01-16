@@ -7,6 +7,8 @@
   --base-green: #006102;
   --base-grey: #3c2d2e;
   --base-light-grey: #f5f5f5;
+  --base-dark-pink: #ff6e8f;
+  --base-dark-blue: #66ebba;
   --base-large: 1120px;
   --base-middle: 720px;
   --base-small: 480px;
@@ -205,6 +207,64 @@ form {
     padding: 8px 16px;
     border: none;
     cursor: pointer;
+  }
+}
+
+.wrapper.dark {
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--base-white);
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--base-white);
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--base-white);
+  }
+
+  form {
+    .input-text {
+      background: transparent;
+      color: var(--base-white);
+    }
+  }
+
+  .categories,
+  .tags {
+    color: var(--base-dark-pink);
+  }
+
+  .tags::before {
+    background-image: url("../images/common/tag-dark.png");
+  }
+
+  .categories::before {
+    background-image: url("../images/common/list-dark.png");
+  }
+
+  main {
+    a {
+      color: var(--base-dark-pink);
+
+      &:not(.no-anim) {
+        &::after {
+          background-color: var(--base-dark-blue);
+        }
+
+        &::before {
+          background-color: var(--base-dark-pink);
+        }
+
+        &:hover {
+          color: var(--base-dark-blue);
+        }
+      }
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 ---
-title: fca
+title: FCA
 date: 2015-01-10
 company: FCA Japan
 featured: false
