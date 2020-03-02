@@ -184,7 +184,9 @@ export const pageQuery = graphql`
     }
     categories: allMarkdownRemark(
       limit: 2000
-      filter: { fields: { collection: { eq: "blog" }, locale: { eq: "en" } } }
+      filter: {
+        fields: { collection: { eq: "blog" }, locale: { eq: $locale } }
+      }
     ) {
       group(field: frontmatter___category) {
         fieldValue

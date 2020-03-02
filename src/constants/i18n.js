@@ -41,10 +41,12 @@ module.exports = {
     index: {
       title: "The Index",
       description: "This is the Home page description",
+      main: "<h2>I'm Thomas Prost</h2><h1>A freelance web developer</h1>",
+      living: "living in"
     },
     404: {
-      title: "This page doesn't seem to exist sorry",
-      description: "Your mom",
+      title: "ヤバイ！ Looks like you got lost。",
+      description: "Don't be scared, enjoy an haiku before you carry on with your journey.",
       haiku: haiku,
     },
   },
@@ -52,7 +54,7 @@ module.exports = {
     about: {
       title: "À propos",
       description:
-        "Je m'appelle Thomas Prost, je suis développeur full-stack français vivant dans le nord de Tokyo",
+        "Je m'appelle Thomas Prost, je suis développeur full-stack français vivant au nord de Tokyo",
       tldr:
         "<h2>TL;DR</h2><p>Je m'appelle Thomas Prost, je suis développeur full-stack français vivant dans le nord de Tokyo. Cela fait plus de 10 ans que je prends du plaisir à créer des sites web. Vous pouvez trouver certains de mes projets professionnels et personnels ici ainsi que des articles traitant, entre autres sujets, de développement web et de cuisine nipponne. J'ai eu la chance de vivre et de travailler à Londres, San Francisco, Lyon et donc maintenant Tokyo. Je m'évertue à créer des sites de qualité, facile à maintenir pour ses administrateurs et agréables pour ses utilisateurs. Vous pouvez me contacter en Français, Anglais ou Japonais depuis <a href='/fr/contact'>ce formulaire</a> ou sur <a href='https://www.linkedin.com/in/thomas-prost-2bbbb427' target='_blank'>LinkedIn</a>.</p>",
       indepth:
@@ -70,12 +72,14 @@ module.exports = {
       submit: "Envoyer",
     },
     index: {
-      title: "Page d'accueil",
+      title: "Page d'accueil blob",
       description: "Bienvenue à l'accueil",
+      main: "<h2>Je suis Thomas Prost</h2><h1>DéveloppeurFreelance Web</h1>",
+      living: "vivant à"
     },
     404: {
-      title: "Cette page ne semble pas exister désolé",
-      description: "Ta mere",
+      title: "ヤバイ！ On dirait que vous vous etes perdu",
+      description: "N'ayez pas peur, profitez de ce haiku avant de reprendre votre chemin.",
       haiku: haiku,
     },
   },

@@ -45,9 +45,8 @@ class IndexPage extends React.Component {
         <SEO title="Home" />
         <div className="top-present" onMouseEnter={this.updateCity}>
           <p>こんにちは、</p>
-          <h2>I'm Thomas Prost</h2>
-          <h1>A freelance web developer</h1>
-          <p>living in {this.state.currentCity}。</p>
+          <div dangerouslySetInnerHTML={{ __html: pageContext.i18n.main }}></div>
+          <p>{pageContext.i18n.living} {this.state.currentCity}。</p>
         </div>
       </Layout>
     );

@@ -1,0 +1,48 @@
+.blackCircle {
+  width: 30vw;
+  height: 30vw;
+  background: var(--base-black);
+  position: absolute;
+  left: calc(50% - 15vw);
+  top: calc(100vh - 42vw);
+  transform-origin: top left;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: var(--base-white);
+  font-size: 15vw;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+.scene {
+  position: relative;
+}
+
+:global(.show) {
+  opacity: 1;
+}
+
+:global(.animateTitle) {
+  animation-name: mymove;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes mymove {
+  0% {
+    left: calc(50% - 15vw);
+    top: calc(100vh - 42vw);
+  }
+  100% {
+    transform: scale(20%);
+    top: 0;
+    left: 0;
+  }
+}
