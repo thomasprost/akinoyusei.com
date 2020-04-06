@@ -1,8 +1,4 @@
 .tldr {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
   div {
     width: 50%;
     text-align: justify;
@@ -11,11 +7,13 @@
   h2 {
     margin-top: 0;
   }
+}
 
-  .aboutme {
-    width: 400px;
-    height: 246px;
-  }
+.aboutme {
+  width: 400px;
+  height: 533px;
+  margin: 0 0 30px 30px;
+  float: right;
 }
 
 .depth {

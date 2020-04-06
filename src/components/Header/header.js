@@ -37,6 +37,7 @@ class Header extends React.Component {
           <div
             className={`${styles.hbg} ${this.state.opened ? styles.on : ""}`}
             onClick={this.handleMenu}
+            roll="button"
           >
             <i className={styles.hbgIcon}></i>
           </div>

@@ -87,6 +87,7 @@ class BlogIndex extends React.Component {
                     <li
                       className={`${active ? styles.active : ""}`}
                       key={category}
+                      role="presentation"
                       onClick={async () => {
                         await this.updateCategory(category);
                         await this.filterBlogs();

@@ -43,10 +43,18 @@ class IndexPage extends React.Component {
           }}
         ></Helmet>
         <SEO title="Home" />
-        <div className="top-present" onMouseEnter={this.updateCity}>
+        <div
+          className="top-present"
+          onMouseEnter={this.updateCity}
+          roll="presentation"
+        >
           <p>こんにちは、</p>
-          <div dangerouslySetInnerHTML={{ __html: pageContext.i18n.main }}></div>
-          <p>{pageContext.i18n.living} {this.state.currentCity}。</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: pageContext.i18n.main }}
+          ></div>
+          <p>
+            {pageContext.i18n.living} {this.state.currentCity}。
+          </p>
         </div>
       </Layout>
     );

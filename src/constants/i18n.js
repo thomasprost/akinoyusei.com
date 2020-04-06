@@ -42,11 +42,12 @@ module.exports = {
       title: "The Index",
       description: "This is the Home page description",
       main: "<h2>I'm Thomas Prost</h2><h1>A freelance web developer</h1>",
-      living: "living in"
+      living: "living in",
     },
     404: {
       title: "ヤバイ！ Looks like you got lost。",
-      description: "Don't be scared, enjoy an haiku before you carry on with your journey.",
+      description:
+        "Don't be scared, enjoy an <a target='_blank' href='https://www.poemofquotes.com/haiku/'>haiku</a> before you carry on with your journey.",
       haiku: haiku,
     },
   },
@@ -75,11 +76,12 @@ module.exports = {
       title: "Page d'accueil blob",
       description: "Bienvenue à l'accueil",
       main: "<h2>Je suis Thomas Prost</h2><h1>DéveloppeurFreelance Web</h1>",
-      living: "vivant à"
+      living: "vivant à",
     },
     404: {
       title: "ヤバイ！ On dirait que vous vous etes perdu",
-      description: "N'ayez pas peur, profitez de ce haiku avant de reprendre votre chemin.",
+      description:
+        "N'ayez pas peur, profitez de ce haiku avant de reprendre votre chemin.",
       haiku: haiku,
     },
   },
