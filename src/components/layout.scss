@@ -85,9 +85,14 @@ main {
   min-height: 100vh;
 
   &.home {
-    background: url("../images/common/E-02619-2-sm.jpg") no-repeat center center
-      fixed;
-    background-size: cover;
+    background: url("../images/common/1583720301301.jpg") no-repeat center right
+      fixed black;
+
+    background-size: 40%;
+
+    &.light {
+      background-color: #141414;
+    }
   }
 
   &.dark {
@@ -124,9 +129,8 @@ main {
 }
 
 .top-present {
-  display: inline-block;
+  display: block;
   padding: 30px;
-  background: var(--base-black);
   margin-top: 50px;
   p,
   h2 {
@@ -139,6 +143,11 @@ main {
   h1 {
     margin: 0;
     color: var(--base-white);
+  }
+
+  .spe {
+    font-size: 4rem;
+    font-weight: 700;
   }
 }
 

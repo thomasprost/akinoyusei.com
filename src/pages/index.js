@@ -22,11 +22,18 @@ class IndexPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { city: config.topCity, currentCity: "" };
+    this.state = { city: config.topCity, currentCity: config.topCity[0] };
   }
 
   componentDidMount = () => {
-    this.updateCity();
+    setInterval(
+      function() {
+        this.setState({
+          currentCity: this.getRandomCity(),
+        });
+      }.bind(this),
+      6000
+    );
   };
 
   render() {
@@ -43,11 +50,7 @@ class IndexPage extends React.Component {
           }}
         ></Helmet>
         <SEO title="Home" />
-        <div
-          className="top-present"
-          onMouseEnter={this.updateCity}
-          roll="presentation"
-        >
+        <div className="top-present" roll="presentation">
           <p>こんにちは、</p>
           <div
             dangerouslySetInnerHTML={{ __html: pageContext.i18n.main }}
@@ -55,6 +58,13 @@ class IndexPage extends React.Component {
           <p>
             {pageContext.i18n.living} {this.state.currentCity}。
           </p>
+        </div>
+        <div className="top-present" roll="presentation">
+          <p>I specialize in</p>
+          <h2 className="spe">
+            Symfony, Wordpress
+            <br /> and modern JavaScript。
+          </h2>
         </div>
       </Layout>
     );
