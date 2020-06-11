@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 import styles from "./blog-list.module.scss";
@@ -106,7 +107,8 @@ class BlogIndex extends React.Component {
                   ? node.frontmatter.icon.childImageSharp.fluid.src
                   : void 0;
               return (
-                <Link
+                <AniLink
+                  fade
                   className={`${styles.blogEl} no-anim`}
                   to={node.fields.slug}
                   key={node.fields.slug}
@@ -120,7 +122,7 @@ class BlogIndex extends React.Component {
                       style={{ backgroundImage: `url(${iconSource})` }}
                     ></div>
                   </div>
-                </Link>
+                </AniLink>
               );
             })}
           </div>

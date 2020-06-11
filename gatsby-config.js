@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Thomas Prost`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `I am Thomas Prost, a freelance full stack web engineer born in France and living in Tokyo.`,
     author: `@gatsbyjs`,
   },
   plugins: [
@@ -19,6 +19,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

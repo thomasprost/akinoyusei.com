@@ -1,9 +1,9 @@
 ---
 title: Aki no yusei
-date: 2019-01-25
+date: 2019-06-10
 company: Aki No Yusei
 description: This website
-image: ../../../src/images/works/akino-main.jpg
+image: ../../../src/images/works/akino-home.jpg
 category:
   - JavaScript
   - Gatsby

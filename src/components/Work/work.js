@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import styles from "./work.module.scss";
 
 class Work extends React.Component {
@@ -11,13 +11,13 @@ class Work extends React.Component {
         : void 0;
 
     return (
-      <Link className={styles.work} to={data.fields.slug}>
+      <AniLink fade className={styles.work} to={data.fields.slug}>
         <img src={imageSource} alt={data.frontmatter.title} />
         <div className={styles.workCaption}>
           <h2>{data.frontmatter.title}</h2>
           <p>{data.frontmatter.category.join("、")}</p>
         </div>
-      </Link>
+      </AniLink>
     );
   }
 }

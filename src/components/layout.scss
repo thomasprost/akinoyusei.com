@@ -85,12 +85,13 @@ main {
   min-height: 100vh;
 
   &.home {
-    background: url("../images/common/1583720301301.jpg") no-repeat center right
-      fixed black;
+    background: url("../images/top/portrait-1.jpg") no-repeat center right fixed
+      #141414;
 
     background-size: 40%;
 
-    &.light {
+    &.light,
+    &.dark {
       background-color: #141414;
     }
   }
@@ -105,6 +106,9 @@ main {
   }
 }
 
+.stack {
+  color: (var(--base-color));
+}
 .categories,
 .tags {
   position: relative;
@@ -131,7 +135,8 @@ main {
 .top-present {
   display: block;
   padding: 30px;
-  margin-top: 50px;
+  margin-top: 30px;
+  max-width: 60%;
   p,
   h2 {
     font-size: 3.6rem;
@@ -148,6 +153,10 @@ main {
   .spe {
     font-size: 4rem;
     font-weight: 700;
+  }
+
+  &.long {
+    max-width: 100%;
   }
 }
 
@@ -244,7 +253,8 @@ form {
   }
 
   .categories,
-  .tags {
+  .tags,
+  .stack {
     color: var(--base-dark-pink);
   }
 
@@ -274,41 +284,6 @@ form {
         }
       }
     }
-  }
-}
-
-.falling-leaves {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100%;
-  max-width: 880px;
-  max-height: 880px; // image is only 880x880
-  transform: translate(-50%, 0);
-  border: 20px solid #fff;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.leaf-scene {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  transform-style: preserve-3d;
-
-  div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    background: url(http://clipart-library.com/images/qcBXErjpi.png) no-repeat;
-    background-size: 100%;
-    transform-style: preserve-3d;
-    backface-visibility: visible;
   }
 }
 
@@ -382,6 +357,11 @@ form {
 }
 
 @media only screen and (max-width: 720px) {
+  html.home,
+  body.home {
+    overflow: visible;
+  }
+
   form {
     margin: -10px;
     .col {
@@ -389,6 +369,25 @@ form {
     }
     .form-field {
       margin: 25px 0;
+    }
+  }
+
+  .top-present {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .wrapper {
+    &.home {
+      background: url("../images/top/portrait-2.png") no-repeat center center
+        fixed #0a0605;
+
+      background-size: 80%;
+
+      &.light,
+      &.dark {
+        background-color: #0a0605;
+      }
     }
   }
 }

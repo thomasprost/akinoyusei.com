@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 import SEO from "../components/seo";
 import Layout from "../components/layout";
@@ -20,9 +21,13 @@ class Tags extends React.Component {
             <div key={node.fields.slug}>
               {locale}
               <h3>
-                <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
+                <AniLink
+                  fade
+                  style={{ boxShadow: "none" }}
+                  to={node.fields.slug}
+                >
                   {title}
-                </Link>
+                </AniLink>
               </h3>
               <small>{node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />

@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 const config = require("../constants/siteConfig");
 
 class IndexPage extends React.Component {
@@ -38,6 +39,8 @@ class IndexPage extends React.Component {
 
   render() {
     const { pageContext } = this.props;
+    const locale = pageContext.locale;
+    const basePath = locale === "en" ? "" : locale;
 
     return (
       <Layout title="Home" pageName="home" locale={pageContext.locale}>
@@ -60,11 +63,28 @@ class IndexPage extends React.Component {
           </p>
         </div>
         <div className="top-present" roll="presentation">
-          <p>I specialize in</p>
-          <h2 className="spe">
-            Symfony, Wordpress
-            <br /> and modern JavaScript。
-          </h2>
+          <p>{pageContext.i18n.specialize}</p>
+          <h2
+            className="spe"
+            dangerouslySetInnerHTML={{ __html: pageContext.i18n.tech }}
+          ></h2>
+        </div>
+        <div className="top-present long" roll="presentation">
+          <p>
+            {pageContext.i18n.check}
+            <AniLink fade to={`${basePath}/works`}>
+              portfolio
+            </AniLink>
+            ,{" "}
+            <AniLink fade to={`${basePath}/about`}>
+              {pageContext.i18n.description}
+            </AniLink>
+            {pageContext.i18n.or}
+            <AniLink fade to={`${basePath}/contact`}>
+              {pageContext.i18n.contact}
+            </AniLink>{" "}
+            {pageContext.i18n.directly}
+          </p>
         </div>
       </Layout>
     );

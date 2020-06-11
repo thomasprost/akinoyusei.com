@@ -20,6 +20,15 @@
   text-align: justify;
 }
 
+.tech {
+  display: flex;
+  justify-content: center;
+  li {
+    list-style: none;
+    font-size: 3.4rem;
+  }
+}
+
 @media only screen and (max-width: 720px) {
   .tldr {
     div {

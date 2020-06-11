@@ -15,6 +15,13 @@ const About = ({ pageContext, data }) => {
       <SEO title={pageContext.i18n.title} />
       <h1>{pageContext.i18n.title}</h1>
       <div>
+        <h2>Technologies</h2>
+        <h3>{pageContext.i18n.techSub}</h3>
+        <ul className={styles.tech}>
+          <li className="stack">「Symfony」</li>
+          <li className="stack">「WordPress」</li>
+          <li className="stack">「Modern Javascript」</li>
+        </ul>
         <div
           dangerouslySetInnerHTML={{ __html: pageContext.i18n.tldr }}
           className={styles.tldr}
@@ -37,7 +44,7 @@ export default props => (
   <StaticQuery
     query={graphql`
       query {
-        placeholderImage: file(relativePath: { eq: "common/about2.jpg" }) {
+        placeholderImage: file(relativePath: { eq: "top/portrait-2.jpg" }) {
           childImageSharp {
             fluid(maxWidth: 400, maxHeight: 533) {
               ...GatsbyImageSharpFluid

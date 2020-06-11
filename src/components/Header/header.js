@@ -1,4 +1,5 @@
-import { Link, graphql, StaticQuery } from "gatsby";
+import { graphql, StaticQuery } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./header.module.scss";
@@ -22,12 +23,17 @@ class Header extends React.Component {
     return (
       <header className={styles.header}>
         <div className={styles.headerWrapper}>
-          <Link
+          <AniLink
+            fade
             className={styles.logo}
             to={`/${!siteLocales[locale].default ? locale : ""}`}
           >
-            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-          </Link>
+            <Img
+              fluid={data.placeholderImage.childImageSharp.fluid}
+              alt="Aki No Yusei"
+            />
+            {/* <span>Aki No Yusei</span> */}
+          </AniLink>
 
           <Navigation
             locale={locale}

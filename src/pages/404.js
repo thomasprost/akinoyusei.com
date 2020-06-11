@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import styles from "./404.module.scss";
@@ -57,7 +57,7 @@ class NotFoundPage extends React.Component {
         {/* <h3>{pageContext.i18n.description}</h3>
         <p id="msg">{haiku.jp}</p>
         <p>{haiku[pageContext.locale]}</p>
-        <Link to="/">Go back to the homepage</Link> */}
+        <AniLink fade to="/">Go back to the homepage</AniLink> */}
         <div className={`${styles.scene} scene`}>
           <div className={`${styles.blackCircle} blackCircle`}>
             <div className={`${styles.title} title404`}>404</div>
@@ -72,13 +72,19 @@ class NotFoundPage extends React.Component {
           <p className={styles.typed}>{haiku[pageContext.locale]}</p>
           <div className={styles.links}>
             <div className={styles.lwrap}>
-              <Link to="/">Homepage</Link>
+              <AniLink fade to="/">
+                Homepage
+              </AniLink>
             </div>
             <div className={styles.lwrap}>
-              <Link to="/works">Check my works</Link>
+              <AniLink fade to="/works">
+                Check my works
+              </AniLink>
             </div>
             <div className={styles.lwrap}>
-              <Link to="/contact">Contact Me</Link>
+              <AniLink fade to="/contact">
+                Contact Me
+              </AniLink>
             </div>
           </div>
         </div>

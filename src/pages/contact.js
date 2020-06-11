@@ -55,7 +55,7 @@ const Contact = ({ pageContext }) => (
             <input
               className="submit-btn"
               type="submit"
-              value={pageContext.i18n.send}
+              value={pageContext.i18n.submit}
             />
           </div>
         </form>
