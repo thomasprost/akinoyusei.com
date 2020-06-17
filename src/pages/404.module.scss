@@ -1,0 +1,141 @@
+.scene {
+  position: relative;
+
+  h1 {
+    margin-left: 150px;
+    padding-top: 27px;
+    margin-bottom: 150px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .typed {
+    opacity: 0;
+  }
+
+  h2 {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    transition-delay: 1.5s;
+    margin-bottom: 50px;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+
+    a {
+      margin: 0 20px;
+    }
+
+    .lwrap {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+
+      &:nth-of-type(1) {
+        transition-delay: 5s;
+      }
+
+      &:nth-of-type(2) {
+        transition-delay: 6s;
+      }
+
+      &:nth-of-type(3) {
+        transition-delay: 7s;
+      }
+    }
+  }
+
+  &:global(.animatescene) {
+    h1 {
+      opacity: 1;
+    }
+
+    h2 {
+      opacity: 1;
+    }
+
+    .links .lwrap {
+      opacity: 1;
+    }
+
+    .typed {
+      overflow: hidden; /* Ensures the content is not revealed until the animation */
+      white-space: nowrap; /* Keeps the content on a single line */
+      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+      letter-spacing: 0.1em; /* Adjust as needed */
+      animation: typing 3.5s steps(60, end);
+      animation-fill-mode: forwards;
+      animation-delay: 3s;
+      display: inline-block;
+      margin-right: 100%;
+    }
+  }
+}
+
+.blackCircle {
+  width: 30vw;
+  height: 30vw;
+  background: #bc002d;
+  position: absolute;
+  left: calc(50% - 15vw);
+  top: calc(100vh - 42vw);
+  transform-origin: top left;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+
+  &:global(.show) {
+    background-color: var(--base-black);
+    animation-name: movecircle;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+
+    .title {
+      opacity: 1;
+    }
+  }
+}
+
+.title {
+  color: var(--base-white);
+  font-size: 15vw;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+:global(.animateTitle) {
+  animation-name: movecircle;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes movecircle {
+  0% {
+    left: calc(50% - 15vw);
+    top: calc(100vh - 42vw);
+  }
+  100% {
+    transform: scale(20%);
+    top: 0;
+    left: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+    margin-right: 0;
+  }
+}

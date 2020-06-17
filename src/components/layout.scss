@@ -1,0 +1,393 @@
+:root {
+  --base-color: #9c0039;
+  --base-blue: #235789;
+  --base-white: #fdfffc;
+  --base-black: #161925;
+  --base-yellow: #f1d302;
+  --base-green: #006102;
+  --base-grey: #3c2d2e;
+  --base-light-grey: #f5f5f5;
+  --base-dark-pink: #ff6e8f;
+  --base-dark-blue: #66ebba;
+  --base-large: 1120px;
+  --base-middle: 720px;
+  --base-small: 480px;
+}
+
+html {
+  &.home {
+    overflow: hidden;
+  }
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  color: #3c2d2e;
+  &.home {
+    overflow: hidden;
+  }
+}
+
+a {
+  color: var(--base-color);
+  text-shadow: none;
+}
+
+main {
+  margin-top: 20px;
+
+  a {
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.5s;
+
+    &:not(.no-anim) {
+      &:before,
+      &:after {
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        content: "";
+        height: 1px;
+        width: 0;
+        background-color: var(--base-blue);
+        transition: width 0.5s;
+      }
+
+      &:before {
+        z-index: 0;
+        width: 100%;
+        background-color: var(--base-color);
+      }
+
+      &:hover {
+        outline: none;
+        color: var(--base-blue);
+
+        // &:before {
+        //   // max-width: 100%;
+        // }
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.wrapper {
+  transition: all 0.6s ease;
+
+  height: 100%;
+  min-height: 100vh;
+
+  &.home {
+    background: url("../images/top/portrait-1.jpg") no-repeat center right fixed
+      #141414;
+
+    background-size: 40%;
+
+    &.light,
+    &.dark {
+      background-color: #141414;
+    }
+  }
+
+  &.dark {
+    background-color: #2a2b2d;
+    color: #fff;
+  }
+
+  &.light {
+    background-color: white;
+  }
+}
+
+.stack {
+  color: (var(--base-color));
+}
+.categories,
+.tags {
+  position: relative;
+  padding-left: 30px;
+  color: (var(--base-color));
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background: url("../images/common/list.png");
+    background-size: 25px 25px;
+    left: 0;
+    top: 2px;
+  }
+}
+
+.tags::before {
+  background: url("../images/common/tag.png");
+  background-size: 25px 25px;
+}
+
+.top-present {
+  display: block;
+  padding: 30px;
+  margin-top: 30px;
+  max-width: 60%;
+  p,
+  h2 {
+    font-size: 3.6rem;
+    font-weight: 400;
+  }
+
+  p,
+  h2,
+  h1 {
+    margin: 0;
+    color: var(--base-white);
+  }
+
+  .spe {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  &.long {
+    max-width: 100%;
+  }
+}
+
+// Forms
+
+form {
+  margin: -20px;
+  .col {
+    padding: 0 20px;
+    float: left;
+    box-sizing: border-box;
+    &.x-50 {
+      width: 50%;
+    }
+    &.x-100 {
+      width: 100%;
+    }
+  }
+  .form-field {
+    position: relative;
+    margin: 32px 0;
+  }
+  .input-text {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border-width: 0 0 2px 0;
+    border-color: #000;
+    font-family: Lusitana, serif;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus,
+    &.not-empty {
+      + .label {
+        transform: translateY(-24px);
+      }
+    }
+  }
+  .label {
+    position: absolute;
+    left: 20px;
+    bottom: 11px;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #888;
+    cursor: text;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .submit-btn {
+    display: inline-block;
+    background-color: var(--base-color);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.wrapper.dark {
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--base-white);
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--base-white);
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--base-white);
+  }
+
+  form {
+    .input-text {
+      background: transparent;
+      color: var(--base-white);
+    }
+  }
+
+  .categories,
+  .tags,
+  .stack {
+    color: var(--base-dark-pink);
+  }
+
+  .tags::before {
+    background-image: url("../images/common/tag-dark.png");
+  }
+
+  .categories::before {
+    background-image: url("../images/common/list-dark.png");
+  }
+
+  main {
+    a {
+      color: var(--base-dark-pink);
+
+      &:not(.no-anim) {
+        &::after {
+          background-color: var(--base-dark-blue);
+        }
+
+        &::before {
+          background-color: var(--base-dark-pink);
+        }
+
+        &:hover {
+          color: var(--base-dark-blue);
+        }
+      }
+    }
+  }
+}
+
+.home-title-wr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  color: #000;
+}
+/* title styles */
+.home-title span {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  line-height: 1.2;
+}
+
+.home-title span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  animation: a-ltr-after 2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  transform: translateX(-101%);
+}
+
+.home-title span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  animation: a-ltr-before 2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  transform: translateX(0);
+}
+
+.home-title span:nth-of-type(1)::before,
+.home-title span:nth-of-type(1)::after {
+  animation-delay: 1s;
+}
+
+.home-title span:nth-of-type(2)::before,
+.home-title span:nth-of-type(2)::after {
+  animation-delay: 1.5s;
+}
+
+@keyframes a-ltr-after {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(101%);
+  }
+}
+
+@keyframes a-ltr-before {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  html.home,
+  body.home {
+    overflow: visible;
+  }
+
+  form {
+    margin: -10px;
+    .col {
+      padding: 0 10px;
+    }
+    .form-field {
+      margin: 25px 0;
+    }
+  }
+
+  .top-present {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .wrapper {
+    &.home {
+      background: url("../images/top/portrait-2.png") no-repeat center center
+        fixed #0a0605;
+
+      background-size: 80%;
+
+      &.light,
+      &.dark {
+        background-color: #0a0605;
+      }
+    }
+  }
+}
