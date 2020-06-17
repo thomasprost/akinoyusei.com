@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Thomas Prost`,
+    title: `Thomas Prost, Web Freelance Engineer`,
     description: `I am Thomas Prost, a freelance full stack web engineer born in France and living in Tokyo.`,
     author: `@gatsbyjs`,
   },
@@ -12,10 +12,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663391`,
-        theme_color: `#663399`,
+        background_color: `#161925`,
+        theme_color: `#9c0039`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-transformer-sharp`,

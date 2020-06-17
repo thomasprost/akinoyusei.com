@@ -11,7 +11,7 @@ class Work extends React.Component {
         : void 0;
 
     return (
-      <AniLink fade className={styles.work} to={data.fields.slug}>
+      <AniLink fade className={`${styles.work} no-anim`} to={data.fields.slug}>
         <img src={imageSource} alt={data.frontmatter.title} />
         <div className={styles.workCaption}>
           <h2>{data.frontmatter.title}</h2>
