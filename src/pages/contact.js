@@ -34,78 +34,6 @@ export class ContactField extends React.Component {
   }
 }
 
-export class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isSubmitted: false };
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.setState({ isSubmitted: true });
-  };
-
-  render() {
-    const { pageContext } = this.props;
-    const isSubmitted = this.state.isSubmitted;
-
-    const fields = [
-      {
-        attributes: {
-          id: "name",
-          type: "text",
-        },
-        label: pageContext.i18n.name,
-      },
-      {
-        attributes: {
-          id: "email",
-          type: "email",
-        },
-      },
-      {
-        attributes: {
-          id: "message",
-          type: "text",
-        },
-        className: "x-100",
-      },
-    ];
-
-    let form;
-    if (!isSubmitted) {
-      return (
-        <form
-          name="contact"
-          method="post"
-          netlify-honeypot="bot-field"
-          data-netlify="true"
-        >
-          <input type="hidden" name="bot-field" />
-          <input type="hidden" name="form-name" value="contact" />
-          {fields.map(field => {
-            return <ContactField {...field}></ContactField>;
-          })}
-          <div className="form-field col x-100 align-center">
-            <input
-              className="submit-btn"
-              type="submit"
-              value={pageContext.i18n.submit}
-              onSubmit={this.handleSubmit}
-            />
-          </div>
-        </form>
-      );
-    } else {
-      return (
-        <div>
-          <p>Thank your for your submission</p>
-        </div>
-      );
-    }
-  }
-}
-
 function encode(data) {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -115,7 +43,7 @@ function encode(data) {
 class Contact extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", message: "" };
+    this.state = { name: "", email: "", message: "", isSubmitted: false };
   }
 
   handleSubmit = e => {
@@ -125,6 +53,7 @@ class Contact extends React.Component {
       name: form.name,
       email: form.email,
       message: form.message,
+      isSubmitted: true,
     });
     fetch("/", {
       method: "POST",
@@ -140,6 +69,7 @@ class Contact extends React.Component {
 
   render() {
     const { pageContext } = this.props;
+    const isSubmitted = this.state.isSubmitted;
     const fields = [
       {
         attributes: {
@@ -178,26 +108,30 @@ class Contact extends React.Component {
           </div>
           <div className={styles.side}>
             <h2>{pageContext.i18n.contacttitle}</h2>
-            <form
-              name="contact"
-              method="post"
-              netlify-honeypot="bot-field"
-              data-netlify="true"
-              onSubmit={this.handleSubmit}
-            >
-              <input type="hidden" name="bot-field" />
-              <input type="hidden" name="form-name" value="contact" />
-              {fields.map(field => {
-                return <ContactField {...field}></ContactField>;
-              })}
-              <div className="form-field col x-100 align-center">
-                <input
-                  className="submit-btn"
-                  type="submit"
-                  value={pageContext.i18n.submit}
-                />
-              </div>
-            </form>
+            {!isSubmitted ? (
+              <form
+                name="contact"
+                method="post"
+                netlify-honeypot="bot-field"
+                data-netlify="true"
+                onSubmit={this.handleSubmit}
+              >
+                <input type="hidden" name="bot-field" />
+                <input type="hidden" name="form-name" value="contact" />
+                {fields.map(field => {
+                  return <ContactField {...field}></ContactField>;
+                })}
+                <div className="form-field col x-100 align-center">
+                  <input
+                    className="submit-btn"
+                    type="submit"
+                    value={pageContext.i18n.submit}
+                  />
+                </div>
+              </form>
+            ) : (
+              pageContext.i18n.thankyou
+            )}
           </div>
         </div>
       </Layout>

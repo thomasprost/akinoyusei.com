@@ -38,6 +38,7 @@ module.exports = {
       contacttitle: "Get in touch",
       name: "Name",
       submit: "Submit",
+      thankyou: "Thank you for your message. I will contact you quickly.",
     },
     index: {
       title: "Thomas Prost, Freelance Web Engineer",
@@ -81,6 +82,7 @@ module.exports = {
       contacttitle: "Me contacter",
       name: "Nom",
       submit: "Envoyer",
+      thankyou: "Merci pour votre message. Je vous répondrai au plus vite.",
     },
     index: {
       title: "Accueil",
