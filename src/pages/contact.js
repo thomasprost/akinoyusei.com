@@ -58,10 +58,11 @@ class Contact extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
+
     this.setState({
-      name: form.name,
-      email: form.email,
-      message: form.message,
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
     });
     fetch("/", {
       method: "POST",
