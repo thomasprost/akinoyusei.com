@@ -201,10 +201,16 @@ form {
       }
     }
   }
+
+  textarea.input-text {
+    height: 170px;
+    resize: none;
+  }
+
   .label {
     position: absolute;
     left: 20px;
-    bottom: 11px;
+    top: -1px;
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;

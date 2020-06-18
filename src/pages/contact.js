@@ -20,12 +20,21 @@ export class ContactField extends React.Component {
           this.props.className === undefined ? "x-50" : this.props.className
         }`}
       >
-        <input
-          {...this.props.attributes}
-          className={`input-text js-input ${this.state.inputClass}`}
-          required
-          onChange={this.handleOnChange}
-        />
+        {this.props.attributes.type === "textarea" ? (
+          <textarea
+            {...this.props.attributes}
+            className={`input-text js-input ${this.state.inputClass}`}
+            required
+            onChange={this.handleOnChange}
+          />
+        ) : (
+          <input
+            {...this.props.attributes}
+            className={`input-text js-input ${this.state.inputClass}`}
+            required
+            onChange={this.handleOnChange}
+          />
+        )}
         <label className="label" htmlFor={this.props.attributes.id}>
           {this.props.label || this.props.attributes.id}
         </label>
@@ -53,7 +62,6 @@ class Contact extends React.Component {
       name: form.name,
       email: form.email,
       message: form.message,
-      isSubmitted: true,
     });
     fetch("/", {
       method: "POST",
@@ -63,8 +71,8 @@ class Contact extends React.Component {
         ...this.state,
       }),
     })
-      .then(() => alert("submitted"))
-      .catch(error => alert(error));
+      .then(() => this.setState({ isSubmitted: true }))
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -75,6 +83,7 @@ class Contact extends React.Component {
         attributes: {
           id: "name",
           type: "text",
+          name: "name",
         },
         label: pageContext.i18n.name,
       },
@@ -82,12 +91,14 @@ class Contact extends React.Component {
         attributes: {
           id: "email",
           type: "email",
+          name: "email",
         },
       },
       {
         attributes: {
           id: "message",
-          type: "text",
+          type: "textarea",
+          name: "message",
         },
         className: "x-100",
       },
