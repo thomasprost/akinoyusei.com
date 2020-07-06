@@ -27,6 +27,12 @@ module.exports = {
       indepth:
         "<h2>In depth</h2><p>After studying in France and London, I obtained my Master in Computer Science and worked in San Francisco for 2 years, first as a Python back-end developer then as a full-stack Asp.net one. Before moving to Tokyo, I worked for 2 years in Lyon, France as a C# and Sharepoint developer. Living and working in different countries with diverse cultures pushed me to adapt to a wide range of projects and difficulties and I always focus on code quality with a long term view in mind.</p><p>I learn from the community a lot over the years and always try to help back in my own small way. I make some open source projects that you can play with and write articles about development and, sometimes,  about wider topics. I mostly work with JavaScript, PHP(Symfony & Wordpress), CSS3, HTML5 and I always love to learn about new technologies and test how I could implement them for my clients.</p><p>I am a proud husband and dad of two small boys living in the north of Tokyo. Whenever I have some time, I like to play with them, read books and cook new recipes. When I arrived in Japan a few years ago, I didn't know much about Japanese cuisine or what to buy at the supermarket so I try to give some tips and recipes I have collected along the way. I also enjoy playing and watching basketball. Oh and I love reading about Yokai (Japanese ghosts folklore) and eating Kimchi.</p><p>I work a lot with these two amazing designers, don’t hesitate to contact <a href='http://visun.fr/' target='_blank'>Visun Le Duong</a> and <a href='https://kissingkourami.jp/' target='_blank'>Yoren Geromin</a>. They are not only top-notch designers, they are also great human beings (which is important when working with somebody). If you need a full team to assist you on your project, <a href='https://warpjapan.com/'>WarpJapan</a> is a great web agency with whom I work a lot.</p>",
       techSub: "Some of the main technologies I use",
+      notime: {
+        title: "No time to read ?",
+        position: "Front end and back end web engineer for almost 10 years now",
+        born: "Born in France | Worked in London, San Francisco and Tokyo",
+        love: "Love Kimchi and debugging things",
+      },
     },
     contact: {
       title: "Contact",
@@ -72,6 +78,12 @@ module.exports = {
       indepth:
         "<h2>Un petit peu plus d'infos</h2><p>Après avoir étudié en France et à Londres, j'ai obtenu mon Master en Informatique et travaillé à San Francisco pendant 2 ans. Dans une premier temps en tant que développeur backend Python puis en tant que développeur full-stack Asp.Net. Avant de déménager sur Tokyo, j'ai travaillé 2 ans sur Lyon en tant que développeur Sharepoint/Projects en C#. Vivre et travailler dans différents pays m'a forcé à m'adapter à d'autres cultures et à un large éventail de projets. J'essaye toujours d'avoir une vue à long terme d'un projet en étant rigoureux dans la qualité de mon code et dans sa documentation.</p><p>J'ai la chance d'avoir ma femme et nos deux enfants à mes côtés. Quand je ne fais pas de sites web, j'aime passer du temps avec eux, lire des livres et cuisiner. Quand je suis arrivé au Japon il y a quelques années, je ne connaissais rien à la cuisine japonaise ou quoi acheter au supermarché donc j'essaye de donner des astuces et recettes trouvées en cours de route. J'aime jouer et regarder du basket, lire des histoires de Yokai (folklore japonais traitant des fantômes) et manger du Kimchi.</p><p>J'apprends énormément de la communauté de développeurs et j'essaye, à mon échelle, d'aider en retour. Tous mes projets persos sont open-source, publiques sur github et j'écris des articles que ce soit sur ce sujet ou d'autres thèmes plus globaux. Je travaille majoritairement en JavaScript, PHP(Symfony & Wordpress), CSS3, HTML5 et j'aime apprendre de nouvelles technologies et voir comment je pourrais les mettre en place pour mes clients.</p><p>Je travaille souvent avec ces deux designers très talentueux, <a href='http://visun.fr/' target='_blank'>Visun Le Duong</a> et <a href='https://kissingkourami.jp/' target='_blank'>Yoren Geromin</a>. Avant d'être des graphistes doués ce sont des gens biens (toujours important quand on travaille avec quelqu'un). N'hésitez pas à les contacter. Je travaille aussi très souvent avec l'agence web basée à Tokyo <a href='https://warpjapan.com/'>WarpJapan</a>.</p>",
       techSub: "Certaines des technologies principales que j'utilise",
+      notime: {
+        title: "Pas le temps de lire ?",
+        position: "Développeur full-stack web depuis près de 10 ans",
+        born: "Né en France | A travaillé à Londres, San Francisco et Tokyo",
+        love: "Aime le Kimchi and debugguer des choses",
+      },
     },
     contact: {
       title: "Me contacter",
