@@ -71,10 +71,14 @@ class BlogIndex extends React.Component {
         <div className={styles.mainWrapper}>
           <div className={styles.blogs}>
             <div className={styles.search}>
-              Search: <br />
+              <label id="search-label" htmlFor="searchValue">
+                Search:
+              </label>{" "}
+              <br />
               <input
                 type="text"
                 name="searchValue"
+                aria-labelledby="search-label"
                 className={styles.searchBox}
                 id="searchValue"
                 placeholder="Type to filter"

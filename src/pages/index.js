@@ -7,6 +7,7 @@ import AniLink from "gatsby-plugin-transition-link/AniLink";
 const config = require("../constants/siteConfig");
 
 class IndexPage extends React.Component {
+  cityInterval;
   constructor(props) {
     super(props);
     this.state = { city: config.topCity, currentCity: config.topCity[0] };
@@ -21,13 +22,15 @@ class IndexPage extends React.Component {
   };
 
   updateCity = () => {
-    this.setState({
-      currentCity: this.getRandomCity(),
-    });
+    if (this.cityInterval === null) {
+      this.setState({
+        currentCity: this.getRandomCity(),
+      });
+    }
   };
 
   componentDidMount = () => {
-    setInterval(
+    this.cityInterval = setInterval(
       function() {
         this.setState({
           currentCity: this.getRandomCity(),
@@ -35,6 +38,10 @@ class IndexPage extends React.Component {
       }.bind(this),
       6000
     );
+  };
+
+  componentWillUnmount = () => {
+    clearInterval(this.cityInterval);
   };
 
   render() {

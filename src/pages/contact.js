@@ -59,11 +59,11 @@ class Contact extends React.Component {
     e.preventDefault();
     const form = e.target;
 
-    this.state = {
+    this.setState({
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-    };
+    });
 
     fetch("/", {
       method: "POST",
@@ -129,15 +129,26 @@ class Contact extends React.Component {
                 data-netlify="true"
                 onSubmit={this.handleSubmit}
               >
-                <input type="hidden" name="bot-field" />
-                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" aria-label="bot-field" />
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value="contact"
+                  aria-label="form-name"
+                />
                 {fields.map(field => {
-                  return <ContactField {...field}></ContactField>;
+                  return (
+                    <ContactField
+                      key={field.attributes.id}
+                      {...field}
+                    ></ContactField>
+                  );
                 })}
                 <div className="form-field col x-100 align-center">
                   <input
                     className="submit-btn"
                     type="submit"
+                    aria-label="Submit"
                     value={pageContext.i18n.submit}
                   />
                 </div>

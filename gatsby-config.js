@@ -3,6 +3,8 @@ module.exports = {
     title: `Thomas Prost, Web Freelance Engineer`,
     description: `I am Thomas Prost, a freelance full stack web engineer born in France and living in Tokyo.`,
     author: `@gatsbyjs`,
+    url: "https://www.akinoyusei.com",
+    image: `/images/common/aki-no-logo.png`,
   },
   plugins: [
     `gatsby-plugin-sharp`,
@@ -46,7 +48,17 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [`gatsby-remark-images`],
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 980,
+            },
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

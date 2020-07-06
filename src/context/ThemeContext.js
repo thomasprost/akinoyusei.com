@@ -12,7 +12,7 @@ const supportsDarkMode = () =>
 
 class ThemeProvider extends React.Component {
   state = {
-    dark: false,
+    dark: true,
   };
   toggleDark = () => {
     let dark = !this.state.dark;

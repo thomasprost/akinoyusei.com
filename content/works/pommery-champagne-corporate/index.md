@@ -15,3 +15,13 @@ tags:
 ---
 
 Pommery is a world renowned Champagne house based in Reims, France and founded in 1858. Made with Symfony3, the website tries to keep the luxury feeling of the brand and adapt it to the Japanese market.
+
+## Website
+
+### Home Page
+
+![Page d'accueil](./Pommery_02.jpg)
+
+### Maison Pommery's responsive history page
+
+![History page](./Pommery_03.jpg)

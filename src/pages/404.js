@@ -37,6 +37,8 @@ class NotFoundPage extends React.Component {
     setTimeout(this.startAnimation, 1500);
   };
 
+  componentWillUnmount = () => {};
+
   startAnimation() {
     const scene = document.querySelector(".scene"),
       circle = document.querySelector(".blackCircle");

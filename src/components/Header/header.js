@@ -18,6 +18,15 @@ class Header extends React.Component {
     });
   };
 
+  handleKeyDown = event => {
+    if (event.isComposing) {
+      return;
+    }
+    if (event.code === "KeyM") {
+      this.handleMenu();
+    }
+  };
+
   render() {
     const { data, locale, rawPath } = this.props;
     return (
@@ -32,7 +41,6 @@ class Header extends React.Component {
               fluid={data.placeholderImage.childImageSharp.fluid}
               alt="Aki No Yusei"
             />
-            {/* <span>Aki No Yusei</span> */}
           </AniLink>
 
           <Navigation
@@ -43,7 +51,9 @@ class Header extends React.Component {
           <div
             className={`${styles.hbg} ${this.state.opened ? styles.on : ""}`}
             onClick={this.handleMenu}
-            roll="button"
+            onKeyDown={this.handleKeyDown}
+            role="button"
+            tabIndex={0}
           >
             <i className={styles.hbgIcon}></i>
           </div>

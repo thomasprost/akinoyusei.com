@@ -14,4 +14,16 @@ tags:
 ---
 
 CMIC Ashfield est une holding internationale spécialisée dans les soins de santé.
-Ayant le besoin de créer et de modifier eux-mêmes de nombreuses pages dans deux langues, Wordpress combiné à Visual Composer leur a permis d'avoir une gestion simple et fluide de leurs sites. L'une des pages les plus importantes était la page Recruter où les utilisateurs pouvaient trouver facilement des emplois leurs domaines médicaux au Japon sans recharger toute la page.
+Ayant le besoin de créer et de modifier eux-mêmes de nombreuses pages dans deux langues, Wordpress combiné à Visual Composer leur a permis d'avoir une gestion simple et fluide de leurs sites.
+
+## Site Web
+
+### Page de recrutement
+
+L'une des pages les plus importantes était la page Recruter où les utilisateurs pouvaient trouver facilement des emplois leurs domaines médicaux au Japon sans recharger toute la page.
+
+![Recrutement](./CMIC_02.jpg)
+
+### Page d'accueil
+
+![Page d'accueil](./CMIC_01.jpg)

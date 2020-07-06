@@ -117,6 +117,7 @@ exports.createPages = ({ graphql, actions }) => {
                 locale,
                 rawPath: `/${collection}`,
                 previous,
+                i18n: i18n[lang].index,
                 next,
               },
             });
