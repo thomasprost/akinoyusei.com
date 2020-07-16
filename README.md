@@ -1,97 +1,81 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
 <h1 align="center">
-  Gatsby's default starter
+  My portfolio website
 </h1>
+This is the repository of my [portfolio website](https://www.akinoyusei.com).
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+You can use it as a base for your gatsby project or use some of the code that might be useful to you.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+### Technologies and choices made
 
-## 🚀 Quick start
+#### Gatsby
 
-1.  **Create a Gatsby site.**
+Project was made using [Gatsby Framework](https://www.gatsbyjs.org/).
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps.
 
-    ```sh
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+#### Scss with css modules
 
-1.  **Start developing.**
+When I started the projects I thought about using other patterns to manage css but finally used css modules.
 
-    Navigate into your new site’s directory and start it up.
+- Pros:
 
-    ```sh
-    cd my-default-starter/
-    gatsby develop
-    ```
+  - splits styles into files easily
+  - Loads styles only on the needed pages
+  - Easily integrated with Gatsby and Sass
 
-1.  **Open the source code and start editing!**
+- Cons:
+  - Messy very quickly with so many files in many places
+  - Using global styles and mixins becomes more complicated than expected at first
+  - Takes more time to code for me than a "same directory" pattern with sass and splitting styles inside this style directory.
 
-    Your site is now running at `http://localhost:8000`!
+In the next version of the website, I'll think about using Styled components or switch back to a simple structure for sass files.
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+#### Transitions
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+Transitions between pages are made thanks to [Anilink](https://transitionlink.tylerbarnes.ca/docs/anilink/) a wrapper around the TransitionLink component using Gsap.
 
-## 🧐 What's inside?
+#### Languages
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+When I started developping this site, there wasn't much option to have multilanguage in a Gatsby site. Now, it seems that there are some useful libraries that could be more efficient than my code.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+Anyway I wanted to try managing languages on the website for both pages and content (blogs and works) by myself. Even if it's not perfect, I learned a lot doing it and it fits my need (for now).
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+Site languages are in src/constants/locales.js and gastby-node.js will override the static pages creation to recreate them for all languages set in the locales. It will also pass the proper translation object to each page (src/constants/i18n.js) so that a page has only its set of translations and not the whole object.
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+#### Tags and categories
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+Blogs and works have tags and categories displayed on their details pages though I don't use the category/tags list pages for now.
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+TODO : Clean category and tag pages creation in gatsby-node or use them on the website to filter content.
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+#### Light and Dark Mode
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
+Mode is set up in src/context/ThemeContext.js which is using React ThemeContext to manage its state.
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+### Things to improve
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+There are many things to improve in the codebase as previously mentioned. I'm still learning a lot about Gatsby and React so hopefully I'll be able to clean my code and reorganize files while learning more. For example, I'm not happy with how Templates and Components are organized.
 
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
+### Acknoledgment
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+#### Development
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+I have learned a lot through these high-quality articles and tutorials about Gatsby and React. I hope that they will be useful to others:
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+- [Tania Rascia's blog and github](https://www.taniarascia.com/)
+- [Managing images in Gatsby](https://www.orangejellyfish.com/blog/a-comprehensive-guide-to-images-in-gatsby/)
+- [Managing images in Gatsby 2](http://stayregular.net/blog/adding-images-and-media-to-your-gatsbyjs-blog)
+- [Managing languages in Gatsby](https://medium.com/significa/i18n-with-gatsby-528607b4da81)
+- [i18n in React](https://alligator.io/react/i18n-with-react-and-i18next/)
+- [Advanced blog system in Gatsby](https://significa.co/blog/advanced-blog-system-in-gatsby)
+- [GraphQl](https://github.com/gatsbyjs/gatsby/issues/1634)
+- [Wes Bos tutorials](https://wesbos.com/courses)
+- [Grafikart - In French](https://www.grafikart.fr/) Crazy good quality web tutorials
 
-## 🎓 Learning Gatsby
+### Design
 
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
+I suck at design so was definitely useful
 
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+- [colorspace](https://mycolor.space/)
+- [Codrops](https://tympanus.net/codrops/)
+- A lot of feedbacks and helps from [Visun.fr](visun.fr) and [Kissing Kourami](https://kissingkourami.jp/) freelancers.
