@@ -9,8 +9,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,13 +20,19 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            url
+            image
           }
         }
       }
     `
   );
 
+  const { pathname } = useLocation();
   const metaDescription = description || site.siteMetadata.description;
+  const metaImage = `${site.siteMetadata.url}${image ||
+    site.siteMetadata.image}`;
+  const metaUrl = `${site.siteMetadata.url}${pathname}`;
 
   return (
     <Helmet
@@ -52,8 +59,16 @@ function SEO({ description, lang, meta, title }) {
           content: `website`,
         },
         {
+          property: `og:url`,
+          content: metaUrl,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
+        },
+        {
+          name: `og:image`,
+          content: metaImage,
         },
         // {
         //   name: `twitter:creator`,

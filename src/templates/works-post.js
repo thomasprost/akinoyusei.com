@@ -18,7 +18,7 @@ export default function WorksPost({ data, pageContext }) {
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
-      <SEO title={markdownRemark.frontmatter.title} />
+      <SEO title={markdownRemark.frontmatter.title} image={imageSource} />
       <h1 className={styles.workTitle}>{markdownRemark.frontmatter.title}</h1>
       <img
         className={styles.workMainImage}
@@ -26,7 +26,9 @@ export default function WorksPost({ data, pageContext }) {
         alt={markdownRemark.frontmatter.title}
       />
 
-      <p>{markdownRemark.frontmatter.date}</p>
+      <p>
+        {pageContext.i18n.released} {markdownRemark.frontmatter.date}
+      </p>
       <p className={"categories"}>
         {markdownRemark.frontmatter.category.join(" / ")}
       </p>
@@ -43,7 +45,7 @@ export const query = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY")
         category
         tags
         image {

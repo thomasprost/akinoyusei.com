@@ -201,14 +201,21 @@ form {
       }
     }
   }
+
+  textarea.input-text {
+    height: 170px;
+    resize: none;
+  }
+
   .label {
     position: absolute;
     left: 20px;
-    bottom: 11px;
+    top: -1px;
     font-size: 18px;
     line-height: 26px;
     font-weight: 400;
     color: #888;
+    text-transform: capitalize;
     cursor: text;
     transition: transform 0.2s ease-in-out;
   }
@@ -379,8 +386,8 @@ form {
 
   .wrapper {
     &.home {
-      background: url("../images/top/portrait-2.png") no-repeat center center
-        fixed #0a0605;
+      background: url("../images/top/portrait-2-opa.jpg") no-repeat center
+        center fixed #0a0605;
 
       background-size: 80%;
 
@@ -388,6 +395,20 @@ form {
       &.dark {
         background-color: #0a0605;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .top-present {
+    h1,
+    .spe {
+      font-size: 3.2rem;
+    }
+
+    h2,
+    p {
+      font-size: 2.7rem;
     }
   }
 }

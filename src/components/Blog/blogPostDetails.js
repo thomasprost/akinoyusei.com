@@ -4,11 +4,7 @@ import styles from "./blogPostDetails.module.scss";
 class BlogPostDetails extends React.Component {
   render() {
     const { markdownRemark } = this.props.data;
-
-    const imageSource =
-      markdownRemark.frontmatter.image !== null
-        ? markdownRemark.frontmatter.image.childImageSharp.fluid.src
-        : void 0;
+    const imageSource = this.props.image;
 
     return (
       <div className={styles.postWrapper}>
