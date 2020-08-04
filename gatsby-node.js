@@ -143,6 +143,7 @@ exports.createPages = ({ graphql, actions }) => {
                     limit: postsPerPage,
                     skip: i * postsPerPage,
                     numPages,
+                    i18n: i18n[lang].post,
                     locale,
                     rawPath: `/${collection}`,
                     currentPage: i + 1,

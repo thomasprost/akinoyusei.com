@@ -1,5 +1,5 @@
 ---
-title: Somen with kimchi and Pork
+title: Somen with kimchi and pork
 date: 2020-07-02
 image: ./kimchi-somen.jpg
 description: A refreshing dish for summer using somen, kimchi and pork

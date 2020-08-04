@@ -44,7 +44,7 @@ module.exports = {
       contacttitle: "Get in touch",
       name: "Name",
       submit: "Submit",
-      thankyou: "Thank you for your message. I will contact you quickly.",
+      thankyou: "Thank you for your message. I will contact you shortly.",
     },
     index: {
       title: "Thomas Prost, Freelance Web Engineer",
@@ -60,6 +60,14 @@ module.exports = {
       contact: "contact me",
       directly: "directly。",
       released: "Released in",
+    },
+    post: {
+      blog: {
+        search: "Search:",
+        filter: "Type to filter",
+        about:
+          "Wait What ? Recipes on a developer's blog ? <br> Between my clients' projects, I'll try to post tutorials about web development and personal projects. When I came to Japan a few years ago, I was struggling to find recipes in English / French adapted to Japan. Usually ingredients in these recipes are hard to find or too expensive here and if you are not fluent in Japanese, cookpad.comとか can be tricky to follow. Thereby the 'Cooking In Japan' part of this blog.<br> Hope it will be helpful.🍱",
+      },
     },
     404: {
       title: "ヤバイ！ Looks like you got lost。",
@@ -110,6 +118,14 @@ module.exports = {
       or: " ou ",
       directly: "directement。",
       released: "Déployé en",
+    },
+    post: {
+      blog: {
+        search: "Chercher :",
+        filter: "Saisir du texte pour filtrer",
+        about:
+          "Un petit peu vide cette section non ? <br> J'écris d'abord mes articles en anglais et, quand je peux, je les traduis en Français. Si vous voulez voir la totalité du contenu de ce blog, passez sur la version anglaise du site.",
+      },
     },
     404: {
       title: "ヤバイ！ On dirait que vous vous êtes perdu",

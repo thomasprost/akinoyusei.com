@@ -72,7 +72,7 @@ class BlogIndex extends React.Component {
           <div className={styles.blogs}>
             <div className={styles.search}>
               <label id="search-label" htmlFor="searchValue">
-                Search:
+                {pageContext.i18n.blog.search}
               </label>{" "}
               <br />
               <input
@@ -81,7 +81,7 @@ class BlogIndex extends React.Component {
                 aria-labelledby="search-label"
                 className={styles.searchBox}
                 id="searchValue"
-                placeholder="Type to filter"
+                placeholder={pageContext.i18n.blog.filter}
                 value={searchValue}
                 onChange={this.handleChange}
               />
@@ -133,15 +133,11 @@ class BlogIndex extends React.Component {
           <div className={styles.side}>
             <h2>About this blog</h2>
             <div className={styles.sideBox}>
-              Wait What ? Recipes on a developer's blog ? <br /> Between my
-              clients' projects, I'll try to post tutorials about web
-              development and personal projects. When I came to Japan a few
-              years ago, I was struggling to find recipes in English / French
-              adapted to Japan. Usually ingredients in these recipes are hard to
-              find or too expensive here and if you are not fluent in Japanese,
-              cookpad.comとか can be tricky to follow. Thereby the "Cooking In
-              Japan" part of this blog.
-              <br /> Hope it will be helpful.🍱
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: pageContext.i18n.blog.about,
+                }}
+              ></div>
             </div>
           </div>
         </div>
