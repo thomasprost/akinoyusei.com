@@ -59,11 +59,11 @@ class Contact extends React.Component {
     e.preventDefault();
     const form = e.target;
 
-    this.setState({
+    this.state = {
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-    });
+    };
 
     fetch("/", {
       method: "POST",
