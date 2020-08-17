@@ -11,6 +11,7 @@ export default function WorksPost({ data, pageContext }) {
     markdownRemark.frontmatter.image !== null
       ? markdownRemark.frontmatter.image.childImageSharp.fluid.src
       : void 0;
+  const { i18n } = pageContext;
 
   return (
     <Layout
@@ -33,7 +34,7 @@ export default function WorksPost({ data, pageContext }) {
         {markdownRemark.frontmatter.category.join(" / ")}
       </p>
       <p className={"tags"}>{markdownRemark.frontmatter.tags.join(" / ")}</p>
-      <h2>My work on the project</h2>
+      <h2>{i18n.mywork}</h2>
       <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
     </Layout>
   );
