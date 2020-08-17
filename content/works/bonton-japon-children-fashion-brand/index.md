@@ -20,7 +20,7 @@ Bonton is a children's fashion brand created in France and available in stores i
 
 ### Bonton's desktop homepage
 
-![Bonton Desktop Home](./bonton_01.jpg)
+![Bonton Desktop Home](./Bonton_01.jpg)
 
 ### Bonton's responsive lookbook
 
