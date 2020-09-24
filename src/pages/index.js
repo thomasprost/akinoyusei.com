@@ -47,7 +47,7 @@ class IndexPage extends React.Component {
   render() {
     const { pageContext } = this.props;
     const locale = pageContext.locale;
-    const basePath = locale === "en" ? "" : locale;
+    const basePath = locale === "en" ? "" : `/${locale}`;
 
     return (
       <Layout title="Home" pageName="home" locale={pageContext.locale}>
@@ -60,7 +60,7 @@ class IndexPage extends React.Component {
           }}
         ></Helmet>
         <SEO title="Home" />
-        <div className="top-present" roll="presentation">
+        <div className="top-present" role="presentation">
           <p>こんにちは、</p>
           <div
             dangerouslySetInnerHTML={{ __html: pageContext.i18n.main }}
@@ -69,14 +69,14 @@ class IndexPage extends React.Component {
             {pageContext.i18n.living} {this.state.currentCity}。
           </p>
         </div>
-        <div className="top-present" roll="presentation">
+        <div className="top-present" role="presentation">
           <p>{pageContext.i18n.specialize}</p>
           <h2
             className="spe"
             dangerouslySetInnerHTML={{ __html: pageContext.i18n.tech }}
           ></h2>
         </div>
-        <div className="top-present long" roll="presentation">
+        <div className="top-present long" role="presentation">
           <p>
             {pageContext.i18n.check}
             <AniLink fade to={`${basePath}/works`}>

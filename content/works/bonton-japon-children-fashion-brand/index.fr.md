@@ -20,7 +20,7 @@ Bonton est une marque de prêt-à-porter pour enfants créée en France et, depu
 
 ### Page d'accueil desktop
 
-![Bonton accueil](./bonton_01.jpg)
+![Bonton accueil](./Bonton_01.jpg)
 
 ### Lookbook responsive
 
