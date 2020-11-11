@@ -61,6 +61,12 @@ module.exports = {
             },
           },
           {
+            resolve: "gatsby-remark-code-titles",
+            options: {
+              className: "title",
+            },
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;

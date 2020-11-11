@@ -1,9 +1,9 @@
 ---
 title: Creating a Shopping list system with React Query and Strapi
 date: 2020-11-06
-image: ./shopping-app.jpg
-description: A refreshing dish for summer using somen, kimchi and pork
-icon: ../../../src/images/icons/noodles.png
+image: ./shopping-list.jpg
+description: Experimenting with React Query and Strapi to manage groceries
+icon: ../../../src/images/icons/js.png
 category:
   - Development
 tags:
@@ -21,6 +21,8 @@ This small project was a great way to try [React Queries](https://react-query.ta
 To follow this tutorial, you need to have a basic knowledge of React and React hooks (at least useState, useEffect and how to use custom hooks (from React Query)).
 
 For each technologies used in this tutorial, I won't cover everything, you can check the references section to understand better how each work.
+
+You can check the code on my [Github](https://github.com/thomasprost/kaimono)
 
 ### Stack
 
@@ -324,7 +326,7 @@ There is nothing very fancy in the css, it just redesigns a few elements needed 
 
 Import our newly created scss file into index.js
 
-```javascript{3}
+```javascript{3}{numberLines: true}
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.scss";
@@ -332,6 +334,47 @@ import App from "./App";
 ```
 
 ### Creating the structure of the shopping app
+
+Our application will be simple and structured as is:
+
+- App (the main container)
+  - Shopping List (Fetch items from the API)
+    - Single Item
+  - Forms
+    - Add Item
+    - Edit Item
+
+Let's start by creating our main app. In App.js, we can remove everything and add:
+
+```javascript{numberLines:true}
+import React, { useState } from "react";
+import ShoppingList from "./components/ShoppingList";
+
+function App() {
+  return (
+    <div className="container">
+      <div className="content">
+        <h1 id="main-title">Shopping List</h1>
+        <div className="flex-row">
+          <div className="flex-large one-fourths side-menu">
+            {/* Space for edit and add forms */}
+          </div>
+          <div className="flex-small three-fourths">
+            <ShoppingList />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Forms will be displayed in a panel on the left (25% of the size) and the rest will display the shopping list.
+
+Let's now create ou Shopping List. Create a new folder called components that will hold our ... components:
+In components/ShoppingList.jsx:
 
 ### Adding React Query
 

@@ -40,6 +40,20 @@ pre[class*="language-"] ::selection {
   background: #363636;
 }
 
+pre[class*="language-"].line-numbers {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.line-numbers-rows > span::before {
+  padding-right: 0.2em;
+  text-align: center;
+}
+
+.line-numbers .line-numbers-rows {
+  min-width: 30px;
+}
+
 @media print {
   code[class*="language-"],
   pre[class*="language-"] {
@@ -234,4 +248,15 @@ pre[class*="language-"].language-scss > code {
   background-color: #344b47;
   display: block;
   border-left: 0.4rem solid #298477;
+}
+
+.gatsby-code-title {
+  margin-bottom: -0.6rem;
+  padding: 0.5em 1em;
+  background-color: #263238;
+  background-color: #ff6e8f;
+  z-index: 0;
+
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
 }
