@@ -376,7 +376,163 @@ Forms will be displayed in a panel on the left (25% of the size) and the rest wi
 Let's now create ou Shopping List. Create a new folder called components that will hold our ... components:
 In components/ShoppingList.jsx:
 
+```javascript{numberLines:true}
+import React from "react";
+import Item from "./Item";
+
+const data = [];
+
+function ShoppingList(props) {
+  return (
+    <div id="items-list">
+      {status === "loading" ? (
+        <span>Loading...</span>
+      ) : status === "error" ? (
+        <span>Error</span>
+      ) : (
+        <ul>
+          {data
+            ? data.map(item => {
+                return <Item key={item.id} item={item}></Item>;
+              })
+            : "Nothing to buy"}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default ShoppingList;
+```
+
+For now, data is just an empty array. Once we set up React Query, we will update this section.
+
+Finally, let's prepare our Single Item component :
+
+```javascript{numberLines:true}
+import React from "react";
+
+function Item(props) {
+  const item = props.item;
+
+  return (
+    <li className="flex-row">
+      <div className="flex-large three-fourths">
+        <div className="form-check">
+          <label className="form-check-label">
+            <input
+              type="checkbox"
+              checked={item.Bought}
+              className="form-check-input"
+            />
+            {item.Name} | {item.Quantity}
+            <i className="input-frame"></i>
+          </label>
+        </div>
+        <p className="small">{item.Info}</p>
+      </div>
+      <div className="flex-large one-fourths actions">
+        <button>
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="css-i6dzq1"
+          >
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </button>
+        <button>
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="css-i6dzq1"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </li>
+  );
+}
+
+export default Item;
+```
+
+For now, don't worry about the props passed by parent (shopping List component), once we set up React Query to get data from our strapi API, everything will get clearer.
+Item component is a sinmple list item that displays our product name, quantity and description (See strapi section). We add a check box to display if an item was bought and two buttons, Edit and Delete. I used Feather icons to style these two buttons.
+
 ### Adding React Query
+
+So as to query our API, we will set up [React Query](https://github.com/tannerlinsley/react-query). Check the full documentation for a deeper understanding on how everything works.
+
+Let's install it:
+
+```bash
+yarn add react-query
+```
+
+/!\ Useful Tip :
+I won't cover it here but React Query DevTools is very handy to understand how queries are made, cache, updates and so on. You can install it set it up from [here](https://react-query.tanstack.com/docs/devtools).
+
+Now in our Shopping List:
+
+```javascript{3,5,6,7,8,11,12,13,14,22,24}{numberLines:true}
+import React from "react";
+import Item from "./Item";
+import { useQuery } from "react-query";
+
+const fetchShoppingItems = async () => {
+  const res = await fetch("http://localhost:1337/shopping-items");
+  return res.json();
+};
+
+function ShoppingList(props) {
+  const { status, data, error, refetch } = useQuery(
+    "shopping",
+    fetchShoppingItems
+  );
+
+  return (
+    <div id="items-list">
+      {status === "loading" ? (
+        <span>Loading...</span>
+      ) : status === "error" ? (
+        <span>
+          Error: {error.message}
+          <br />
+          <button onClick={() => refetch()}>Retry</button>
+        </span>
+      ) : (
+        <ul>
+          {data
+            ? data.map(item => {
+                return <Item key={item.id} item={item}></Item>;
+              })
+            : "Nothing to buy"}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default ShoppingList;
+```
 
 ### Setting up Environment variables
 
