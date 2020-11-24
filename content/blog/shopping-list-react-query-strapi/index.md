@@ -18,7 +18,7 @@ tags:
 For a long time I wanted to set up a simple shopping list for my wife and I to keep track of what's groceries are missing at home. Whenever she / I are outside at supermarkets we can then have a list of what we need to buy without preparing in advance or texting each other.
 This small project was a great way to try [React Queries](https://react-query.tanstack.com/), an awesome asynchronous data synchronization library made by [Tanner Linsley](https://github.com/tannerlinsley). For the API, I used [Strapi](https://github.com/strapi/strapi), an open source headless CMS that is perfect for my needs.
 
-To follow this tutorial, you need to have a basic knowledge of React and React hooks (at least useState, useEffect and how to use custom hooks (from React Query)).
+To follow this tutorial, you need to have a basic knowledge of React and React hooks (at least useState, useEffect and how to use custom hooks (from React Query)). It's also better if you understand how Aync / Await work.
 
 For each technologies used in this tutorial, I won't cover everything, you can check the references section to understand better how each work.
 
@@ -532,6 +532,97 @@ function ShoppingList(props) {
 }
 
 export default ShoppingList;
+```
+
+The first big change in our list component is a asynchronous function that will fetch all our items from our API and return the json response.
+
+the second change, inside our component, is the useQuery hook provided by React Query library. It helps us fetching the data and get status informations on what is happening, if en error happened, a callback function to refetch the data...
+
+#### Add Form
+
+Now that we can display our items, let's create an Add form to add new items. Inside components/Forms folder, create AddItemForm.jsx
+
+```javascript{numberLines:true}
+import React, { useState } from "react";
+import { useMutation, useQueryCache } from "react-query";
+
+export const postItem = async body => {
+  const settings = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
+
+function AddItemForm(props) {
+  const cache = useQueryCache();
+  const initialFormState = { Name: "", Quantity: "", Info: "" };
+  const [item, setItem] = useState(initialFormState);
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setItem({ ...item, [name]: value });
+  };
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    mutate(item);
+    setItem(initialFormState);
+  };
+
+  const [mutate, { error }] = useMutation(postItem, {
+    onSuccess: () => {
+      cache.invalidateQueries("shopping");
+    },
+  });
+
+  return (
+    <div>
+      {error && <div className="error">{error.message}</div>}
+      <h2>Add an Item</h2>
+      <form onSubmit={handleFormSubmit}>
+        <label>Name</label>
+        <input
+          type="text"
+          name="Name"
+          value={item.Name}
+          onChange={handleInputChange}
+        />
+        <label>Quantity</label>
+        <input
+          type="text"
+          name="Quantity"
+          value={item.Quantity}
+          onChange={handleInputChange}
+        />
+        <label>Info</label>
+        <input
+          type="text"
+          name="Info"
+          value={item.Info}
+          onChange={handleInputChange}
+        />
+        <br />
+        <button onClick={handleFormSubmit}>Add item</button>
+      </form>
+    </div>
+  );
+}
+
+export default AddItemForm;
 ```
 
 ### Setting up Environment variables
