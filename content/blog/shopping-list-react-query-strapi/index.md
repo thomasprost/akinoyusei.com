@@ -43,7 +43,7 @@ First install it :
 yarn create strapi-app shopping-api --quickstart
 ```
 
-The Quickstart command installs Strapi using a SQLite database which is used for prototyping in development.
+The Quickstart command installs Strapi using a SQLite database which is used for prototyping in development. When you'll need to deploy it to production you'll need to set it up with postgresql, mongodb, ...
 
 Once installed, you can access the admin of your Strapi CMS. Just create your credentials and log in.
 
@@ -546,6 +546,8 @@ Now that we can display our items, let's create an Add form to add new items. In
 import React, { useState } from "react";
 import { useMutation, useQueryCache } from "react-query";
 
+// This is a simple async POST fetch function passing our form data from state
+// to our API
 export const postItem = async body => {
   const settings = {
     method: "POST",
@@ -568,15 +570,20 @@ export const postItem = async body => {
 };
 
 function AddItemForm(props) {
+  // The cache hook will help invalidate our data when we add an item
   const cache = useQueryCache();
   const initialFormState = { Name: "", Quantity: "", Info: "" };
   const [item, setItem] = useState(initialFormState);
 
+  // We bind our form input elements to React
+  // and automatically update our state on user input change
   const handleInputChange = event => {
     const { name, value } = event.target;
     setItem({ ...item, [name]: value });
   };
 
+  // On form submit, use the Mutation hook provided by React query
+  // and the function set up to update our data
   const handleFormSubmit = event => {
     event.preventDefault();
     mutate(item);
