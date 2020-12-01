@@ -30,7 +30,6 @@ You can check the code on my [Github](https://github.com/thomasprost/kaimono)
 - React Query
 - Strapi
 - Primitive UI (small Sass boilerplate)
-- React Content Loader
 - Yarn (you can use npm/npx of course)
 
 ### Setting up Strapi and creating our shopping API
@@ -502,6 +501,7 @@ const fetchShoppingItems = async () => {
   return res.json();
 };
 
+// giving a name to our Query (shopping) will help us managing cache in other components
 function ShoppingList(props) {
   const { status, data, error, refetch } = useQuery(
     "shopping",
@@ -520,7 +520,7 @@ function ShoppingList(props) {
         </span>
       ) : (
         <ul>
-          {data
+          {data && data.length > 0
             ? data.map(item => {
                 return <Item key={item.id} item={item}></Item>;
               })
@@ -546,8 +546,8 @@ Now that we can display our items, let's create an Add form to add new items. In
 import React, { useState } from "react";
 import { useMutation, useQueryCache } from "react-query";
 
-// This is a simple async POST fetch function passing our form data from state
-// to our API
+// This is a simple async POST fetch function passing
+// our form data from state to our API
 export const postItem = async body => {
   const settings = {
     method: "POST",
@@ -632,48 +632,348 @@ function AddItemForm(props) {
 export default AddItemForm;
 ```
 
-### Setting up Environment variables
+#### Edit Form
 
-Until now we have been using an hard coded url in our api queries though it's not maintainable nor easy to deploy on production.
+So as to know which item is being edited, we are going to manage an item ID through a state shared by our components. So as to share this state easily, we will set it up in the parent, App.js:
 
-Thus we will define an environment variable for our API url
+```javascript{2,4,9,16,17,18,19,20,21,22,23,24,25,28}{numberLines:true}
+import React, { useState } from "react";
+import AddItemForm from "./components/Forms/AddItemForm";
+// we are going to create it just after
+import EditItemForm from "./components/Forms/EditItemForm";
+import ShoppingList from "./components/ShoppingList";
 
-There are different ways to manage environment variables, in this project we will use a .env file to store them.
+function App() {
+  // Our item id being edited
+  const [editingIndex, setEditingIndex] = useState(null);
+  return (
+    <div className="container">
+      <div className="content">
+        <h1 id="main-title">Shopping List</h1>
+        <div className="flex-row">
+          <div className="flex-large one-fourths side-menu">
+            {editingIndex !== null ? (
+              <>
+                <EditItemForm
+                  editingIndex={editingIndex}
+                  setEditingIndex={setEditingIndex}
+                />
+              </>
+            ) : (
+              <AddItemForm />
+            )}
+          </div>
+          <div className="flex-small three-fourths">
+            <ShoppingList setEditingIndex={setEditingIndex} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-At the root create two files : .env and .env.local
-
-.env is usually used as an example with dummy values that will be commited to source control (Never commit real production values / secrets into git/svn/...)
-
-.env.local will override .env and won't be commited to source control. This way, we can create a .env.local in each of our environments (local dev, staging, production, ...) without polluting source control.
-
-From [Create React App](https://create-react-app.dev/docs/adding-custom-environment-variables/) :
-
-> Note: You must create custom environment variables beginning with REACT_APP. Any other variables except NODE_ENV will be ignored to avoid accidentally exposing a private key on the machine that could have the same name. Changing any environment variables will require you to restart the development server if it is running.
-
-For now, let's just add a new variable in .env.local :
-
+export default App;
 ```
-REACT_APP_API_URL=http://localhost:1337/
+
+We need to pass the setEditingIndex function to the ShoppingList component because the Item will update this index inside its form.
+
+Now that we have updated our app to manage edit index state, let's add a new component EditItemForm.jsx in components/Forms.
+
+```javascript{numberLines:true}
+import React, { useState, useEffect } from "react";
+import { useMutation, useQueryCache, useQuery } from "react-query";
+
+const emptyItem = {
+  Name: "",
+  Quantity: "",
+  Info: "",
+};
+
+// Fetch One item
+export const fetchItemById = async (key, { id }) => {
+  const res = await fetch(`http://localhost:1337/shopping-items/${id}`);
+
+  return res.json();
+};
+
+// Update one item
+// Same post function in AddForm, we pass as body our form and use PUT method in fetch
+export const patchItem = async body => {
+  const settings = {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items/${body.id}`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
+
+function EditItemForm({ editingIndex, setEditingIndex }) {
+  const cache = useQueryCache();
+
+  // Don't attempt to query until editingIndex is truthy
+  const { data } = useQuery(["item", { id: editingIndex }], fetchItemById, {
+    enabled: editingIndex !== null,
+  });
+
+  // Update our item and invalidate cache on Success
+  const [mutate] = useMutation(patchItem, {
+    onSuccess: data => {
+      // Update `items` query when this mutation succeeds
+      cache.invalidateQueries("shopping");
+      cache.setQueryData(["item", { id: editingIndex }], data);
+      setEditingIndex(null);
+    },
+  });
+
+  // Initial state of our item inside form
+  const [item, setItem] = useState(data || emptyItem);
+
+  // Lifecycle event when our component is mounted
+  useEffect(() => {
+    if (editingIndex !== null && data) {
+      setItem(data);
+    } else {
+      setItem(emptyItem);
+    }
+  }, [data, editingIndex]);
+
+  // Bind input fields to our local state
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setItem({ ...item, [name]: value });
+  };
+
+  // Mutate our item when form is submitted
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    mutate(item);
+  };
+
+  return (
+    <>
+      <h2>Editing {item.Name}</h2>
+      {item && (
+        <form onSubmit={handleFormSubmit}>
+          <label>Name</label>
+          <input
+            type="text"
+            name="Name"
+            value={item.Name}
+            onChange={handleInputChange}
+          />
+          <label>Quantity</label>
+          <input
+            type="text"
+            name="Quantity"
+            value={item.Quantity}
+            onChange={handleInputChange}
+          />
+          <label>Info</label>
+          <input
+            type="text"
+            name="Info"
+            value={item.Info}
+            onChange={handleInputChange}
+          />
+          <br />
+          <div className="edit-actions">
+            <button onClick={handleFormSubmit}>Update item</button>
+            <button onClick={() => setEditingIndex(null)}>Cancel</button>
+          </div>
+        </form>
+      )}
+    </>
+  );
+}
+
+export default EditItemForm;
 ```
 
-We can do the same in .env file as it's only a local url, nothing secret here. Next time you or another developer pull from the repository, just copy .env into .env.local file and replace the url with the one you need for your environment.
+We can now update our ShoppingList component to pass setEditingIndex to the Item component.
 
-We can now update our Queries.js file to use our variable:
+ShoppingList.jsx
 
+```javascript{8}{numberLines:true}
+{
+  data && data.length > 0
+    ? data.map(item => {
+        return (
+          <Item
+            key={item.id}
+            item={item}
+            setEditingIndex={props.setEditingIndex}
+          ></Item>
+        );
+      })
+    : "Nothing to buy";
+}
 ```
-const apiUrl = process.env.REACT_APP_API_URL;
+
+Finally, update the Item.jsx
+
+```javascript{numberLines:true}
+import React from "react";
+// highlight-start
+import { useMutation, useQueryCache } from "react-query";
+// highlight-end
+
+// Update item when checkbox is updated to know
+// if a product was bought or not
+// highlight-start
+export const patchItem = async body => {
+  const settings = {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items/${body.id}`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
+
+// Delete
+export const deleteItem = async id => {
+  const settings = {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items/${id}`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
+// highlight-end
+
+function Item(props) {
+  const item = props.item;
+  // highlight-start
+  const cache = useQueryCache();
+
+  const handleRemoveItem = event => {
+    event.preventDefault();
+    mutate(item.id);
+    props.setEditingIndex(null);
+  };
+
+  const [mutate, { error }] = useMutation(deleteItem, {
+    onSuccess: () => {
+      cache.invalidateQueries("shopping");
+    },
+  });
+
+  const [mutatePatch] = useMutation(patchItem, {
+    onSuccess: () => {
+      cache.invalidateQueries("shopping");
+    },
+  });
+
+  const updateChecked = event => {
+    mutatePatch({ ...item, Bought: !item.Bought });
+  };
+  // highlight-end
+
+  return (
+    <li className="flex-row">
+      // highlight-start
+      {error && <div className="error">{error.message}</div>}
+      // highlight-end
+      <div className="flex-large three-fourths">
+        <div className="form-check">
+          <label className="form-check-label">
+            <input
+              type="checkbox"
+              checked={item.Bought}
+              className="form-check-input"
+              // highlight-start
+              onChange={updateChecked}
+              // highlight-end
+            />
+            {item.Name} | {item.Quantity}
+            <i className="input-frame"></i>
+          </label>
+        </div>
+        <p className="small">{item.Info}</p>
+      </div>
+      <div className="flex-large one-fourths actions">
+        <button
+          // highlight-start
+          onClick={() => {
+            props.setEditingIndex(item.id);
+          }}
+          // highlight-end
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="css-i6dzq1"
+          >
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </button>
+        // highlight-start
+        <button onClick={handleRemoveItem}>
+          // highlight-end
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="css-i6dzq1"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </li>
+  );
+}
+export default Item;
 ```
 
-and replace each hard-coded urls with our new constant, for example:
-
-```javascript{1}
-const res = await fetch(`${apiUrl}shopping-items/${id}`);
-```
-
-### React content loader to improve user experience
-
-### Deploying our Application and API
-
-### Future Improvements
-
-### References
+When the user clicks on edit button, the Item Id is updated through the function passed as props. The Edit Form then shows up (Add form gets hidden) and allows the user to update an item.
+Delete button is now bound to a mutate hook that will call our API to delete the item.
