@@ -977,3 +977,7 @@ export default Item;
 
 When the user clicks on edit button, the Item Id is updated through the function passed as props. The Edit Form then shows up (Add form gets hidden) and allows the user to update an item.
 Delete button is now bound to a mutate hook that will call our API to delete the item.
+
+### Conclusion
+
+Hopefully, that was clear enough to understand the basic use of Strapi and React Queries to manage React state. All code is on [github](https://github.com/thomasprost/kaimono).

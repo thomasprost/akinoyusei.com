@@ -2,7 +2,7 @@
 title: Creating a Shopping list system with React Query and Strapi - Part 2 (In Progress)
 date: 2020-12-01
 image: ./shopping-list.jpg
-description: Experimenting with React Query and Strapi to manage groceries
+description: Experimenting with React Query and Strapi to manage groceries - Part 2
 icon: ../../../src/images/icons/js.png
 category:
   - Development
@@ -14,6 +14,8 @@ tags:
 ---
 
 ### Introduction
+
+Following the first part of Shopping list to use React Queries and Strapi as API, here are some improvements. We will talk about Environment variables, deploying to production and adding Content Loader to improve user experience.
 
 ### Stack
 
