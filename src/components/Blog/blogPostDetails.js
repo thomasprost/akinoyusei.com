@@ -14,7 +14,7 @@ class BlogPostDetails extends React.Component {
           </div>
           <div className={styles.postFront}>
             <h1>{markdownRemark.frontmatter.title}</h1>
-            <p>Posted on {markdownRemark.frontmatter.date}</p>
+            <p>Posted in {markdownRemark.frontmatter.date}</p>
             <p className={"categories"}>
               {markdownRemark.frontmatter.category.join(" / s")}
             </p>
