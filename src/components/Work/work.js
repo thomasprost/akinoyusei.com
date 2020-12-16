@@ -1,6 +1,7 @@
 import React from "react";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import styles from "./work.module.scss";
+import "./prism-material.css";
 
 class Work extends React.Component {
   render() {
