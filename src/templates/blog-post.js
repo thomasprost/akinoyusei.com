@@ -16,7 +16,12 @@ export default function BlogPost({ data, pageContext }) {
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
-      <SEO title={markdownRemark.frontmatter.title} image={image} />
+      <SEO
+        title={markdownRemark.frontmatter.title}
+        image={image}
+        description={markdownRemark.frontmatter.description}
+        type="article"
+      />
       <BlogPostDetails data={data} image={image} />
     </Layout>
   );
@@ -30,6 +35,7 @@ export const query = graphql`
         title
         date(formatString: "YYYY")
         author
+        description
         category
         tags
         ingredients
