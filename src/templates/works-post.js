@@ -19,7 +19,13 @@ export default function WorksPost({ data, pageContext }) {
       locale={pageContext.locale}
       rawPath={pageContext.rawPath}
     >
-      <SEO title={markdownRemark.frontmatter.title} image={imageSource} />
+      <SEO
+        title={markdownRemark.frontmatter.title}
+        image={imageSource}
+        description={`${
+          markdownRemark.frontmatter.company
+        } | ${markdownRemark.frontmatter.category.join(" ")}`}
+      />
       <h1 className={styles.workTitle}>{markdownRemark.frontmatter.title}</h1>
       <img
         className={styles.workMainImage}
@@ -48,6 +54,7 @@ export const query = graphql`
         title
         date(formatString: "YYYY")
         category
+        company
         tags
         image {
           childImageSharp {
