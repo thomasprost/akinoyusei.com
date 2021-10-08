@@ -34,4 +34,4 @@ Frozen fruits are pretty cheap and easy to find. You can make this recipe with a
 6. In a large bowl, add sugar and flour. Mix well together.
 7. Cut the butter into cubes and add them to the flour / sugar mix.
 8. Mix with your hands to get a sandy texture. Don't mix too much, your hands will melt the butter and you want to keep some big pieces in the mix.
-9. In a baking pan, add fruits and the batter on top. Cook for 25 minutes.
+9. In a baking pan, add fruits with the batter on top. In the oven for 25 minutes.
