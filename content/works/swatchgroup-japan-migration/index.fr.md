@@ -1,43 +1,58 @@
 ---
-title: Efficience - Gestionnaire de locations
-date: 2020-10-20
-company: MLVLL
-image: ../../../src/images/works/efficience.jpg
+title: SwatchGroup Japan - Migration
+date: 2021-11-10
+company: The SwatchGroup Japan
+image: ../../../src/images/works/swatchgroup-main.jpg
 category:
-  - PHP
-  - Symfony
+  - PHP8
+  - Symfony1
+  - Symfony5
   - JavaScript
-  - React
 tags:
   - Developement
-  - Symfony5
-  - Full Stack
+  - Migration
   - Corporate
 ---
 
-Efficience est un nouveau service privé aidant les propriétaires d'appartements à gérer leurs locations. Grâce à cette application Web, ils peuvent désormais voir facilement l'occupation de leurs appartements et leurs revenus sous forme de graphiques. L'objectif principal du client était:
+### Clients et besoins
 
-- Pour les utilisateurs d'avoir une interface simple mais complète pour voir leurs revenus.
-- Pour l'administrateur de gérer les appartements, les propriétaires et de communiquer avec eux via l'application.
+Swatch Group est un groupe international spécialisé dans la conception, la fabrication et la vente de montres, bijoux, horlogerie ainsi que leurs composants.
+Ils distribuent 12 marques au Japon (Breguet, Calvin Klein, Tissot, ...).
 
-Le backend et le frontend ont été réalisés sous Symfony 5. La section de messagerie asynchrone utilise elle Symfony pour les requetes / formater / préparer les données et React pour les afficher dynamiquement.
+Il y a quelques années maintenant, l'un de mes clients a développé le site Web de Swatchgroup Japon et l'administre toujours. Bien que le design soit toujours d'actualité et qu'ils n'aient aucun problème à le gérer et le mettre à jour, ils avaient besoin d'aide pour migrer le backend et améliorer la sécurité. Symfony1 était un bon framework à l'époque de la création du site mais, avec PHP 5, est devenu assez obsolète. N'étant plus maintenu, pour éviter toute faille importante de sécurité, il était important de migrer sur une nouvelle version.
 
-Tout au long du projet, j'ai essayé de me focaliser sur la rapidité générale de l'interface, et sa simplicité d'accès.
+**Mon travail sur le projet a consisté à migrer le framework et le serveur vers la dernière version de Symfony / PHP**
 
-## Website
+Symfony 1 étant trop différent des versions plus récentes de Symfony, il n'était pas possible de simplement migrer le framework et de débugger quelques éléments.
 
-### Case study Board Accueil
+Je suis parti d'une nouvelle installation de Symfony 5 avec PHP 8.0 et Mariadb comme base de données.
 
-![Case study list page](./Bienvenue-Efficience.jpg)
+### Développement local / Docker
 
-### Case study Calendrier
+- Apache
+- Php 8
+- Mariadb 10.5
+- Yarn (pour compiler des assets avec Webpack Encore)
 
-![Case study list page](./Mes-reservations-Efficience.jpg)
+### Étapes principales
 
-### Case study Admin
+- Recréer le schéma de la base de données avec basé sur les entités Symfony.
+- Migrer complètement les templates pour utiliser Twig
+- Mettre à jour les contrôleurs et séparer les requêtes de base de données (Doctrine) via leurs repositories
+- Gérez les assets et améliorez les performances grâce à Webpack Encore.
+- Améliorez la sécurité de l'administration avec le bundle de sécurité et un nouveau pare-feu.
+- Configurer le nouveau serveur avec Apache, PHP 8, Mariadb, Yarn et Git.
 
-![Case study list page](./Administration-Efficience.jpg)
+## Site Internet
 
-### Case study Messagerie
+### Étude de cas Accueil
 
-![Case study Messaging](./Messagerie.jpg)
+![Étude de cas Accueil](./swatchgroup-home.jpg)
+
+### Étude de cas CENTRE NICOLAS G. HAYEK
+
+![Étude de cas Ngch](./swatchgroup-nghc.jpg)
+
+### Étude de cas Formulaire de contact
+
+![Formulaire d'étude de cas](./swatchgroup-form.jpg)
