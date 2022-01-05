@@ -15,7 +15,7 @@ tags:
 
 ### Client et besoins
 
-En 2021, l'agence digitale WarpJapan a eu besoin de renouveler son site web. Ils aimaient leur site actuel mais se sentaient trop limiter pour promouvoir leurs projets et leur culture.
+En 2021, l'agence digitale WarpJapan a eu besoin de renouveler son site web. Ils aimaient leur site actuel mais se sentaient trop limités pour promouvoir leurs projets et leur culture.
 Ils m'ont fait confiance pour trouver des solutions à la fois pour le frontend / backend et pour intégrer leur nouveau design.
 
 ### Esthétique
