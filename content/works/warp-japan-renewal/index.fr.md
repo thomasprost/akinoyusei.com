@@ -1,58 +1,61 @@
 ---
-title: SwatchGroup Japan - Migration
-date: 2021-11-10
-company: The SwatchGroup Japan
-image: ../../../src/images/works/swatchgroup-main.jpg
+title: WarpJapan - Refonte du site web
+date: 2021-12-01
+company: WarpJapan K.K.
+image: ../../../src/images/works/warp-kakigori-main.jpg
 category:
-  - PHP8
-  - Symfony1
-  - Symfony5
-  - JavaScript
+  - Nextjs
+  - React
+  - Prismic
 tags:
-  - Developement
-  - Migration
+  - Development
+  - Animations
   - Corporate
 ---
 
-### Clients et besoins
+### Client et besoins
 
-Swatch Group est un groupe international spécialisé dans la conception, la fabrication et la vente de montres, bijoux, horlogerie ainsi que leurs composants.
-Ils distribuent 12 marques au Japon (Breguet, Calvin Klein, Tissot, ...).
+En 2021, l'agence digitale WarpJapan a eu besoin de renouveler son site web. Ils aimaient leur site actuel mais se sentaient trop limiter pour promouvoir leurs projets et leur culture.
+Ils m'ont fait confiance pour trouver des solutions à la fois pour le frontend / backend et pour intégrer leur nouveau design.
 
-Il y a quelques années maintenant, l'un de mes clients a développé le site Web de Swatchgroup Japon et l'administre toujours. Bien que le design soit toujours d'actualité et qu'ils n'aient aucun problème à le gérer et le mettre à jour, ils avaient besoin d'aide pour migrer le backend et améliorer la sécurité. Symfony1 était un bon framework à l'époque de la création du site mais, avec PHP 5, est devenu assez obsolète. N'étant plus maintenu, pour éviter toute faille importante de sécurité, il était important de migrer sur une nouvelle version.
+### Esthétique
 
-**Mon travail sur le projet a consisté à migrer le framework et le serveur vers la dernière version de Symfony / PHP**
+Leurs designers se sont basés sur des formes arrondies et une grande typographie pour apporter une sensation de dynamisme tout en étant fun et moderne.
 
-Symfony 1 étant trop différent des versions plus récentes de Symfony, il n'était pas possible de simplement migrer le framework et de débugger quelques éléments.
+### Histoire et contenu
 
-Je suis parti d'une nouvelle installation de Symfony 5 avec PHP 8.0 et Mariadb comme base de données.
+Pour mieux expliquer qui ils sont, leur vidéo showreel sert d'introduction au nouveau site.
+Ils sont convaincus que chaque client et chaque projet est unique. À présent, les études de cas, leurs processus et les résultats de leurs travaux occupent une place bien plus centrale.
 
-### Développement local / Docker
+### Détails et interactions
 
-- Apache
-- Php 8
-- Mariadb 10.5
-- Yarn (pour compiler des assets avec Webpack Encore)
+- Une nouvelle façon de représenter le menu hamburger. L'interaction des quatre lignes verticales se crée à partir des lettres elles-mêmes.
+- Smooth scroll
+- Transition de page sur le portfolio
+- Arrière-plan basé sur une typographique flottante
 
-### Étapes principales
+### Développement
 
-- Recréer le schéma de la base de données avec basé sur les entités Symfony.
-- Migrer complètement les templates pour utiliser Twig
-- Mettre à jour les contrôleurs et séparer les requêtes de base de données (Doctrine) via leurs repositories
-- Gérez les assets et améliorez les performances grâce à Webpack Encore.
-- Améliorez la sécurité de l'administration avec le bundle de sécurité et un nouveau pare-feu.
-- Configurer le nouveau serveur avec Apache, PHP 8, Mariadb, Yarn et Git.
+Les principaux objectifs de WarpJapan pour leur nouveau site web étaient :
 
-## Site Internet
+- Des animations dynamiques et modernes
+- Facilité de maintenance en interne
+- Rapidité
+- Garder le multilingue
 
-### Étude de cas Accueil
+Avec tout cela en tête, j'ai choisi de le développer en utilisant Nextjs avec un CMS headless (Prismic) pour gérer les données.
+Nextjs a permis de créer de belles transitions tout en ayant la puissance du Server Side Rendering et de la génération statique des pages. Le tout donne un rendu fluide et rapide. La simplicité de l'édition du contenu sur Prismic a également permis de faire la transition facilement avec le site Web précédent tout en gérant facilement le multilingue.
 
-![Étude de cas Accueil](./swatchgroup-home.jpg)
+## Site web
 
-### Étude de cas CENTRE NICOLAS G. HAYEK
+### Étude de cas Portfolio - Norwegian Rain
 
-![Étude de cas Ngch](./swatchgroup-nghc.jpg)
+![Étude de cas portfolio](./warp-norwegian.png)
 
-### Étude de cas Formulaire de contact
+### Étude de cas Team
 
-![Formulaire d'étude de cas](./swatchgroup-form.jpg)
+![Étude de cas Team](./warp-team.png)
+
+### Étude de cas Portfolio Responsive - Uniqlo
+
+![Étude de cas responsive](./warp-uniqlo.png)
