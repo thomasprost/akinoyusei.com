@@ -9,7 +9,7 @@ category:
   - Symfony5
   - JavaScript
 tags:
-  - Development
+  - Developement
   - Migration
   - Corporate
 ---
