@@ -9,12 +9,13 @@ category:
 tags:
   - Development
   - Ecommerce
+  - Mobile first
   - Corporate
 ---
 
 ### Client & Needs
 
-123 Mon école is a Montessori school based in Paris. They have been growing over the years and are opening new schools often. For four of their schools, they needed a complete renewal of their e-commerce to sell afterschool activities.
+123 Mon école is a Montessori school based in Paris. They have been growing over the years and are opening new schools often. For four of their schools, they needed a complete renewal of their e-commerce to make buying afterschool activities an easier process.
 
 ### Challenges
 
