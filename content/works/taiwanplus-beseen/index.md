@@ -3,6 +3,7 @@ title: Taiwan Plus - Beseen Campaign
 date: 2022-09-30
 company: TaiwanPlus
 image: ../../../src/images/works/taiwanplus-beseen.png
+linko: https://beseen.taiwanplus.com
 category:
   - Wordpress
   - Instagram
@@ -24,25 +25,17 @@ Taiwan+ (TaiwanPlus) is a free English-language streaming service that aims to d
 
 ### Solutions
 
-With the Tokyo based web agency Relativ\*, we worked
+With the Tokyo based web agency Relativ\*, we created a two parts microsite :
 
-### Details & interactions
-
-- Admins can easily create different kinds of activities. Some can be selectable by date and hour, some having specific conditions to be added to cart, ...
-- Presents activities and life at the school
-- Parents can add children's information and assign them to activities smoothly during checkout.
-- Manage all emails and invoices to fit different scenarios
+- The #Beseenweek campaign to promote under-represented stories from the community shared through Instagram. On their side, Taiwanplus worked with influencers to share their IG reels on the page.
+- The "Women in Business" page, a white paper studying the gender cap in entrepreneurship and how Taiwan compares on the global stage.
 
 ## Website
 
-### Case study Mobile - Day Program
+### Case study Beseen IG campaign
 
-![Case study Day Program](./123-program.jpg)
+![Case study beseen](./twp-beseen.jpg)
 
-### Case study Portail
+### Case study Women in Business
 
-![Case study Portail](./123-portail.jpg)
-
-### Case study Calendar
-
-![Case study Calendar](./123-calendar.jpg)
+![Case study Women in Business](./twp-wib.png)
