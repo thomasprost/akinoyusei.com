@@ -15,7 +15,7 @@ tags:
 
 ### Client & Needs
 
-Taiwan+ (TaiwanPlus) is a free English-language streaming service that aims to deliver information, news, and videos that showcase what’s happening in Taiwan and examine world events that affect the nation. They needed a microsite to showcase the beseen instagram campaign and their community insights.
+Taiwan+ (TaiwanPlus) is a free English-language streaming service that aims to deliver information, news, and videos that showcase what’s happening in Taiwan and examine world events that affect the nation. They needed a microsite to showcase the beseenweek instagram campaign and their community insights.
 
 ### Challenges
 
@@ -27,8 +27,8 @@ Taiwan+ (TaiwanPlus) is a free English-language streaming service that aims to d
 
 With the Tokyo based web agency Relativ\*, we created a two parts microsite :
 
-- The #Beseenweek campaign to promote under-represented stories from the community shared through Instagram. On their side, Taiwanplus worked with influencers to share their IG reels on the page.
-- The "Women in Business" page, a white paper studying the gender cap in entrepreneurship and how Taiwan compares on the global stage.
+- The #Beseenweek campaign to promote under-represented stories from the community shared through Instagram. On their side, Taiwanplus worked with influencers to share their Insta reels on the page.
+- The "Women in Business" page, a white paper studying the gender gap in entrepreneurship and how Taiwan compares on the global stage.
 
 ## Website
 

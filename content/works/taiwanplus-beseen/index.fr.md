@@ -13,29 +13,29 @@ tags:
   - Instagram campaign
 ---
 
-### Client & Needs
+### Client & Besoins
 
-Taiwan+ (TaiwanPlus) is a free English-language streaming service that aims to deliver information, news, and videos that showcase what’s happening in Taiwan and examine world events that affect the nation. They needed a microsite to showcase the beseen instagram campaign and their community insights.
+Taiwan+ (TaiwanPlus) est un service de streaming gratuit en anglais qui vise à fournir des informations, des nouvelles et des vidéos présentant ce qui se passe à Taiwan. Elle tend à examiner les événements mondiaux qui affectent la nation. Ils avaient besoin d'un microsite pour présenter la campagne instagram #beseenweek et mettre en valeur leur étude faite sur la place des femmes dans l'entrepreneuriat.
 
 ### Challenges
 
-- Create a responsive, fast and easy to update website in a very short amount of time
-- Have a way to pull instagram posts from different accounts / hashtags and moderate them in admin
-- Improve security to make common hacks less prone to succeeding
+- Créer un site web réactif, rapide et facile à mettre à jour dans un délai très court.
+- Avoir un moyen d'extraire les posts instagram provenant de différents comptes / hashtags et de les modérer dans l'administration.
+- Améliorer la sécurité pour rendre les piratages courants moins susceptibles de réussir.
 
 ### Solutions
 
-With the Tokyo based web agency Relativ\*, we created a two parts microsite :
+Avec l'agence web Relativ\* basée à Tokyo, nous avons créé un microsite en deux parties :
 
-- The #Beseenweek campaign to promote under-represented stories from the community shared through Instagram. On their side, Taiwanplus worked with influencers to share their IG reels on the page.
-- The "Women in Business" page, a white paper studying the gender cap in entrepreneurship and how Taiwan compares on the global stage.
+- La campagne #Beseenweek pour promouvoir les histoires de la communauté partagées via Instagram. De leur côté, Taiwanplus a travaillé avec des influenceurs pour partager leurs Insta reels sur la page.
+- La page "Women in Business", un livre blanc étudiant l'écart entre les sexes dans l'entrepreneuriat et comment Taiwan se positionne sur la scène mondiale sur ce sujet.
 
-## Website
+## Site web
 
-### Case study Beseen IG campaign
+### Étude de cas Campagne Insta #Beseenweek
 
-![Case study beseen](./twp-beseen.jpg)
+![Étude de cas beseen](./twp-beseen.jpg)
 
-### Case study Women in Business
+### Étude de cas Women in Business
 
-![Case study Women in Business](./twp-wib.png)
+![Étude de cas Women in Business](./twp-wib.png)
