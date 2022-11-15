@@ -43,7 +43,7 @@ export default function WorksPost({ data, pageContext }) {
           target="_blank"
           rel="noreferrer"
         >
-          Link to project
+          {i18n.linktop}
         </a>
       )}
       <p className={"categories"}>

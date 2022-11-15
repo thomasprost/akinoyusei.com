@@ -61,6 +61,7 @@ module.exports = {
       directly: "directly。",
       released: "Released in",
       mywork: "My work on the project",
+      linktop: "Link to the project",
     },
     post: {
       blog: {
@@ -120,6 +121,7 @@ module.exports = {
       directly: "directement。",
       released: "Déployé en",
       mywork: "Mon travail sur ce projet",
+      linktop: "Lien vers le projet",
     },
     post: {
       blog: {
