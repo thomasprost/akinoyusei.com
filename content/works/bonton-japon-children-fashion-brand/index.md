@@ -2,6 +2,7 @@
 title: Bonton Japon
 date: 2019-01-25
 company: Bonton
+linko: https://bonton-japon.jp/
 image: ../../../src/images/works/bonton-main.jpg
 category:
   - PHP

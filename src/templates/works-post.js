@@ -13,6 +13,7 @@ export default function WorksPost({ data, pageContext }) {
       : void 0;
   const { i18n } = pageContext;
 
+  console.log(markdownRemark.frontmatter);
   return (
     <Layout
       title={`Works`}
@@ -36,6 +37,15 @@ export default function WorksPost({ data, pageContext }) {
       <p>
         {pageContext.i18n.released} {markdownRemark.frontmatter.date}
       </p>
+      {markdownRemark.frontmatter.linko && (
+        <a
+          href={markdownRemark.frontmatter.linko}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {i18n.linktop}
+        </a>
+      )}
       <p className={"categories"}>
         {markdownRemark.frontmatter.category.join(" / ")}
       </p>
@@ -55,6 +65,7 @@ export const query = graphql`
         date(formatString: "YYYY")
         category
         company
+        linko
         tags
         image {
           childImageSharp {
