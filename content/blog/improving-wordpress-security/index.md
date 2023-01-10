@@ -16,6 +16,7 @@ tags:
 # Introduction
 
 You can find here a list of steps to improve security on a WordPress website. Most are simple to implement, though some might be a bit more time consuming / meant for tech-savvy people. This is not a complete review of all possibilities to secure a WordPress site, just knowledge that I have gathered over the years developing, hosting and maintaining websites for a wide range of clients. I am always surprised by how security is a second-class citizen in many projects and, hopefully, this article will help some developers and businesses better secure their WordPress website.
+**This is not an advertorial, all tools, plugins, ... cited here are ones that I have been using for a long time and trust.**
 
 ## Target
 
@@ -71,6 +72,7 @@ I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) 
 ## Avoid sending clear text passwords to clients by emails / slack / platforms to manage projects
 
 I see it way too often but it should be avoided whenever possible (or send a clear password for a new WordPress user account and force your client to reset it). Use a password manager to share passwords. I use and trust Bitwarden though you can check [Privacy guides](https://www.privacyguides.org/passwords/) for secure recommendations.
+Sharing sensitive data with encrypted emails (I use [ProtonMail](https://proton.me/mail)) is also a good option.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe)
 
@@ -106,3 +108,35 @@ You can check [Patchstack database](https://patchstack.com/database/), [Patchsta
 ## Add Two-factor Authentication
 
 [WP 2FA](https://wordpress.org/plugins/wp-2fa/) or [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) seem to be good options in my experience.
+
+# Server
+
+## Secure your test and staging environments
+
+- Limit http access by IP addresses : Very secure though can be complicated with many people on the project / client and IP addresses that change often (some ISPs assign you a new IP every time you restart your computer). This can lead to user's fatigue and have the opposite effect to that desired.
+- Set up Basic Access Authentication with .htaccess and .htpasswd. This is not perfect (it's called basic for a reason) but better than nothing for test / staging. /!\ Must be used over https [Basic Access Authentication's wiki](https://en.wikipedia.org/wiki/Basic_access_authentication#Security).
+
+## Limit ssh access
+
+Limit ssh accesses to your environments (test, staging, prod) by IP addresses when possible or at least with strong passwords or pem files / different accounts for each person that need to access ssh. That way you can log what each account does and understand what happened if a problem arises.
+
+### Don't share ssh pem file / ssh password on slack, basecamp, platforms that anybody could access / be compromised
+
+Same as the password part, send pem file through a secure password manager or encrypted emails.
+
+### Least Privilege rules
+
+- Have one user for the web server (usually www-data or apache on Apache server, www-data on nginx) and one to update website (that you will use for git)
+- Don't use root account directly
+- Sudo only when absolutely needed and not to install dependencies (through composer, npm, ...) nor for git (git clone, git pull, ...)
+- Follow WordPress recommendations for permissions : https://wordpress.org/support/article/hardening-wordpress/#file-permissions . Usually 644 for files and 755 for folders (except for wp-config.php that should be 400 or 440) :
+
+```
+For Directories:
+
+find /path/to/your/wordpress/install/ -type d -exec chmod 755 {} \;
+
+For Files:
+
+find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
+```
