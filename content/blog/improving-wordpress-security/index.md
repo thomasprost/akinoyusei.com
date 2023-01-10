@@ -70,7 +70,7 @@ I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) 
 
 ## Avoid sending clear text passwords to clients by emails / slack / platforms to manage projects
 
-I see it way too often but it should be avoided whenever possible (or send a clear password for a new WordPress user account and force your client to reset it). Use a password manager to share passwords. I use and trust Bitwarden though you can check https://www.privacyguides.org/passwords/ for secure recommendations.
+I see it way too often but it should be avoided whenever possible (or send a clear password for a new WordPress user account and force your client to reset it). Use a password manager to share passwords. I use and trust Bitwarden though you can check [Privacy guides](https://www.privacyguides.org/passwords/) for secure recommendations.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe)
 
@@ -87,7 +87,7 @@ The first part is very important of course but the second part is often forgotte
 What works for me :
 
 - Have 2 or even better 3 environments : test, staging and production.
-- If I can, set up the project through Bedrock (https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise.
+- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise.
 - Update WordPress and plugins on test. Check that unit tests pass and check with clients that everything is ok. Commit the changes and create a release branch for staging server. Check, check, check with client. Merge release into main. Update production.
   /!\ For own code changes, use pull requests if working in a team.
 
