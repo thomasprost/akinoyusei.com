@@ -120,11 +120,11 @@ You can check [Patchstack database](https://patchstack.com/database/), [Patchsta
 
 Limit ssh accesses to your environments (test, staging, prod) by IP addresses when possible or at least with strong passwords or pem files / different accounts for each person that need to access ssh. That way you can log what each account does and understand what happened if a problem arises.
 
-### Don't share ssh pem file / ssh password on slack, basecamp, platforms that anybody could access / be compromised
+## Don't share ssh pem file / ssh password on slack, basecamp, platforms that anybody could access / be compromised
 
 Same as the password part, send pem file through a secure password manager or encrypted emails.
 
-### Least Privilege rules
+## Least Privilege rules
 
 - Have one user for the web server (usually www-data or apache on Apache server, www-data on nginx) and one to update website (that you will use for git)
 - Don't use root account directly
@@ -140,3 +140,5 @@ For Files:
 
 find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
 ```
+
+Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything.
