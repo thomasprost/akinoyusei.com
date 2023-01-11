@@ -38,6 +38,10 @@ You can find here a list of steps to improve security on a WordPress website. Mo
 It might seem obvious, but many WordPress sites that I have seen from clients are way behind on WordPress updates.
 On small websites, it's good to have automatic updates activated though on mid to big websites that is not a good idea. Updating WordPress and plugins can break some of the features / design of your site and lead to bad UX and loss of revenues for e-commerce websites. See [The "a bit" more technical part] for a better way to manage these. If this part is too complicated, have at least two websites (test and production), update plugins / WordPress through wp-admin, test. If everything is ok, back up production (See back up part), update production.
 
+## Keep PHP updated
+
+PHP being a popular programming language, it is heavily targeted. Keeping it updated is important to receive security updates. Good host providers give you the possibility to change PHP version in your host settings. Make backups (website code + database) before changing the PHP version (See backup section for more info).
+
 ## Avoid adding too many plugins
 
 The more plugins you add to your website, the more vulnerabilities come with them (plus website gets slower and harder to maintain). Avoid plugins that are not maintained often or seem shady. Keep in mind that even very famous plugins get hacked (the more popular, the more interesting to exploit for a hacker). See [The "a bit" more technical part] for some solutions to avoid this problem. Finally, use a trusted marketplace like [WordPress](https://wordpress.org/plugins/) one to download your plugins.
