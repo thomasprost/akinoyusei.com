@@ -16,7 +16,6 @@ tags:
 # Introduction
 
 You can find here a list of steps to improve security on a WordPress website. Most are simple to implement, though some might be a bit more time consuming / meant for tech-savvy people. This is not a complete review of all possibilities to secure a WordPress site, just knowledge that I have gathered over the years developing, hosting and maintaining websites for a wide range of clients. I am always surprised by how security is a second-class citizen in many projects and, hopefully, this article will help some developers and businesses better secure their WordPress website.
-**This is not an advertorial, all tools, plugins, ... cited here are ones that I have been using for a long time and trust.**
 
 ## Target
 
@@ -68,6 +67,8 @@ I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) 
 - Force 2FA
 - Change User ID 1 : Useful if you don't delete the default admin account (whom has ID 1 in database and can be targeted by scripts)
 - ...
+
+[To understand why changing the salt is important.](https://www.okta.com/blog/2019/03/what-are-salted-passwords-and-password-hashing/)
 
 ## Avoid sending clear text passwords to clients by emails / slack / platforms to manage projects
 
