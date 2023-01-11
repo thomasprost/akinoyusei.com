@@ -1,5 +1,5 @@
 ---
-title: Improving your WordPress site security
+title: Ameliorer la securite de son site Wordpress
 date: 2023-01-10
 image: ./code.jpg
 description: Enhancing wordpress security for developers and businesses
