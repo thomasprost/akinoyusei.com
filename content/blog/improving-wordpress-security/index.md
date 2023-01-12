@@ -61,7 +61,7 @@ Whether you set it up directly on the server (Let's Encrypt or through another c
 
 By changing the url of your website's admin, you can mitigate brute force attacks that would target wp-login and wp-admin. Usually I use : [WPS Hide Login](https://wordpress.org/plugins/wps-hide-login/) for this.
 
-## Limit the number of login failed attempts (and other useful features)
+## Limit the number of failed login attempts (and other useful features)
 
 One important thing to add to the wordpress login is to limit the number of failed attempts. It greatly reduces the risk of scripts brute forcing your login.
 I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) for this as well as to :
@@ -96,6 +96,7 @@ What works for me :
 - Have 2 or even better 3 environments : test, staging and production.
 - If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise.
 - Update WordPress and plugins on test. Check that unit tests pass and check with clients that everything is ok. Commit the changes and create a release branch for staging server. Check, check, check with client. Merge release into main. Update production.
+- For a better application lifecycle, implement a CI/CD strategy with your team / client.
   /!\ For own code changes, use pull requests if working in a team.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe) | Part 2
