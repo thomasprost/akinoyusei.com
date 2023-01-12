@@ -53,27 +53,26 @@ Plus vous ajoutez de plugins à votre site Web, plus ils seront une porte d'entr
 
 Que vous le mettiez en place directement sur le serveur (avec Let's Encrypt ou une autre autorité de certification), automatiquement sur votre hébergement ou grâce à une extension WordPress.
 
-## Secure WordPress' admin dashboard
+## Sécuriser le tableau de bord de WordPress
 
-- Create one account per user that need to log in to the admin.
-- Don't use the default "admin" account and delete it from the WordPress admin.
-- Give proper permissions to each user (not everybody needs to be Administrator).
-- Each user should have a complex and long password (that should be unique to the site) and use a password manager to store it.
+- Créez un compte par utilisateur devant se connecter à l'administration.
+- N'utilisez pas le compte "admin" par défaut et supprimez-le de l'administration de WordPress.
+- Donnez les permissions appropriées à chaque utilisateur (tout le monde n'a pas besoin d'être Administrateur).
+- Chaque utilisateur doit avoir un mot de passe complexe et long (qui doit être unique pour ce site là) et utiliser un gestionnaire de mots de passe pour le stocker.
 
-## Change the url of your admin section
+## Changer l'url de votre section d'administration
 
-By changing the url of your website's admin, you can mitigate brute force attacks that would target wp-login and wp-admin. Usually I use : [WPS Hide Login](https://wordpress.org/plugins/wps-hide-login/) for this.
+En changeant l'url de l'admin de votre site, vous pouvez limiter les attaques par force brute qui viseraient wp-login et wp-admin. J'utilise généralement : [WPS Hide Login](https://wordpress.org/plugins/wps-hide-login/) pour ça.
 
-## Limit the number of login failed attempts (and other useful features)
+## Limiter le nombre de tentatives de connexion échouées (et autres fonctionnalités utiles)
 
-One important thing to add to the wordpress login is to limit the number of failed attempts. It greatly reduces the risk of scripts brute forcing your login.
-I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) for this as well as to :
+Une chose importante à ajouter au login wordpress est de limiter le nombre de tentatives échouées. Cela réduit considérablement les tentatives par force brute sur la page login.
+J'aime bien [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) pour ça ainsi que pour :
 
-- Change Database Prefix (limits some SQL injection attacks)
-- Change WordPress Salts (Can be changed in wp-config.php with [WordPress.org secret-key service](https://api.wordpress.org/secret-key/1.1/salt/))
-- Force 2FA
-- Change User ID 1 : Useful if you don't delete the default admin account (whom has ID 1 in database and can be targeted by scripts)
-- ...
+- Changer le préfixe de la base de données (limite certaines attaques par injection SQL).
+- Changer le salage (salt) de WordPress (peut être changé dans wp-config.php avec [WordPress.org secret-key service](https://api.wordpress.org/secret-key/1.1/salt/))
+- Forcer la double authentification
+- Changer l'ID de l'utilisateur 1 : Utile si vous ne supprimez pas le compte admin par défaut (qui a l'ID 1 dans la base de données et peut être ciblé par des scripts automatiques).
 
 [To understand why changing the salt is important.](https://www.okta.com/blog/2019/03/what-are-salted-passwords-and-password-hashing/)
 
