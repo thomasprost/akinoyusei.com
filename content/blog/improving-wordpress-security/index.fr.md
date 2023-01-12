@@ -16,33 +16,34 @@ tags:
 # Introduction
 
 Au fil des années, je suis toujours surpris de constater que la sécurité d'un site web reste au second plan par de nombreuses TPE et PME. Les entreprises ne mesurent généralement pas le danger et ne savent pas vraiment par où commencer en matière de sécurité.
-Dans cet article, j'ai essayé de dresser une liste pour aider a améliorer la sécurité d'un site Web WordPress. Meme si la plupart des points sont simples à mettre en œuvre, la deuxieme partie de l'article se concentrent sur des solutions plutot destinees a des developpeurs.
+Dans cet article, j'ai essayé de dresser une liste pour aider à améliorer la sécurité d'un site Web WordPress. Même si la plupart des points sont simples à mettre en œuvre, la deuxième partie de l'article se concentre sur des solutions plutôt destinées à des développeurs.
 Il ne s'agit pas d'une revue complète de toutes les possibilités de sécurisation d'un site WordPress, mais simplement des connaissances que j'ai accumulées au fil des années de développement, d'hébergement et de maintenance de sites pour un large éventail de clients. J'espère que cet article aidera certains développeurs et entreprises à mieux sécuriser leur site WordPress.
 
 ## Cible
 
 - Les non technicien·nes qui souhaitent en savoir plus sur la sécurité de WordPress et sur la manière de la mettre en œuvre.
-- Les développeurs qui créent et gerent des sites WordPress de petite et moyenne taille.
-- Les entreprises qui créent et gerent leurs propres sites Web.
+- Les développeurs qui créent et gèrent des sites WordPress de petite et moyenne taille.
+- Les entreprises qui créent et gèrent leurs propres sites Web.
 - Les entreprises qui travaillent avec des développeurs (en tant que freelance ou par le biais d'agences) et qui souhaitent mieux comprendre certains éléments clés de la sécurité de WordPress.
 
 ## Cet article ne traitera pas de
 
-- Cybersécurité plus avancé et failles pouvant impacter WordPress (XSS, Injection, Mauvaise gestion de l'authentification, ...) : Voir [Owasp Top 10 risks](https://owasp.org/www-project-top-ten/) (en anglais) si vous vous voulez en connaître plus sur le sujet.
+- Cybersécurité plus avancée et failles pouvant impacter WordPress (XSS, Injection, Mauvaise gestion de l'authentification, ...) : Voir [Owasp Top 10 risks](https://owasp.org/www-project-top-ten/) (en anglais) si vous voulez en connaître plus sur le sujet.
 - Autres frameworks que WordPress. Certains points peuvent être utilisés sur n'importe quel framework et langage (permissions, https, ...) mais ils sont surtout destinés à WordPress sur cet article.
-- Héberger et sécuriser WordPress sur Docker, Kubernetes, Terraform, AWS ... J'utilise Docker pour le développement et je configure souvent des serveurs mais je ne suis pas administrateur système et ne maitrise pas assez cette partie vous vraiment vous etre utile.
+- Héberger et sécuriser WordPress sur Docker, Kubernetes, Terraform, AWS ... J'utilise Docker pour le développement et je configure souvent des serveurs mais je ne suis pas administrateur système et ne maîtrise pas assez cette partie vous vraiment vous être utile.
 - DevSecOps : Même chose que le point précédent, j'aime me documenter sur ce sujet mais ne suis pas assez compétent pour en faire un article.
 
-# Security for everybody
+# La sécurité pour tous
 
-## Keep WordPress and your plugins updated
+## Gardez WordPress et ses plugins à jour
 
-It might seem obvious, but many WordPress sites that I have seen from clients are way behind on WordPress updates.
-On small websites, it's good to have automatic updates activated though on mid to big websites that is not a good idea. Updating WordPress and plugins can break some of the features / design of your site and lead to bad UX and loss of revenues for e-commerce websites. See [The "a bit" more technical part] for a better way to manage these. If this part is too complicated, have at least two websites (test and production), update plugins / WordPress through wp-admin, test. If everything is ok, back up production (See back up part), update production.
+Cela peut paraître évident, mais de nombreux sites vus chez des clients sont très en retard sur leurs mises à jour WordPress.
+Sur les petits sites, là où il peut être bon d'activer les mises à jour automatiques, mais sur les plus gros sites, ce n'est jamais une bonne idée.
+La mise à jour de WordPress et des plugins peut casser certaines des fonctionnalités / le design du site et conduire à une mauvaise UX et à une perte de revenus pour les sites de e-commerce. Voir [La partie "un peu" plus technique] pour une meilleure façon de gérer ces éléments. Si cette partie est trop compliquée, ayez au moins deux sites web (test et production), mettez à jour les plugins / WordPress via wp-admin, testez. Si tout va bien, sauvegardez la production (voir la partie sauvegarde), mettez à jour la production.
 
-## Keep PHP updated
+## Gardez PHP à jour
 
-PHP being a popular programming language, it is heavily targeted. Keeping it updated is important to receive security updates. Good host providers give you the possibility to change PHP version in your host settings. Make backups (website code + database) before changing the PHP version (See backup section for more info).
+PHP étant un langage de programmation populaire, c'est une cible attrayante pour un hackeur. Il est important de monter de version régulièrement pour recevoir les mises à jour de sécurité. Les bons d'hébergeurs vous donnent la possibilité de changer la version de PHP dans leurs paramètres. Faites des sauvegardes (code du site et base de données) avant de changer la version de PHP (voir la section sur les sauvegardes pour plus d'informations).
 
 ## Avoid adding too many plugins
 
