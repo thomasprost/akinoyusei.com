@@ -15,7 +15,8 @@ tags:
 
 # Introduction
 
-You can find here a list of steps to improve security on a WordPress website. Most are simple to implement, though some might be a bit more time consuming / meant for tech-savvy people. This is not a complete review of all possibilities to secure a WordPress site, just knowledge that I have gathered over the years developing, hosting and maintaining websites for a wide range of clients. I am always surprised by how security is a second-class citizen in many projects and, hopefully, this article will help some developers and businesses better secure their WordPress website.
+I am always surprised by how security is a second-class citizen for many companies. Businesses usually don't measure the danger and don't really know where to start security wise. Here, I tried compiling a list of steps to improve security on a WordPress website. Most are simple to implement, though some might be a bit more time consuming / meant for tech-savvy people.
+This is not a complete review of all possibilities to secure a WordPress site, just knowledge that I have gathered over the years developing, hosting and maintaining websites for a wide range of clients. Hopefully, this article will help some developers and businesses better secure their WordPress website.
 
 ## Target
 

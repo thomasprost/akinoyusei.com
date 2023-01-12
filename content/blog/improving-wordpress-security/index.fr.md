@@ -15,14 +15,16 @@ tags:
 
 # Introduction
 
-You can find here a list of steps to improve security on a WordPress website. Most are simple to implement, though some might be a bit more time consuming / meant for tech-savvy people. This is not a complete review of all possibilities to secure a WordPress site, just knowledge that I have gathered over the years developing, hosting and maintaining websites for a wide range of clients. I am always surprised by how security is a second-class citizen in many projects and, hopefully, this article will help some developers and businesses better secure their WordPress website.
+Au fil des annees, je suis toujours surpris de constater que la sécurité d'un site web est mise au second plan par de nombreuses TPE et PME. Les entreprises ne mesurent généralement pas le danger et ne savent pas vraiment par où commencer en matière de sécurité.
+Dans cet article, j'ai essayé de dresser une liste pour aider a améliorer la sécurité d'un site Web WordPress. Meme si la plupart des points sont simples à mettre en œuvre, la deuxieme partie de l'article se concentrent sur des solutions plutot destinees a des developpeurs.
+Il ne s'agit pas d'une revue complète de toutes les possibilités de sécurisation d'un site WordPress, mais simplement des connaissances que j'ai accumulées au fil des années de développement, d'hébergement et de maintenance de sites pour un large éventail de clients. J'espère que cet article aidera certains développeurs et entreprises à mieux sécuriser leur site WordPress.
 
-## Target
+## Cible
 
-- Non tech people who wish to learn more about WordPress security and how to implement it.
-- Developers making and maintaining small to medium sized WordPress websites.
-- Businesses that created and maintain their own websites.
-- Businesses that work with developers (as freelance or through agencies) and want to understand some key parts of WordPress security.
+- Les non technicien·nes qui souhaitent en savoir plus sur la sécurité de WordPress et sur la manière de la mettre en œuvre.
+- Les développeurs qui créent et gerent des sites WordPress de petite et moyenne taille.
+- Les entreprises qui créent et gerent leurs propres sites Web.
+- Les entreprises qui travaillent avec des développeurs (en tant que freelance ou par le biais d'agences) et qui souhaitent mieux comprendre certains éléments clés de la sécurité de WordPress.
 
 ## What this article won't deal with
 
