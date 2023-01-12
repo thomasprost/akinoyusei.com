@@ -15,7 +15,7 @@ tags:
 
 # Introduction
 
-Au fil des annees, je suis toujours surpris de constater que la sécurité d'un site web est mise au second plan par de nombreuses TPE et PME. Les entreprises ne mesurent généralement pas le danger et ne savent pas vraiment par où commencer en matière de sécurité.
+Au fil des années, je suis toujours surpris de constater que la sécurité d'un site web reste au second plan par de nombreuses TPE et PME. Les entreprises ne mesurent généralement pas le danger et ne savent pas vraiment par où commencer en matière de sécurité.
 Dans cet article, j'ai essayé de dresser une liste pour aider a améliorer la sécurité d'un site Web WordPress. Meme si la plupart des points sont simples à mettre en œuvre, la deuxieme partie de l'article se concentrent sur des solutions plutot destinees a des developpeurs.
 Il ne s'agit pas d'une revue complète de toutes les possibilités de sécurisation d'un site WordPress, mais simplement des connaissances que j'ai accumulées au fil des années de développement, d'hébergement et de maintenance de sites pour un large éventail de clients. J'espère que cet article aidera certains développeurs et entreprises à mieux sécuriser leur site WordPress.
 
@@ -26,12 +26,12 @@ Il ne s'agit pas d'une revue complète de toutes les possibilités de sécurisat
 - Les entreprises qui créent et gerent leurs propres sites Web.
 - Les entreprises qui travaillent avec des développeurs (en tant que freelance ou par le biais d'agences) et qui souhaitent mieux comprendre certains éléments clés de la sécurité de WordPress.
 
-## What this article won't deal with
+## Cet article ne traitera pas de
 
-- Advanced cyber security topics that can impact WordPress (XSS, Injection, Broken Authentication, ...) : See [Owasp Top 10 risks](https://owasp.org/www-project-top-ten/) if you are curious about this subject.
-- Other frameworks than WordPress. Some points can be used on any framework and language (permissions, https, ...) but it is moslty meant for WordPress.
-- Hosting and securing WordPress on Docker, Kubernetes, Terraform, AWS ... I use Docker for development and set up servers often though I am not a sysadmin and don't know enough to give useful information on this part.
-- DevSecOps : Same as previous point, I like to read about it though I am not competent enough for this article.
+- Cybersécurité plus avancé et failles pouvant impacter WordPress (XSS, Injection, Mauvaise gestion de l'authentification, ...) : Voir [Owasp Top 10 risks](https://owasp.org/www-project-top-ten/) (en anglais) si vous vous voulez en connaître plus sur le sujet.
+- Autres frameworks que WordPress. Certains points peuvent être utilisés sur n'importe quel framework et langage (permissions, https, ...) mais ils sont surtout destinés à WordPress sur cet article.
+- Héberger et sécuriser WordPress sur Docker, Kubernetes, Terraform, AWS ... J'utilise Docker pour le développement et je configure souvent des serveurs mais je ne suis pas administrateur système et ne maitrise pas assez cette partie vous vraiment vous etre utile.
+- DevSecOps : Même chose que le point précédent, j'aime me documenter sur ce sujet mais ne suis pas assez compétent pour en faire un article.
 
 # Security for everybody
 
