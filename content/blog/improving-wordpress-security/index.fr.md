@@ -35,23 +35,23 @@ Il ne s'agit pas d'une revue complète de toutes les possibilités de sécurisat
 
 # La sécurité pour tous
 
-## Gardez WordPress et ses plugins à jour
+## Garder WordPress et ses plugins à jour
 
 Cela peut paraître évident, mais de nombreux sites vus chez des clients sont très en retard sur leurs mises à jour WordPress.
 Sur les petits sites, là où il peut être bon d'activer les mises à jour automatiques, mais sur les plus gros sites, ce n'est jamais une bonne idée.
 La mise à jour de WordPress et des plugins peut casser certaines des fonctionnalités / le design du site et conduire à une mauvaise UX et à une perte de revenus pour les sites de e-commerce. Voir [La partie "un peu" plus technique] pour une meilleure façon de gérer ces éléments. Si cette partie est trop compliquée, ayez au moins deux sites web (test et production), mettez à jour les plugins / WordPress via wp-admin, testez. Si tout va bien, sauvegardez la production (voir la partie sauvegarde), mettez à jour la production.
 
-## Gardez PHP à jour
+## Garder PHP à jour
 
 PHP étant un langage de programmation populaire, c'est une cible attrayante pour un hackeur. Il est important de monter de version régulièrement pour recevoir les mises à jour de sécurité. Les bons d'hébergeurs vous donnent la possibilité de changer la version de PHP dans leurs paramètres. Faites des sauvegardes (code du site et base de données) avant de changer la version de PHP (voir la section sur les sauvegardes pour plus d'informations).
 
-## Avoid adding too many plugins
+## Limiter le nombre de plugins
 
-The more plugins you add to your website, the more vulnerabilities come with them (plus website gets slower and harder to maintain). Avoid plugins that are not maintained often or seem shady. Keep in mind that even very famous plugins get hacked (the more popular, the more interesting to exploit for a hacker). See [The "a bit" more technical part] for some solutions to avoid this problem. Finally, use a trusted marketplace like [WordPress](https://wordpress.org/plugins/) one to download your plugins.
+Plus vous ajoutez de plugins à votre site Web, plus ils seront une porte d'entrée aux vulnérabilités (et plus le site Web deviendra lent et difficile à maintenir). Évitez les plugins qui sont rarement mis à jour ou semblent louches. Gardez à l'esprit que même les plugins les plus célèbres sont piratés (plus ils sont populaires, plus ils sont intéressants à exploiter pour un hackeur). Voir [La partie "un peu" plus technique] pour quelques solutions permettant de limiter ce problème. Enfin, privilégiez un marketplace de confiance comme celui de [WordPress](https://wordpress.org/plugins/) pour télécharger vos plugins.
 
-## Use https
+## Utiliser https
 
-Whether you set it up directly on the server (Let's Encrypt or through another certificate authority), automatically with your host or via a WordPress extension.
+Que vous le mettiez en place directement sur le serveur (avec Let's Encrypt ou une autre autorité de certification), automatiquement sur votre hébergement ou grâce à une extension WordPress.
 
 ## Secure WordPress' admin dashboard
 
