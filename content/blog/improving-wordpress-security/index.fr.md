@@ -74,32 +74,35 @@ J'aime bien [iThemes Security](https://fr.wordpress.org/plugins/better-wp-securi
 - Forcer la double authentification
 - Changer l'ID de l'utilisateur 1 : Utile si vous ne supprimez pas le compte admin par défaut (qui a l'ID 1 dans la base de données et peut être ciblé par des scripts automatiques).
 
-[To understand why changing the salt is important.](https://www.okta.com/blog/2019/03/what-are-salted-passwords-and-password-hashing/)
+[Pour comprendre l'intérêt du salage](https://www.okta.com/blog/2019/03/what-are-salted-passwords-and-password-hashing/)
 
-## Avoid sending clear text passwords to clients by emails / slack / platforms to manage projects
+## Eviter d'envoyer des mots de passe en clair par emails / slack / plateformes de gestion de projet.
 
-I see it way too often but it should be avoided whenever possible (or send a clear password for a new WordPress user account and force your client to reset it). Use a password manager to share passwords. I use and trust Bitwarden though you can check [Privacy guides](https://www.privacyguides.org/passwords/) for secure recommendations.
-Sharing sensitive data with encrypted emails (I use [ProtonMail](https://proton.me/mail)) is also a good option.
+Encore quelque chose que je vois beaucoup trop souvent mais qui devrait être éviter au maximum (sinon envoyer le mot de passe de son compte à votre client et forcer le à en générer un nouveau).
 
-## Make backups ... and download them !!! (or upload them somewhere safe)
+- Utilisez un gestionnaire de mot de passe pour les partager. J'utilise Bitwarden, mais vous pouvez consulter le [guide de confidentialité](https://www.privacyguides.org/passwords/) pour des recommandations sécurisées.
+- Sinon partagez des données sensibles par le biais d'emails chiffrés (j'utilise [ProtonMail](https://proton.me/mail))
 
-The first part is very important of course but the second part is often forgotten in the process of a backup policy. Just creating a backup is not enough, you need to download it or upload it somewhere safe so as to be able to access it at a later time. If backups live on your server and it gets compromised, the backups become useless. A few options :
+## Sauvegarder ses données... et les télécharger !!! (ou les uploader dans un endroit sûr)
 
-- Some web hosts provide automatic backups (usually once a day and keep them for 1~2 weeks)
-- Set up a plugin to automatically backup and upload it to the cloud (S3, Proton drive, ...)
-- See other option in the "a bit" more technical part
+La première partie reste évidemment primordiale mais la seconde est beaucoup trop souvent mise de côté. Le simple fait de générer des sauvegardes ne peut pas suffire à une stratégie de sauvegarde sécurisée et cohérente. Téléchargez vos sauvegardes (NAS, …) ou uploadez-les dans un endroit sûr pour pouvoir y accéder plus tard. Si vos sauvegardes restent sur le même serveur que votre site web et que celui-ci est compromis, vos sauvegardes n'auront aucun intérêt.
+Quelques solutions :
 
-# The "a bit" more technical part
+- Certains hébergeurs font des sauvegardes automatiques (généralement une fois par jour et les supprime au bout d'une ou 2 semaines)
+- Installez un plugin qui s'occupera des sauvegardes et de l'upload dans le cloud (S3, Proton drive, ...)
+- Voir les autres options dans la partie "Un peu" plus technique
 
-## Keep WordPress and your plugins updated | Part 2
+# la partie "Un peu" plus technique
 
-What works for me :
+## Garder WordPress et ses plugins à jour | Partie 2
 
-- Have 2 or even better 3 environments : test, staging and production.
-- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise.
-- Update WordPress and plugins on test. Check that unit tests pass and check with clients that everything is ok. Commit the changes and create a release branch for staging server. Check, check, check with client. Merge release into main. Update production.
-- For a better application lifecycle, implement a CI/CD strategy with your team / client.
-  /!\ For own code changes, use pull requests if working in a team.
+Ce qui marche pour moi :
+
+- 2 ou mieux, 3 environnements : test, preprod et production.
+- Si j'ai la possibilite, j'utilise [Bedrock](https://roots.io/bedrock/) pour avoir une structure plus securise et une gestion des mises a jour plus simple (Entre autres avantages). Helas, ce n'est pas toujours possible lors de projets de maintenances ou de serveurs imposes par le client. Lorsque je n'utilise pas Bedrock (ou une option similaire), je ne versionne pas WordPress, mais je versionne généralement les plugins tiers pour garder trace des changements et revenir facilement en arrière en cas de problème (Je sais que beaucoup de devs ne versionnent pas les plugins tiers).
+- Mettez à jour WordPress et les plugins sur le site test. Vérifiez que les tests unitaires passent et vérifier avec les clients que tout va bien. Validez les changements et créez une branche release pour le serveur de preprod. Vérifier, vérifier, vérifier avec le client. Fusionner la version dans la version principale. Mettre à jour la production.
+- Pour un meilleur cycle de vie des applications, mettez en place une stratégie CI/CD avec votre équipe / client.
+  /Pour vos propres modifications de code, utilisez les demandes de retrait si vous travaillez en équipe.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe) | Part 2
 

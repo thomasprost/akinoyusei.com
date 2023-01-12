@@ -82,7 +82,7 @@ Sharing sensitive data with encrypted emails (I use [ProtonMail](https://proton.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe)
 
-The first part is very important of course but the second part is often forgotten in the process of a backup policy. Just creating a backup is not enough, you need to download it or upload it somewhere safe so as to be able to access it at a later time. If backups live on your server and it gets compromised, the backups become useless. A few options :
+The first part is very important of course but the second part is often forgotten in the process of a backup policy. Just creating a backup is not enough, you need to download it (NAS, …) or upload it somewhere safe so as to be able to access it at a later time. If backups live on your server and it gets compromised, the backups become useless. A few solutions :
 
 - Some web hosts provide automatic backups (usually once a day and keep them for 1~2 weeks)
 - Set up a plugin to automatically backup and upload it to the cloud (S3, Proton drive, ...)
@@ -95,7 +95,7 @@ The first part is very important of course but the second part is often forgotte
 What works for me :
 
 - Have 2 or even better 3 environments : test, staging and production.
-- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise.
+- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise (I know that many developers don' version third party plugins).
 - Update WordPress and plugins on test. Check that unit tests pass and check with clients that everything is ok. Commit the changes and create a release branch for staging server. Check, check, check with client. Merge release into main. Update production.
 - For a better application lifecycle, implement a CI/CD strategy with your team / client.
   /!\ For own code changes, use pull requests if working in a team.
