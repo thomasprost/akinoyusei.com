@@ -98,58 +98,58 @@ Quelques solutions :
 
 Ce qui marche pour moi :
 
-- 2 ou mieux, 3 environnements : test, preprod et production.
+- 2 ou mieux, 3 environnements : test, préprod et production.
 - Si j'ai la possibilite, j'utilise [Bedrock](https://roots.io/bedrock/) pour avoir une structure plus securise et une gestion des mises a jour plus simple (Entre autres avantages). Helas, ce n'est pas toujours possible lors de projets de maintenances ou de serveurs imposes par le client. Lorsque je n'utilise pas Bedrock (ou une option similaire), je ne versionne pas WordPress, mais je versionne généralement les plugins tiers pour garder trace des changements et revenir facilement en arrière en cas de problème (Je sais que beaucoup de devs ne versionnent pas les plugins tiers).
-- Mettez à jour WordPress et les plugins sur le site test. Vérifiez que les tests unitaires passent et vérifier avec les clients que tout va bien. Validez les changements et créez une branche release pour le serveur de preprod. Vérifier, vérifier, vérifier avec le client. Fusionner la version dans la version principale. Mettre à jour la production.
+- Mettez à jour WordPress et les plugins sur le site test. Vérifiez que les tests unitaires passent et vérifiez avec les clients que tout va bien. Validez les changements et créez une branche release pour le serveur de préprod. Checkez, checkez, checkez avec le client. Fusionnez la branche dans la branche main. Mettez à jour la production.
 - Pour un meilleur cycle de vie des applications, mettez en place une stratégie CI/CD avec votre équipe / client.
-  /Pour vos propres modifications de code, utilisez les demandes de retrait si vous travaillez en équipe.
+  /!\ Pour vos code maison, utilisez les pull requests si vous travaillez en équipe.
 
-## Make backups ... and download them !!! (or upload them somewhere safe) | Part 2
+## Sauvegarder ses données... et les télécharger !!! (ou les uploader dans un endroit sûr) | Partie 2
 
-- Same as using a plugin for backuping but without a plugin :). Set up a script (sh or bash depending on what you prefer) to create a backup of the code and the database. In the script, send the backups to the cloud service selected and automatically delete backups after X days. Set up a cron job (job that run periodically) to run your script every day at midnight / X hours / x days. [Crontab Generator](https://crontab-generator.org/) is very helpful for this part.
+- Idem que la section qui conseillait d'utiliser un plugin pour la sauvegarde mais sans le plugin :). Mettez en place un script (sh ou bash selon ce que vous préférez) pour créer une sauvegarde du code et de la base de données. Dans le script, envoyez les sauvegardes vers le service cloud sélectionné et supprimez automatiquement les sauvegardes après X jours. Configurez une cron job (tâche qui s'exécute périodiquement) pour exécuter votre script tous les jours à minuit / X heures / x jours. [Crontab Generator](https://crontab-generator.org/) est très utile pour cette partie.
 
-## Code features whenever you can
+## Codez des fonctionnalités dès que vous le pouvez
 
-This is linked to the previous point. Whenever you can, develop the functions you need without relying on plugins. WordPress (and Woocommerce) hooks, actions and filters facilitate extending WordPress.
+Idem au précédent point. Chaque fois que vous le pouvez, développez les fonctions dont vous avez besoin sans vous appuyer sur des plugins. Les hooks, actions et filtres de WordPress (et Woocommerce) facilitent grandement l'extension de WordPress. Vous gagnerez en flexibilité, facilité de maintenance et rapidité de site.
 
-## Stay updated with WordPress vulnerabilities
+## Restez à jour au sujet des vulnérabilités de WordPress
 
-You can check [Patchstack database](https://patchstack.com/database/), [Patchstack latest vulnerabilities updates](https://patchstack.com/articles/wordpress-vulnerability/) or [Sucuri's blog](https://blog.sucuri.net/) to get updated on WordPress vulnerabilities.
+Vous pouvez consulter [la base de données Patchstack](https://patchstack.com/database/), [les dernières mises à jour des vulnérabilités Patchstack](https://patchstack.com/articles/wordpress-vulnerability/) ou [le blog de Sucuri](https://blog.sucuri.net/) pour vous tenir au courant des vulnérabilités de WordPress.
 
-## Add Two-factor Authentication
+## Ajoutez la double authentification
 
-[WP 2FA](https://wordpress.org/plugins/wp-2fa/) or [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) seem to be good options in my experience.
+[WP 2FA](https://wordpress.org/plugins/wp-2fa/) ou [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) sont de bonnes options selon mon expérience.
 
-# Server
+# Serveur
 
-## Secure your test and staging environments
+## Sécurisez vos environnements de test et de préprod
 
-- Limit http access by IP addresses : Very secure though can be complicated with many people on the project / client and IP addresses that change often (some ISPs assign you a new IP every time you restart your computer). This can lead to user's fatigue and have the opposite effect to that desired.
-- Set up Basic Access Authentication with .htaccess and .htpasswd. This is not perfect (it's called basic for a reason) but better than nothing for test / staging. /!\ Must be used over https [Basic Access Authentication's wiki](https://en.wikipedia.org/wiki/Basic_access_authentication#Security).
+- Limitez l'accès http par adresse IP : Très sûr mais peut vite se compliquer lorsque de nombreuses personnes sont sur le projet et que leurs adresses IP changent souvent (certains FAI vous attribuent une nouvelle IP chaque fois que vous redémarrez votre ordinateur). Cela peut entraîner une lassitude de l'utilisateur et avoir l'effet inverse à celui souhaité.
+- Mettez au moins en place une authentification d'accès de base Authentification d'accès de base avec .htaccess et .htpasswd. Ce n'est pas parfait (on parle pas d'authentification de base pour rien) mais c'est mieux que rien pour les tests et les préprods. /!\ Doit être mis en place sur https [wiki de l'authentification d'accès de base](https://en.wikipedia.org/wiki/Basic_access_authentication#Security).
 
-## Limit ssh access
+## Limitez les accès ssh
 
-Limit ssh accesses to your environments (test, staging, prod) by IP addresses when possible or at least with strong passwords or pem files / different accounts for each person that need to access ssh. That way you can log what each account does and understand what happened if a problem arises.
+Limitez les accès ssh à vos environnements (test, préprod, prod) par adresses IP si possible ou au moins avec des mots de passe forts ou des fichiers pem / des comptes différents pour chaque personne devant accéder au ssh. De cette façon, vous pouvez enregistrer ce que fait chaque compte et comprendre ce qui s'est passé si un problème survenait.
 
-## Don't share ssh pem file / ssh password on slack, basecamp, platforms that anybody could access / be compromised
+## Ne partagez pas le fichier ssh pem / le mot de passe ssh sur slack, basecamp, plateformes auxquelles n'importe qui pourrait accéder / être compromis.
 
-Same as the password part, send pem file through a secure password manager or encrypted emails.
+Comme pour le mot de passe, envoyez le fichier pem via un gestionnaire de mots de passe sécurisé ou des e-mails chiffrés.
 
-## Least Privilege rules
+## Principe de moindre privilège
 
-- Have one user for the web server (usually www-data or apache on Apache server, www-data on nginx) and one to update website (that you will use for git)
-- Don't use root account directly
-- Sudo only when absolutely needed and not to install dependencies (through composer, npm, ...) nor for git (git clone, git pull, ...)
-- Follow WordPress recommendations for permissions : https://wordpress.org/support/article/hardening-wordpress/#file-permissions . Usually 644 for files and 755 for folders (except for wp-config.php that should be 400 or 440) :
+- Ayez un utilisateur pour le serveur web (généralement www-data ou apache sur un serveur Apache, www-data sur nginx) et un autre pour la mise à jour du site web (que vous utiliserez pour git).
+- N'utilisez pas directement le compte root
+- Sudo seulement quand c'est absolument nécessaire et pas pour installer des dépendances (via composer, npm, ...) ni pour git (git clone, git pull, ...)
+- Suivez les recommandations de WordPress pour les permissions : https://wordpress.org/support/article/hardening-wordpress/#file-permissions . Généralement 644 pour les fichiers et 755 pour les dossiers (sauf pour wp-config.php qui doit être 400 ou 440) :
 
 ```
-For Directories:
+Pour les dossiers :
 
 find /path/to/your/wordpress/install/ -type d -exec chmod 755 {} \;
 
-For Files:
+Pour les fichiers :
 
 find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
 ```
 
-Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything.
+J'espère que ces solutions concrètes aideront les personnes se sentant un peu perdue dans la gestion et la sécurisation de leur site web WordPress. Je sais que le sujet est très vaste et que je n'ai pas tout couvert dans cet article (les logs notamment).

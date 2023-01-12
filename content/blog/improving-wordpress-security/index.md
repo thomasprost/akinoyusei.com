@@ -114,14 +114,14 @@ You can check [Patchstack database](https://patchstack.com/database/), [Patchsta
 
 ## Add Two-factor Authentication
 
-[WP 2FA](https://wordpress.org/plugins/wp-2fa/) or [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) seem to be good options in my experience.
+[WP 2FA](https://wordpress.org/plugins/wp-2fa/) or [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) are good options in my experience.
 
 # Server
 
 ## Secure your test and staging environments
 
 - Limit http access by IP addresses : Very secure though can be complicated with many people on the project / client and IP addresses that change often (some ISPs assign you a new IP every time you restart your computer). This can lead to user's fatigue and have the opposite effect to that desired.
-- Set up Basic Access Authentication with .htaccess and .htpasswd. This is not perfect (it's called basic for a reason) but better than nothing for test / staging. /!\ Must be used over https [Basic Access Authentication's wiki](https://en.wikipedia.org/wiki/Basic_access_authentication#Security).
+- Set up at least a Basic Access Authentication with .htaccess and .htpasswd. This is not perfect (it's called basic for a reason) but better than nothing for test / staging. /!\ Must be used over https [Basic Access Authentication's wiki](https://en.wikipedia.org/wiki/Basic_access_authentication#Security).
 
 ## Limit ssh access
 
@@ -131,7 +131,7 @@ Limit ssh accesses to your environments (test, staging, prod) by IP addresses wh
 
 Same as the password part, send pem file through a secure password manager or encrypted emails.
 
-## Least Privilege rules
+## Principle of least privilege
 
 - Have one user for the web server (usually www-data or apache on Apache server, www-data on nginx) and one to update website (that you will use for git)
 - Don't use root account directly
@@ -148,4 +148,4 @@ For Files:
 find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
 ```
 
-Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything.
+Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything (logging among other things).
