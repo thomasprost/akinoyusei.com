@@ -2,7 +2,7 @@
 title: Improving your WordPress site security
 date: 2023-01-10
 image: ./code.jpg
-description: Enhancing wordpress security for developers and businesses
+description: Enhancing WordPress security for developers and businesses
 icon: ../../../src/images/icons/wordpress.png
 category:
   - Development
@@ -20,9 +20,9 @@ This is not a complete review of all possibilities to secure a WordPress site, j
 
 ## Target
 
-- Non tech people who wish to learn more about WordPress security and how to implement it.
+- Non-tech people wishing to learn more about WordPress security and how to implement it.
 - Developers making and maintaining small to medium sized WordPress websites.
-- Businesses that created and maintain their own websites.
+- Businesses that created and are maintaiing their own websites.
 - Businesses that work with developers (as freelance or through agencies) and want to understand some key parts of WordPress security.
 
 ## What this article won't deal with
@@ -37,19 +37,26 @@ This is not a complete review of all possibilities to secure a WordPress site, j
 ## Keep WordPress and your plugins updated
 
 It might seem obvious, but many WordPress sites that I have seen from clients are way behind on WordPress updates.
-On small websites, it's good to have automatic updates activated though on mid to big websites that is not a good idea. Updating WordPress and plugins can break some of the features / design of your site and lead to bad UX and loss of revenues for e-commerce websites. See [The "a bit" more technical part] for a better way to manage these. If this part is too complicated, have at least two websites (test and production), update plugins / WordPress through wp-admin, test. If everything is ok, back up production (See back up part), update production.
+On small websites, it's good to have automatic updates activated though on mid to big websites that is not a good idea. Updating WordPress and plugins can break some of the features / design of your site and lead to bad UX and loss of revenues for e-commerce websites. See [The "a bit" more technical part] for a better way to manage these.
 
-## Keep PHP updated
+- If this part is too complicated, have at least two websites (test and production), update plugins / WordPress through wp-admin, test. If everything is ok, back up production (See back up part), update production.
 
-PHP being a popular programming language, it is heavily targeted. Keeping it updated is important to receive security updates. Good host providers give you the possibility to change PHP version in your host settings. Make backups (website code + database) before changing the PHP version (See backup section for more info).
+## Keep PHP upgraded and updated
+
+PHP being a popular programming language, it is also heavily targeted. Keeping it upgraded is important to receive security updates. Good host providers give you the possibility to change PHP version in your host settings. Make backups (website code + database) before changing the PHP version (See backup section for more info).
 
 ## Avoid adding too many plugins
 
-The more plugins you add to your website, the more vulnerabilities come with them (plus website gets slower and harder to maintain). Avoid plugins that are not maintained often or seem shady. Keep in mind that even very famous plugins get hacked (the more popular, the more interesting to exploit for a hacker). See [The "a bit" more technical part] for some solutions to avoid this problem. Finally, use a trusted marketplace like [WordPress](https://wordpress.org/plugins/) one to download your plugins.
+The more plugins you add to your website, the more vulnerabilities come with them (plus website gets slower and harder to maintain).
+
+- Avoid plugins that are not maintained often or seem shady.
+- Keep in mind that even very famous plugins get hacked (the more popular, the more interesting to exploit for a hacker). See [The "a bit" more technical part] for some solutions to avoid this problem.
+- Limit your website to the core features whenever you can.
+- Finally, use a trusted marketplace like [WordPress](https://wordpress.org/plugins/) one to download your plugins.
 
 ## Use https
 
-Whether you set it up directly on the server (Let's Encrypt or through another certificate authority), automatically with your host or via a WordPress extension.
+Whether you set it up directly on the server (Let's Encrypt or through another certificate authority), automatically with your host or via a WordPress extension, this is a must-have.
 
 ## Secure WordPress' admin dashboard
 
@@ -67,8 +74,8 @@ By changing the url of your website's admin, you can mitigate brute force attack
 One important thing to add to the wordpress login is to limit the number of failed attempts. It greatly reduces the risk of scripts brute forcing your login.
 I like [iThemes Security](https://fr.wordpress.org/plugins/better-wp-security/) for this as well as to :
 
-- Change Database Prefix (limits some SQL injection attacks)
-- Change WordPress Salts (Can be changed in wp-config.php with [WordPress.org secret-key service](https://api.wordpress.org/secret-key/1.1/salt/))
+- Change Database Prefix (limits some SQL script attacks)
+- Change WordPress Salts (Can also be changed in wp-config.php with [WordPress.org secret-key service](https://api.wordpress.org/secret-key/1.1/salt/))
 - Force 2FA
 - Change User ID 1 : Useful if you don't delete the default admin account (whom has ID 1 in database and can be targeted by scripts)
 - ...
@@ -82,11 +89,12 @@ Sharing sensitive data with encrypted emails (I use [ProtonMail](https://proton.
 
 ## Make backups ... and download them !!! (or upload them somewhere safe)
 
-The first part is very important of course but the second part is often forgotten in the process of a backup policy. Just creating a backup is not enough, you need to download it (NAS, …) or upload it somewhere safe so as to be able to access it at a later time. If backups live on your server and it gets compromised, the backups become useless. A few solutions :
+The first part is very important of course but the second part is often forgotten in the process of a backup policy. Just creating a backup is not enough, you need to download it (NAS, …) or upload it somewhere safe so as to be able to access it at a later time. If backups live on your server and it gets compromised, the backups become useless.
+A few solutions :
 
-- Some web hosts provide automatic backups (usually once a day and keep them for 1~2 weeks)
-- Set up a plugin to automatically backup and upload it to the cloud (S3, Proton drive, ...)
-- See other option in the "a bit" more technical part
+- Some web hosts provide automatic backups (usually once a day and keep them for 1~2 weeks).
+- Set up a plugin to automatically backup and upload it to the cloud (S3, Proton drive, ...).
+- See other option in the "a bit" more technical part.
 
 # The "a bit" more technical part
 
@@ -95,7 +103,7 @@ The first part is very important of course but the second part is often forgotte
 What works for me :
 
 - Have 2 or even better 3 environments : test, staging and production.
-- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise (I know that many developers don' version third party plugins).
+- If I can, set up the project through [Bedrock](https://roots.io/bedrock/) to have a more secure structure and easier way to manage updates. Not always possible when maintaining websites made by someone else / have limitations on a server set up by client. If not using Bedrock (or similar option), I don't version WordPress but usually I version third-party plugins to keep track of changes / easily roll back when bugs arise (I know that many developers don't version third party plugins).
 - Update WordPress and plugins on test. Check that unit tests pass and check with clients that everything is ok. Commit the changes and create a release branch for staging server. Check, check, check with client. Merge release into main. Update production.
 - For a better application lifecycle, implement a CI/CD strategy with your team / client.
   /!\ For own code changes, use pull requests if working in a team.
@@ -104,9 +112,9 @@ What works for me :
 
 - Same as using a plugin for backuping but without a plugin :). Set up a script (sh or bash depending on what you prefer) to create a backup of the code and the database. In the script, send the backups to the cloud service selected and automatically delete backups after X days. Set up a cron job (job that run periodically) to run your script every day at midnight / X hours / x days. [Crontab Generator](https://crontab-generator.org/) is very helpful for this part.
 
-## Code features whenever you can
+## Code features whenever you can | Avoid adding too many plugins
 
-This is linked to the previous point. Whenever you can, develop the functions you need without relying on plugins. WordPress (and Woocommerce) hooks, actions and filters facilitate extending WordPress.
+This is linked to the first part point. Whenever you can, develop the functions you need without relying on plugins. WordPress (and WooCommerce) hooks, actions and filters facilitate greatly extending WordPress.
 
 ## Stay updated with WordPress vulnerabilities
 
@@ -148,4 +156,5 @@ For Files:
 find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
 ```
 
-Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything (logging among other things).
+Hopefully this will help some people that feel a bit lost on the security side when using / maintaining WordPress websites and wanted to know some concrete solutions. The subject is very wide and I know that I didn't cover everything (logging among other things).　
+頑張ってね。
