@@ -5,6 +5,7 @@ company: 123 Mon école
 linko: https://paris15.123mesactivites.com/
 image: ../../../src/images/works/123-mesactivites.jpg
 category:
+  - PHP
   - Wordpress
   - Woocommerce
 tags:

@@ -10,6 +10,7 @@ export default function BlogPost({ data, pageContext }) {
   const image = markdownRemark.frontmatter.image
     ? markdownRemark.frontmatter.image.childImageSharp.fluid.src
     : null;
+  console.log(markdownRemark.frontmatter);
   return (
     <Layout
       title={`Blog`}
